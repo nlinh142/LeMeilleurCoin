@@ -10,7 +10,7 @@ import Foundation
 import Foundation
 
 /// sourcery: AutoMockableAccorHotelsBusinessLogic
-protocol ListingDetailsInteractorDependenciesProtocol {
+protocol ListingDetailsInteractorDependencies {
 }
 
 final class ListingDetailsInteractor {
@@ -21,7 +21,7 @@ final class ListingDetailsInteractor {
 
   // MARK: - Lifecycle
 
-  init(dependencies: ListingDetailsInteractorDependenciesProtocol) {
+  init(dependencies: ListingDetailsInteractorDependencies) {
   }
 
   deinit {}

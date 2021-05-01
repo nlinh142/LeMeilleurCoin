@@ -9,7 +9,7 @@
 import Foundation
 
 /// sourcery: AutoMockableAccorHotelsApp
-protocol ListingDetailsPresenterDependenciesProtocol {
+protocol ListingDetailsPresenterDependencies {
   var interactor: ListingDetailsInteractorInput { get }
   var stringFormatter: StringFormatterProtocol { get }
   var localizator: ListingDetailsLocalizable { get }
@@ -26,7 +26,7 @@ final class ListingDetailsPresenter {
 
   // MARK: - Lifecycle
 
-  init(dependencies: ListingDetailsPresenterDependenciesProtocol) {
+  init(dependencies: ListingDetailsPresenterDependencies) {
     interactor = dependencies.interactor
     stringFormatter = dependencies.stringFormatter
     localizator = dependencies.localizator

@@ -7,4 +7,6 @@
 
 import UIKit
 
-final class UrgentIndicatorView: UIView {}
+final class UrgentIndicatorView: UIView {
+  // TODO
+}

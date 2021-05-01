@@ -13,17 +13,21 @@ enum ListingsFetchingError: Error {
 }
 
 protocol ListingsFetchingResponse {
-  var id: String? { get }
-  var categoryId: String? { get }
+  var id: UInt? { get }
+  var categoryId: UInt8? { get }
   var title: String? { get }
   var description: String? { get }
   var price: Float? { get }
-  var imagesUrl: [String]? { get }
+  var imageUrls: ListingsFetchingImageUrlsResponse? { get }
   var creationDate: Date? { get }
   var isUrgent: Bool? { get }
 }
 
+protocol ListingsFetchingImageUrlsResponse {
+  var small: String? { get }
+  var thumb: String? { get }
+}
+
 protocol ListingsFetching {
-  func fetch(success: @escaping ([ListingsFetchingResponse]) -> Void,
-             failure: @escaping (ListingsFetchingError) -> Void)
+  func fetch(completion: @escaping (Result<[ListingsFetchingResponse], ListingsFetchingError>) -> Void)
 }

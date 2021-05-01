@@ -9,7 +9,7 @@
 import UIKit
 
 /// sourcery: AutoMockableAccorHotelsApp
-protocol ListingDetailsViewDependenciesProtocol {
+protocol ListingDetailsViewDependencies {
   var presenter: ListingDetailsPresenterInput! { get }
 }
 
@@ -23,7 +23,7 @@ class ListingDetailsViewController: UIViewController {
 
   // MARK: - Properties
 
-  var dependencies: ListingDetailsViewDependenciesProtocol!
+  var dependencies: ListingDetailsViewDependencies!
 
   // MARK: - Private
 }

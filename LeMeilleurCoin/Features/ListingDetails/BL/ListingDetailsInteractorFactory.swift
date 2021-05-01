@@ -30,7 +30,7 @@ final class ListingDetailsInteractorFactory: ListingDetailsInteractorFactoryProt
   func makeResponse(
     from request: ListingDetailsInteractorFactoryRequestProtocol
   ) -> ListingDetailsInteractorFactoryResponseProtocol {
-    let dependencies = ListingDetailsInteractorDependencies()
+    let dependencies = ListingDetailsInteractorDependenciesItem()
     let interactor = ListingDetailsInteractor(dependencies: dependencies)
     self.interactor = interactor
 
@@ -48,7 +48,7 @@ private struct ListingDetailsInteractorFactoryResponse: ListingDetailsInteractor
   let interactor: ListingDetailsInteractorInput
 }
 
-// MARK: - ListingDetailsInteractorDependenciesProtocol
+// MARK: - ListingDetailsInteractorDependencies
 
-private struct ListingDetailsInteractorDependencies: ListingDetailsInteractorDependenciesProtocol {
+private struct ListingDetailsInteractorDependenciesItem: ListingDetailsInteractorDependencies {
 }

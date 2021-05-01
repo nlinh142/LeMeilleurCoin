@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ListingsPresenterDependenciesProtocol {
+protocol ListingsPresenterDependencies {
   var interactor: ListingsInteractorInput { get }
   var stringFormatter: StringFormatterProtocol { get }
   var localizator: ListingsLocalizable { get }
@@ -25,7 +25,7 @@ final class ListingsPresenter {
 
   // MARK: - Lifecycle
 
-  init(dependencies: ListingsPresenterDependenciesProtocol) {
+  init(dependencies: ListingsPresenterDependencies) {
     interactor = dependencies.interactor
     stringFormatter = dependencies.stringFormatter
     localizator = dependencies.localizator
@@ -36,7 +36,7 @@ final class ListingsPresenter {
 
 extension ListingsPresenter: ListingsPresenterInput {
   func viewDidLoad() {
-    
+    interactor.retrieve()
   }
 }
 

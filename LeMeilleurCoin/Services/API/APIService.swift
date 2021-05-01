@@ -14,10 +14,11 @@ enum APIError: Error {
 }
 
 protocol APIServiceProtocol {
-  func fetchJsonData<T: Decodable>(from urlString: String,
-                                   completion: @escaping (Result<T, Error>) -> Void)
+  func fetchJsonList<T: Decodable>(elementType: T.Type,
+                                   from urlString: String,
+                                   completion: @escaping (Result<[T], APIError>) -> Void)
   func fetchData(from urlString: String,
-                 completion: @escaping (Result<Data, Error>) -> Void)
+                 completion: @escaping (Result<Data, APIError>) -> Void)
 }
 
 final class AppAPIService {
@@ -42,16 +43,17 @@ final class AppAPIService {
     return .noData
   }
   
-  private func model<T: Decodable>(type: T.Type, from data: Data) throws -> T {
-    try decoder.decode(T.self, from: data)
+  private func list<T: Decodable>(elementType: T.Type, from data: Data) throws -> [T] {
+    try decoder.decode([T].self, from: data)
   }
 }
 
 // MARK: - APIServiceProtocol
 
 extension AppAPIService: APIServiceProtocol {
-  func fetchJsonData<T: Decodable>(from urlString: String,
-                                   completion: @escaping (Result<T, Error>) -> Void) {
+  func fetchJsonList<T: Decodable>(elementType: T.Type,
+                                   from urlString: String,
+                                   completion: @escaping (Result<[T], APIError>) -> Void) {
     fetchData(from: urlString) { [weak self] result in
       guard let self = self else {
         return completion(.failure(APIError.noData))
@@ -62,8 +64,8 @@ extension AppAPIService: APIServiceProtocol {
         completion(.failure(self.apiError(from: error)))
       case let .success(data):
         do {
-          let model = try self.model(type: T.self, from: data)
-          completion(.success(model))
+          let list = try self.list(elementType: elementType, from: data)
+          completion(.success(list))
         } catch {
           completion(.failure(self.apiError(from: error)))
         }
@@ -72,18 +74,20 @@ extension AppAPIService: APIServiceProtocol {
   }
   
   func fetchData(from urlString: String,
-                 completion: @escaping (Result<Data, Error>) -> Void) {
+                 completion: @escaping (Result<Data, APIError>) -> Void) {
     guard let url = URL(string: urlString) else {
       return completion(.failure(APIError.invalidRequest))
     }
     
+    var request = URLRequest(url: url)
+    request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+    request.httpMethod = "GET"
+    request.timeoutInterval = 30
+    
     let session = URLSession(configuration: .default)
     
-    let dataTask = session.dataTask(with: url) { [weak self] data, _, error in
-      guard let self = self else {
-        return completion(.failure(APIError.noData))
-      }
-      
+    let dataTask = session.dataTask(with: request) { data, _, error in
       if let error = error {
         return completion(.failure(self.apiError(from: error)))
       }

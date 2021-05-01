@@ -7,6 +7,8 @@
 
 import UIKit
 
+// TODO: Loading indicator and/or animation ?
+
 final class AsyncImageView: UIImageView {
   
   // MARK: - Properties

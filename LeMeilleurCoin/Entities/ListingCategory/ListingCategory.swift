@@ -12,7 +12,7 @@ enum ListingCategoryError: Error {
 }
 
 protocol ListingCategory {
-  var id: String { get }
+  var id: UInt { get }
   var name: String { get }
 }
 
@@ -20,12 +20,12 @@ final class AppListingCategory {
   
   // MARK: - Properties
   
-  let id: String
+  let id: UInt
   let name: String
   
   // MARK: - Init
   
-  init(id: String?,
+  init(id: UInt?,
        name: String?) throws {
     guard let id = id,
           let name = name else {

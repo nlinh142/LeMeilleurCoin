@@ -29,7 +29,7 @@ final class ListingsInteractorFactory: ListingsInteractorFactoryProtocol {
   func makeResponse(
     from request: ListingsInteractorFactoryRequestProtocol
   ) -> ListingsInteractorFactoryResponseProtocol {
-    let dependencies = ListingsInteractorDependencies(
+    let dependencies = ListingsInteractorDependenciesItem(
       dataSource: ListingsInteractorDataSource()
     )
     let interactor = ListingsInteractor(dependencies: dependencies)
@@ -49,8 +49,8 @@ private struct ListingsInteractorFactoryResponse: ListingsInteractorFactoryRespo
   let interactor: ListingsInteractorInput
 }
 
-// MARK: - ListingsInteractorDependenciesProtocol
+// MARK: - ListingsInteractorDependencies
 
-private struct ListingsInteractorDependencies: ListingsInteractorDependenciesProtocol {
+private struct ListingsInteractorDependenciesItem: ListingsInteractorDependencies {
   let dataSource: ListingsInteractorDataSourceProtocol
 }

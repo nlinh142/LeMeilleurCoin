@@ -7,4 +7,6 @@
 
 import Foundation
 
-protocol ListingsRouting {}
+protocol ListingsRouting {
+  // TODO
+}

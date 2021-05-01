@@ -12,44 +12,53 @@ enum ListingError: Error {
 }
 
 protocol Listing {
-  var id: String { get }
-  var categoryId: String { get }
+  var id: UInt { get }
+  var categoryId: UInt8 { get }
   var title: String { get }
   var description: String? { get }
   var price: Float { get }
-  var imagesUrl: [String] { get }
+  var imageUrls: ListingImageUrls? { get }
   var creationDate: Date { get }
   var isUrgent: Bool { get }
+}
+
+protocol ListingImageUrls {
+  var small: String? { get }
+  var thumb: String? { get }
+}
+
+protocol AppListingDependencies {
+  var id: UInt? { get }
+  var categoryId: UInt8? { get }
+  var title: String? { get }
+  var description: String? { get }
+  var price: Float? { get }
+  var imageUrls: ListingImageUrls? { get }
+  var creationDate: Date? { get }
+  var isUrgent: Bool? { get }
 }
 
 final class AppListing: Listing {
   
   // MARK: - Properties
   
-  let id: String
-  let categoryId: String
+  let id: UInt
+  let categoryId: UInt8
   let title: String
   let description: String?
   let price: Float
-  let imagesUrl: [String]
+  let imageUrls: ListingImageUrls?
   let creationDate: Date
   let isUrgent: Bool
   
   // MARK: - Init
   
-  init(id: String?,
-       categoryId: String?,
-       title: String?,
-       description: String?,
-       price: Float?,
-       imagesUrl: [String]?,
-       creationDate: Date?,
-       isUrgent: Bool?) throws {
-    guard let id = id,
-          let categoryId = categoryId,
-          let title = title,
-          let price = price,
-          let creationDate = creationDate else {
+  init(dependencies: AppListingDependencies) throws {
+    guard let id = dependencies.id,
+          let categoryId = dependencies.categoryId,
+          let title = dependencies.title,
+          let price = dependencies.price,
+          let creationDate = dependencies.creationDate else {
       throw ListingError.invalid
     }
     
@@ -57,9 +66,9 @@ final class AppListing: Listing {
     self.categoryId = categoryId
     self.title = title
     self.price = price
-    self.description = description
-    self.imagesUrl = imagesUrl ?? []
+    self.description = dependencies.description
+    self.imageUrls = dependencies.imageUrls
     self.creationDate = creationDate
-    self.isUrgent = isUrgent ?? false
+    self.isUrgent = dependencies.isUrgent ?? false
   }
 }

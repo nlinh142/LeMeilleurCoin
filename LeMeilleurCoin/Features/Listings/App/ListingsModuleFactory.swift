@@ -12,11 +12,11 @@ protocol ListingsModuleFactoryProtocol {
   func makeViewController() -> ListingsViewLoadable
 }
 
-protocol ListingsModuleFactoryDependenciesProtocol {
+protocol ListingsModuleFactoryDependencies {
   var interactorFactory: ListingsInteractorFactoryProtocol { get }
 }
 
-final class ListingsModuleFactory: ListingsViewDependenciesProtocol {
+final class ListingsModuleFactory: ListingsViewDependencies {
   
   // MARK: - Properties
 
@@ -25,7 +25,7 @@ final class ListingsModuleFactory: ListingsViewDependenciesProtocol {
 
   // MARK: - Lifecycle
 
-  init(dependencies: ListingsModuleFactoryDependenciesProtocol) {
+  init(dependencies: ListingsModuleFactoryDependencies) {
     interactorFactory = dependencies.interactorFactory
   }
 }
@@ -36,9 +36,9 @@ extension ListingsModuleFactory: ListingsModuleFactoryProtocol {
   func makeViewController() -> ListingsViewLoadable {
     let request = ListingsInteractorFactoryRequest()
     let response = interactorFactory.makeResponse(from: request)
-    let dependencies = ListingsPresenterDependencies(
+    let dependencies = ListingsPresenterDependenciesItem(
       interactor: response.interactor,
-      stringFormatter: StringFormatter(),
+      stringFormatter: AppStringFormatter(),
       localizator: ListingsLocalizator()
     )
     let presenter = ListingsPresenter(dependencies: dependencies)
@@ -57,9 +57,9 @@ extension ListingsModuleFactory: ListingsModuleFactoryProtocol {
 private struct ListingsInteractorFactoryRequest: ListingsInteractorFactoryRequestProtocol {
 }
 
-// MARK: - ListingsPresenterDependenciesProtocol
+// MARK: - ListingsPresenterDependencies
 
-private struct ListingsPresenterDependencies: ListingsPresenterDependenciesProtocol {
+private struct ListingsPresenterDependenciesItem: ListingsPresenterDependencies {
   let interactor: ListingsInteractorInput
   let stringFormatter: StringFormatterProtocol
   let localizator: ListingsLocalizable

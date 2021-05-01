@@ -13,11 +13,10 @@ enum CategoryReferentialFetchingError: Error {
 }
 
 protocol CategoryReferentialFetchingResponse {
-  var id: String? { get }
+  var id: UInt8? { get }
   var name: String? { get }
 }
 
 protocol CategoryReferentialFetching {
-  func fetch(success: @escaping ([CategoryReferentialFetchingResponse]) -> Void,
-             failure: @escaping (CategoryReferentialFetchingError) -> Void)
+  func fetch(completion: @escaping (Result<[CategoryReferentialFetchingResponse], CategoryReferentialFetchingError>) -> Void)
 }

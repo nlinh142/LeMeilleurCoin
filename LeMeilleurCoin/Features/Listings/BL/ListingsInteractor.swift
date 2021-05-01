@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ListingsInteractorDependenciesProtocol {
+protocol ListingsInteractorDependencies {
   var dataSource: ListingsInteractorDataSourceProtocol { get }
 }
 
@@ -22,7 +22,7 @@ final class ListingsInteractor {
 
   // MARK: - Lifecycle
 
-  init(dependencies: ListingsInteractorDependenciesProtocol) {
+  init(dependencies: ListingsInteractorDependencies) {
     dataSource = dependencies.dataSource
   }
 

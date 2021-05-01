@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ListingsViewDependenciesProtocol {
+protocol ListingsViewDependencies {
   var presenter: ListingsPresenterInput! { get }
 }
 
@@ -22,7 +22,7 @@ class ListingsViewController: UIViewController {
 
   // MARK: - Properties
 
-  var dependencies: ListingsViewDependenciesProtocol!
+  var dependencies: ListingsViewDependencies!
 
   // MARK: - Private
 }

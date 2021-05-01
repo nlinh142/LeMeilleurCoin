@@ -14,11 +14,11 @@ protocol ListingDetailsModuleFactoryProtocol {
 }
 
 /// sourcery: AutoMockableModuleFactories
-protocol ListingDetailsModuleFactoryDependenciesProtocol {
+protocol ListingDetailsModuleFactoryDependencies {
   var interactorFactory: ListingDetailsInteractorFactoryProtocol { get }
 }
 
-final class ListingDetailsModuleFactory: ListingDetailsViewDependenciesProtocol {
+final class ListingDetailsModuleFactory: ListingDetailsViewDependencies {
   
   // MARK: - Properties
 
@@ -27,7 +27,7 @@ final class ListingDetailsModuleFactory: ListingDetailsViewDependenciesProtocol 
 
   // MARK: - Lifecycle
 
-  init(dependencies: ListingDetailsModuleFactoryDependenciesProtocol) {
+  init(dependencies: ListingDetailsModuleFactoryDependencies) {
     interactorFactory = dependencies.interactorFactory
   }
 }
@@ -39,9 +39,9 @@ extension ListingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol {
 
     let request = ListingDetailsInteractorFactoryRequest()
     let response = interactorFactory.makeResponse(from: request)
-    let dependencies = ListingDetailsPresenterDependencies(
+    let dependencies = ListingDetailsPresenterDependenciesItem(
       interactor: response.interactor,
-      stringFormatter: StringFormatter(),
+      stringFormatter: AppStringFormatter(),
       localizator: ListingDetailsLocalizator()
     )
     let presenter = ListingDetailsPresenter(dependencies: dependencies)
@@ -60,9 +60,9 @@ extension ListingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol {
 private struct ListingDetailsInteractorFactoryRequest: ListingDetailsInteractorFactoryRequestProtocol {
 }
 
-// MARK: - ListingDetailsPresenterDependenciesProtocol
+// MARK: - ListingDetailsPresenterDependencies
 
-private struct ListingDetailsPresenterDependencies: ListingDetailsPresenterDependenciesProtocol {
+private struct ListingDetailsPresenterDependenciesItem: ListingDetailsPresenterDependencies {
   let interactor: ListingDetailsInteractorInput
   let stringFormatter: StringFormatterProtocol
   let localizator: ListingDetailsLocalizable
