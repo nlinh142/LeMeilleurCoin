@@ -9,25 +9,6 @@
 import XCTest
 @testable import LeMeilleurCoin
 
-// TODO
-
 class ListingDetailsInteractorFactoryTests: XCTestCase {
-
-  // MARK: - Enum
-
-  override func setUpWithError() throws {}
-
-  override func tearDownWithError() throws {}
-
-  func test_case_01() {
-    /*given("<#To be filled#>") {
-
-      when("<#To be filled#>") {
-
-        try? then("<#To be filled#>") {
-
-        }
-      }
-    }*/
-  }
+  // TODO
 }

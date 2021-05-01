@@ -57,7 +57,9 @@ final class AppListing: Listing {
     guard let id = dependencies.id,
           let categoryId = dependencies.categoryId,
           let title = dependencies.title,
+          !title.isEmpty,
           let price = dependencies.price,
+          price > 0,
           let creationDate = dependencies.creationDate else {
       throw ListingError.invalid
     }

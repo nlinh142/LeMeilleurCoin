@@ -52,7 +52,6 @@
 		EBA27FE5263A52100063C89E /* ListingDetailsRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27FDC263A52100063C89E /* ListingDetailsRouterProtocol.swift */; };
 		EBA27FF2263A52E50063C89E /* ListingDetailsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27FF0263A52E50063C89E /* ListingDetailsInteractorTests.swift */; };
 		EBA27FF3263A52E50063C89E /* ListingDetailsInteractorFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27FF1263A52E50063C89E /* ListingDetailsInteractorFactoryTests.swift */; };
-		EBA27FF9263A53580063C89E /* XCTestCase+Gherkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27FF8263A53580063C89E /* XCTestCase+Gherkin.swift */; };
 		EBA27FFB263A53960063C89E /* ListingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27FFA263A53960063C89E /* ListingTests.swift */; };
 		EBA27FFD263A53A00063C89E /* ListingCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27FFC263A53A00063C89E /* ListingCategoryTests.swift */; };
 		EBA27FFF263A53CC0063C89E /* CategoryReferentialRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27FFE263A53CC0063C89E /* CategoryReferentialRepositoryTests.swift */; };
@@ -130,7 +129,6 @@
 		EBA27FDC263A52100063C89E /* ListingDetailsRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsRouterProtocol.swift; sourceTree = "<group>"; };
 		EBA27FF0263A52E50063C89E /* ListingDetailsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsInteractorTests.swift; sourceTree = "<group>"; };
 		EBA27FF1263A52E50063C89E /* ListingDetailsInteractorFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsInteractorFactoryTests.swift; sourceTree = "<group>"; };
-		EBA27FF8263A53580063C89E /* XCTestCase+Gherkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Gherkin.swift"; sourceTree = "<group>"; };
 		EBA27FFA263A53960063C89E /* ListingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingTests.swift; sourceTree = "<group>"; };
 		EBA27FFC263A53A00063C89E /* ListingCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingCategoryTests.swift; sourceTree = "<group>"; };
 		EBA27FFE263A53CC0063C89E /* CategoryReferentialRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReferentialRepositoryTests.swift; sourceTree = "<group>"; };
@@ -576,7 +574,6 @@
 		EBA27FF4263A52F50063C89E /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				EBA27FF8263A53580063C89E /* XCTestCase+Gherkin.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -793,7 +790,6 @@
 				EBA27FFF263A53CC0063C89E /* CategoryReferentialRepositoryTests.swift in Sources */,
 				EBA27FFD263A53A00063C89E /* ListingCategoryTests.swift in Sources */,
 				EBA28003263A53F10063C89E /* CurrentListingRepositoryTests.swift in Sources */,
-				EBA27FF9263A53580063C89E /* XCTestCase+Gherkin.swift in Sources */,
 				EBA28005263A54000063C89E /* ListingsRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

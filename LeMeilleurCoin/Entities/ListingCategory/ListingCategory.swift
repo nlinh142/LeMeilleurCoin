@@ -16,6 +16,11 @@ protocol ListingCategory {
   var name: String { get }
 }
 
+protocol AppListingCategoryDependencies {
+  var id: UInt? { get }
+  var name: String? { get }
+}
+
 final class AppListingCategory {
   
   // MARK: - Properties
@@ -25,10 +30,10 @@ final class AppListingCategory {
   
   // MARK: - Init
   
-  init(id: UInt?,
-       name: String?) throws {
-    guard let id = id,
-          let name = name else {
+  init(dependencies: AppListingCategoryDependencies) throws {
+    guard let id = dependencies.id,
+          let name = dependencies.name,
+          !name.isEmpty else {
       throw ListingCategoryError.invalid
     }
     
