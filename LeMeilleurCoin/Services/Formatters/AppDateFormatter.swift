@@ -8,16 +8,16 @@
 import Foundation
 
 protocol DateFormatterProtocol {
-  func string(from date: Date, with formatStyle: DateStyleFormatterProtocol) -> String
+  func string(from date: Date, with style: DateFormatterStylesProtocol) -> String
   func date(from string: String, with format: String) -> Date?
 }
 
-protocol DateStyleFormatterProtocol {
-  var dateStyle: AppDateFormatterStyle { get }
-  var timeStyle: AppDateFormatterStyle { get }
+protocol DateFormatterStylesProtocol {
+  var dateStyle: DateFormatterStyle { get }
+  var timeStyle: DateFormatterStyle { get }
 }
 
-enum AppDateFormatterStyle {
+enum DateFormatterStyle {
   case none
   case short
   case medium
@@ -40,8 +40,8 @@ final class AppDateFormatter {
 
   // MARK: - Private
 
-  private func appleDateStyle(fromAppDateStyles AppStyle: AppDateFormatterStyle) -> DateFormatter.Style {
-    switch AppStyle {
+  private func dateFormatterStyle(from style: DateFormatterStyle) -> DateFormatter.Style {
+    switch style {
     case .none:
       return .none
     case .short:
@@ -59,8 +59,9 @@ final class AppDateFormatter {
 // MARK: - DateFormatterProtocol
 
 extension AppDateFormatter: DateFormatterProtocol {
-  func string(from date: Date, with formatStyle: DateStyleFormatterProtocol) -> String {    dateFormatter.dateStyle = appleDateStyle(fromAppDateStyles: formatStyle.dateStyle)
-    dateFormatter.timeStyle = appleDateStyle(fromAppDateStyles: formatStyle.timeStyle)
+  func string(from date: Date, with style: DateFormatterStylesProtocol) -> String {
+    dateFormatter.dateStyle = dateFormatterStyle(from: style.dateStyle)
+    dateFormatter.timeStyle = dateFormatterStyle(from: style.timeStyle)
     return dateFormatter.string(from: date)
   }
 

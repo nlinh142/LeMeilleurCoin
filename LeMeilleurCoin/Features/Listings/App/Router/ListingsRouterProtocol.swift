@@ -7,5 +7,5 @@
 //
 
 protocol ListingsRouterProtocol {
-
+  func routeToListingDetails()
 }

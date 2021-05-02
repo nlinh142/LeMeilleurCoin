@@ -12,20 +12,20 @@ enum ListingCategoryError: Error {
 }
 
 protocol ListingCategory {
-  var id: UInt { get }
+  var id: UInt8 { get }
   var name: String { get }
 }
 
 protocol AppListingCategoryDependencies {
-  var id: UInt? { get }
+  var id: UInt8? { get }
   var name: String? { get }
 }
 
-final class AppListingCategory {
+final class AppListingCategory: ListingCategory {
   
   // MARK: - Properties
   
-  let id: UInt
+  let id: UInt8
   let name: String
   
   // MARK: - Init

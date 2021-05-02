@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // MARK: - UIApplicationDelegate
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    let dependencies = ListingsModuleFactoryDependenciesItem(interactorFactory: ListingsInteractorFactory())
+    let dependencies = ListingsModuleFactoryDependenciesModel(interactorFactory: ListingsInteractorFactory())
     let listingsModuleFactory = ListingsModuleFactory(dependencies: dependencies)
     let viewController = listingsModuleFactory.makeViewController()
     let navigationController = UINavigationController(rootViewController: viewController)
@@ -30,6 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: - ListingsModuleFactoryDependencies
 
-private struct ListingsModuleFactoryDependenciesItem: ListingsModuleFactoryDependencies {
+private struct ListingsModuleFactoryDependenciesModel: ListingsModuleFactoryDependencies {
   let interactorFactory: ListingsInteractorFactoryProtocol
 }

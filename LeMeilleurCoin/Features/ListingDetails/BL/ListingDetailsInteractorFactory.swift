@@ -28,13 +28,13 @@ final class ListingDetailsInteractorFactory: ListingDetailsInteractorFactoryProt
   // MARK: - ListingDetailsInteractorInput
 
   func makeResponse(
-    from request: ListingDetailsInteractorFactoryRequestProtocol
-  ) -> ListingDetailsInteractorFactoryResponseProtocol {
-    let dependencies = ListingDetailsInteractorDependenciesItem()
+    from request: ListingDetailsInteractorFactoryRequest
+  ) -> ListingDetailsInteractorFactoryResponse {
+    let dependencies = ListingDetailsInteractorDependenciesModel()
     let interactor = ListingDetailsInteractor(dependencies: dependencies)
     self.interactor = interactor
 
-    let response = ListingDetailsInteractorFactoryResponse(
+    let response = ListingDetailsInteractorFactoryResponseModel(
       interactor: interactor
     )
 
@@ -42,13 +42,13 @@ final class ListingDetailsInteractorFactory: ListingDetailsInteractorFactoryProt
   }
 }
 
-// MARK: - ListingDetailsInteractorFactoryResponseProtocol
+// MARK: - ListingDetailsInteractorFactoryResponse
 
-private struct ListingDetailsInteractorFactoryResponse: ListingDetailsInteractorFactoryResponseProtocol {
+private struct ListingDetailsInteractorFactoryResponseModel: ListingDetailsInteractorFactoryResponse {
   let interactor: ListingDetailsInteractorInput
 }
 
 // MARK: - ListingDetailsInteractorDependencies
 
-private struct ListingDetailsInteractorDependenciesItem: ListingDetailsInteractorDependencies {
+private struct ListingDetailsInteractorDependenciesModel: ListingDetailsInteractorDependencies {
 }

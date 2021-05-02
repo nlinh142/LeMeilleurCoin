@@ -44,7 +44,8 @@ final class AsyncImageView: UIImageView {
   
   // MARK: - Private
   
-  private func load(with urlString: String) {
+  private func load(with urlString: String?) {
+    guard let urlString = urlString else { return }
     downloader.fetchData(from: urlString) { [weak self] result in
       switch result {
       case let .success(data):

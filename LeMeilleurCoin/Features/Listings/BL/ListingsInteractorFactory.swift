@@ -20,22 +20,22 @@ final class ListingsInteractorFactory: ListingsInteractorFactoryProtocol {
 
   private weak var interactor: ListingsInteractor?
 
-  // MARK: - Lifecycle
-
-  init() {}
-
   // MARK: - ListingsInteractorInput
 
   func makeResponse(
-    from request: ListingsInteractorFactoryRequestProtocol
-  ) -> ListingsInteractorFactoryResponseProtocol {
-    let dependencies = ListingsInteractorDependenciesItem(
+    from request: ListingsInteractorFactoryRequest
+  ) -> ListingsInteractorFactoryResponse {
+    let dependencies = ListingsInteractorDependenciesModel(
+      listingsRepository: request.listingsRepository,
+      categoryReferentialRepository: request.categoryReferentialRepository,
+      currentListingRepository: request.currentListingRepository,
+      router: request.router,
       dataSource: ListingsInteractorDataSource()
     )
     let interactor = ListingsInteractor(dependencies: dependencies)
     self.interactor = interactor
 
-    let response = ListingsInteractorFactoryResponse(
+    let response = ListingsInteractorFactoryResponseModel(
       interactor: interactor
     )
 
@@ -43,14 +43,18 @@ final class ListingsInteractorFactory: ListingsInteractorFactoryProtocol {
   }
 }
 
-// MARK: - ListingsInteractorFactoryResponseProtocol
+// MARK: - ListingsInteractorFactoryResponse
 
-private struct ListingsInteractorFactoryResponse: ListingsInteractorFactoryResponseProtocol {
+private struct ListingsInteractorFactoryResponseModel: ListingsInteractorFactoryResponse {
   let interactor: ListingsInteractorInput
 }
 
 // MARK: - ListingsInteractorDependencies
 
-private struct ListingsInteractorDependenciesItem: ListingsInteractorDependencies {
+private struct ListingsInteractorDependenciesModel: ListingsInteractorDependencies {
+  let listingsRepository: ListingsFetching
+  let categoryReferentialRepository: CategoryReferentialFetching
+  let currentListingRepository: CurrentListingSaving
+  let router: ListingsRouting
   let dataSource: ListingsInteractorDataSourceProtocol
 }

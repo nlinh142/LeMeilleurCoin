@@ -12,14 +12,14 @@ import Foundation
 protocol ListingDetailsInteractorFactoryProtocol {
   var output: ListingDetailsInteractorOutput? { get set }
   func makeResponse(
-    from request: ListingDetailsInteractorFactoryRequestProtocol
-  ) -> ListingDetailsInteractorFactoryResponseProtocol
+    from request: ListingDetailsInteractorFactoryRequest
+  ) -> ListingDetailsInteractorFactoryResponse
 }
 
 /// sourcery: AutoMockableAccorHotelsBusinessLogicAPI
-protocol ListingDetailsInteractorFactoryRequestProtocol {}
+protocol ListingDetailsInteractorFactoryRequest {}
 
 /// sourcery: AutoMockableAccorHotelsBusinessLogicAPI
-protocol ListingDetailsInteractorFactoryResponseProtocol {
+protocol ListingDetailsInteractorFactoryResponse {
   var interactor: ListingDetailsInteractorInput { get }
 }

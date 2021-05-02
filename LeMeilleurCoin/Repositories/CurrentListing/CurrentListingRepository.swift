@@ -26,6 +26,10 @@ final class CurrentListingRepository {
     return CurrentListingFetchingImageUrlsResponseModel(small: imageUrls.small,
                                                         thumb: imageUrls.thumb)
   }
+  
+  private func responseCategory(from category: CurrentListingSavingCategoryRequest) -> CurrentListingFetchingCategoryResponse {
+    CurrentListingFetchingCategoryResponseModel(id: category.id, name: category.name)
+  }
 }
 
 // MARK: - CurrentListingFetching
@@ -42,7 +46,7 @@ extension CurrentListingRepository: CurrentListingSaving {
   func save(with request: CurrentListingSavingRequest) {
     response = CurrentListingFetchingResponseModel(
       id: request.id,
-      categoryId: request.categoryId,
+      category: responseCategory(from: request.category),
       title: request.title,
       description: request.description,
       price: request.price,
@@ -65,7 +69,7 @@ extension CurrentListingRepository: CurrentListingClearing {
 
 private struct CurrentListingFetchingResponseModel: CurrentListingFetchingResponse {
   let id: UInt?
-  let categoryId: UInt8?
+  let category: CurrentListingFetchingCategoryResponse?
   let title: String?
   let description: String?
   let price: Float?
@@ -79,4 +83,11 @@ private struct CurrentListingFetchingResponseModel: CurrentListingFetchingRespon
 private struct CurrentListingFetchingImageUrlsResponseModel: CurrentListingFetchingImageUrlsResponse {
   let small: String?
   let thumb: String?
+}
+
+// MARK: - CurrentListingFetchingCategoryResponse
+
+private struct CurrentListingFetchingCategoryResponseModel: CurrentListingFetchingCategoryResponse {
+  let id: UInt8
+  let name: String
 }

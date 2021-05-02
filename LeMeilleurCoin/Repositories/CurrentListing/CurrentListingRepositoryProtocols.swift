@@ -9,13 +9,18 @@ import Foundation
 
 protocol CurrentListingSavingRequest {
   var id: UInt { get }
-  var categoryId: UInt8 { get }
+  var category: CurrentListingSavingCategoryRequest { get }
   var title: String { get }
   var description: String? { get }
   var price: Float { get }
   var imageUrls: CurrentListingSavingImageUrlsRequest? { get }
   var creationDate: Date { get }
   var isUrgent: Bool { get }
+}
+
+protocol CurrentListingSavingCategoryRequest {
+  var id: UInt8 { get }
+  var name: String { get }
 }
 
 protocol CurrentListingSavingImageUrlsRequest {
@@ -25,7 +30,7 @@ protocol CurrentListingSavingImageUrlsRequest {
 
 protocol CurrentListingFetchingResponse {
   var id: UInt? { get }
-  var categoryId: UInt8? { get }
+  var category: CurrentListingFetchingCategoryResponse? { get }
   var title: String? { get }
   var description: String? { get }
   var price: Float? { get }
@@ -37,6 +42,11 @@ protocol CurrentListingFetchingResponse {
 protocol CurrentListingFetchingImageUrlsResponse {
   var small: String? { get }
   var thumb: String? { get }
+}
+
+protocol CurrentListingFetchingCategoryResponse {
+  var id: UInt8 { get }
+  var name: String { get }
 }
 
 protocol CurrentListingFetching {

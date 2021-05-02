@@ -8,15 +8,30 @@
 
 import UIKit
 
+protocol ListingsRouterDependencies {
+  var listingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol { get }
+}
+
 final class ListingsRouter {
 
   // MARK: - Properties
 
   weak var viewController: UIViewController?
+  
+  private let listingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol
+  
+  // MARK: - Init
+  
+  init(dependencies: ListingsRouterDependencies) {
+    listingDetailsModuleFactory = dependencies.listingDetailsModuleFactory
+  }
 }
 
 // MARK: - ListingsRouterProtocol
 
 extension ListingsRouter: ListingsRouterProtocol {
-  
+  func routeToListingDetails() {
+    let listingDetailsViewController = listingDetailsModuleFactory.makeViewController()
+    viewController?.navigationController?.pushViewController(listingDetailsViewController, animated: true)
+  }
 }

@@ -40,10 +40,22 @@ extension ListingsViewController: ListingsViewLoadable {
 
 extension ListingsViewController: ListingsPresenterOutput {
   func showLoading() {
-    
+    // TODO
   }
-
+  
   func hideLoading() {
-    
+    // TODO
+  }
+  
+  func display(title: String) {
+    // TODO
+  }
+  
+  func display(alert: AlertItemProtocol) {
+    // TODO
+  }
+  
+  func refreshListings() {
+    // TODO
   }
 }

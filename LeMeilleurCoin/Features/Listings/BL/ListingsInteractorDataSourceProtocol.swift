@@ -8,4 +8,9 @@
 
 import Foundation
 
-protocol ListingsInteractorDataSourceProtocol {}
+protocol ListingsInteractorDataSourceProtocol {
+  var listings: [Listing] { get set }
+  var categories: [ListingCategory] { get set }
+  var listingsError: ListingsFetchingError? { get set }
+  var categoryReferentialError: CategoryReferentialFetchingError? { get set }
+}

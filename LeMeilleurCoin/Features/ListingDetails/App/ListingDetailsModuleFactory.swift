@@ -37,9 +37,9 @@ final class ListingDetailsModuleFactory: ListingDetailsViewDependencies {
 extension ListingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol {
   func makeViewController() -> ListingDetailsViewLoadable {
 
-    let request = ListingDetailsInteractorFactoryRequest()
+    let request = ListingDetailsInteractorFactoryRequestModel()
     let response = interactorFactory.makeResponse(from: request)
-    let dependencies = ListingDetailsPresenterDependenciesItem(
+    let dependencies = ListingDetailsPresenterDependenciesModel(
       interactor: response.interactor,
       stringFormatter: AppStringFormatter(),
       localizator: ListingDetailsLocalizator()
@@ -55,14 +55,14 @@ extension ListingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol {
   }
 }
 
-// MARK: - ListingDetailsInteractorFactoryRequestProtocol
+// MARK: - ListingDetailsInteractorFactoryRequest
 
-private struct ListingDetailsInteractorFactoryRequest: ListingDetailsInteractorFactoryRequestProtocol {
+private struct ListingDetailsInteractorFactoryRequestModel: ListingDetailsInteractorFactoryRequest {
 }
 
 // MARK: - ListingDetailsPresenterDependencies
 
-private struct ListingDetailsPresenterDependenciesItem: ListingDetailsPresenterDependencies {
+private struct ListingDetailsPresenterDependenciesModel: ListingDetailsPresenterDependencies {
   let interactor: ListingDetailsInteractorInput
   let stringFormatter: StringFormatterProtocol
   let localizator: ListingDetailsLocalizable

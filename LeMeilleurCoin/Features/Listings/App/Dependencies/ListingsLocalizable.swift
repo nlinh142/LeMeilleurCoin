@@ -8,4 +8,9 @@
 
 import Foundation
 
-protocol ListingsLocalizable {}
+protocol ListingsLocalizable {
+  var title: String { get }
+  var fetchingErrorTitle: String { get }
+  var fetchingErrorMessage: String { get }
+  var fetchingErrorConfirmationButton: String { get }
+}

@@ -11,13 +11,18 @@ import Foundation
 protocol ListingsInteractorFactoryProtocol {
   var output: ListingsInteractorOutput? { get set }
   func makeResponse(
-    from request: ListingsInteractorFactoryRequestProtocol
-  ) -> ListingsInteractorFactoryResponseProtocol
+    from request: ListingsInteractorFactoryRequest
+  ) -> ListingsInteractorFactoryResponse
 }
 
 
-protocol ListingsInteractorFactoryRequestProtocol {}
+protocol ListingsInteractorFactoryRequest {
+  var listingsRepository: ListingsFetching { get }
+  var categoryReferentialRepository: CategoryReferentialFetching { get }
+  var currentListingRepository: CurrentListingSaving { get }
+  var router: ListingsRouting { get }
+}
 
-protocol ListingsInteractorFactoryResponseProtocol {
+protocol ListingsInteractorFactoryResponse {
   var interactor: ListingsInteractorInput { get }
 }

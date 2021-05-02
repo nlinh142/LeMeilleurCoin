@@ -9,4 +9,7 @@
 protocol ListingsPresenterOutput: AnyObject {
   func showLoading()
   func hideLoading()
+  func display(title: String)
+  func display(alert: AlertItemProtocol)
+  func refreshListings()
 }

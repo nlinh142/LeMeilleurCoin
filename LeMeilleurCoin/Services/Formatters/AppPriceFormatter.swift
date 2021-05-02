@@ -8,8 +8,8 @@
 import Foundation
 
 protocol PriceFormatterParametersProtocol {
-  var price: Double { get }
-  var currency: String { get }
+  var price: Float { get }
+  var currencyCode: String { get }
   var fractionDigitsMinMax: FractionDigitsMinMaxProtocol { get }
 }
 
@@ -30,7 +30,7 @@ final class AppPriceFormatter {
   
   // MARK: - Init
 
-  init(locale: Locale) {
+  init(locale: Locale = .current) {
     formatter.locale = locale
   }
 }
@@ -41,9 +41,9 @@ extension AppPriceFormatter: PriceFormatterProtocol {
   func formattedPrice(with parameters: PriceFormatterParametersProtocol) -> String {
     formatter.numberStyle = .currency
     formatter.usesGroupingSeparator = true
-    formatter.currencyCode = parameters.currency
+    formatter.currencyCode = parameters.currencyCode
     formatter.minimumFractionDigits = parameters.fractionDigitsMinMax.minimumFractionDigits
     formatter.maximumFractionDigits = parameters.fractionDigitsMinMax.maximumFractionDigits
-    return formatter.string(for: parameters.price) ?? "\(parameters.price)\(parameters.currency)"
+    return formatter.string(for: parameters.price) ?? "\(parameters.price)\(parameters.currencyCode)"
   }
 }

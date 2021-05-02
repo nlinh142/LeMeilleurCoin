@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+import UIKit
 
 protocol ListingsModuleFactoryProtocol {
   func makeViewController() -> ListingsViewLoadable
@@ -22,11 +22,51 @@ final class ListingsModuleFactory: ListingsViewDependencies {
 
   var presenter: ListingsPresenterInput!
   private var interactorFactory: ListingsInteractorFactoryProtocol
+  
+  private lazy var dateFormatter = AppDateFormatter()
+  private lazy var router: ListingsRouter = {
+    let listingDetailsModuleFactoryDependencies = ListingDetailsModuleFactoryDependenciesModel(
+      interactorFactory: ListingDetailsInteractorFactory()
+    )
+    let listingDetailsModuleFactory = ListingDetailsModuleFactory(dependencies: listingDetailsModuleFactoryDependencies)
+    let listingsRouterDependencies = ListingsRouterDependenciesModel(listingDetailsModuleFactory: listingDetailsModuleFactory)
+    return ListingsRouter(dependencies: listingsRouterDependencies)
+  }()
 
   // MARK: - Lifecycle
 
   init(dependencies: ListingsModuleFactoryDependencies) {
     interactorFactory = dependencies.interactorFactory
+  }
+  
+  // MARK: - Private
+  
+  private func makeInteractorFactoryResponseModel() -> ListingsInteractorFactoryResponse {
+    let apiService = AppAPIService()
+    
+    let listingsRepositoryDependencies = ListingsRepositoryDependenciesModel(
+      apiService: apiService,
+      dateFormatter: dateFormatter
+    )
+    let listingsRepository = ListingsRepository(dependencies: listingsRepositoryDependencies)
+    
+    let categoryReferentialRepositoryDependencies = CategoryReferentialRepositoryDependenciesModel(
+      apiService: apiService
+    )
+    let categoryReferentialRepository = CategoryReferentialRepository(dependencies: categoryReferentialRepositoryDependencies)
+    
+    let currentListingRepository = CurrentListingRepository.shared
+    
+    let routerAdapter = ListingsRouterAdapter(router: router)
+    
+    let interactorFactoryRequest = ListingsInteractorFactoryRequestModel(
+      listingsRepository: listingsRepository,
+      categoryReferentialRepository: categoryReferentialRepository,
+      currentListingRepository: currentListingRepository,
+      router: routerAdapter
+    )
+    
+    return interactorFactory.makeResponse(from: interactorFactoryRequest)
   }
 }
 
@@ -34,12 +74,15 @@ final class ListingsModuleFactory: ListingsViewDependencies {
 
 extension ListingsModuleFactory: ListingsModuleFactoryProtocol {
   func makeViewController() -> ListingsViewLoadable {
-    let request = ListingsInteractorFactoryRequest()
-    let response = interactorFactory.makeResponse(from: request)
-    let dependencies = ListingsPresenterDependenciesItem(
-      interactor: response.interactor,
+    let interactorFactoryResponse = makeInteractorFactoryResponseModel()
+    
+    let dependencies = ListingsPresenterDependenciesModel(
+      interactor: interactorFactoryResponse.interactor,
       stringFormatter: AppStringFormatter(),
-      localizator: ListingsLocalizator()
+      dateFormatter: dateFormatter,
+      priceFormatter: AppPriceFormatter(),
+      localizator: ListingsLocalizator(),
+      assetsProvider: ListingsAssetsProvider()
     )
     let presenter = ListingsPresenter(dependencies: dependencies)
 
@@ -47,24 +90,81 @@ extension ListingsModuleFactory: ListingsModuleFactoryProtocol {
     let viewController = ListingsViewController()
     viewController.dependencies = self
     presenter.output = viewController
+    router.viewController = viewController
     self.presenter = presenter
     return viewController
   }
 }
 
-// MARK: - ListingsInteractorFactoryRequestProtocol
+// MARK: - ListingsRepositoryDependencies
 
-private struct ListingsInteractorFactoryRequest: ListingsInteractorFactoryRequestProtocol {
+private struct ListingsRepositoryDependenciesModel: ListingsRepositoryDependencies {
+  let apiService: APIServiceProtocol
+  let dateFormatter: DateFormatterProtocol
+}
+
+// MARK: - CategoryReferentialRepositoryDependencies
+
+private struct CategoryReferentialRepositoryDependenciesModel: CategoryReferentialRepositoryDependencies {
+  let apiService: APIServiceProtocol
+}
+
+// MARK: - ListingsInteractorFactoryRequest
+
+private struct ListingsInteractorFactoryRequestModel: ListingsInteractorFactoryRequest {
+  let listingsRepository: ListingsFetching
+  let categoryReferentialRepository: CategoryReferentialFetching
+  let currentListingRepository: CurrentListingSaving
+  let router: ListingsRouting
+}
+
+// MARK: - ListingDetailsModuleFactoryDependencies
+
+private struct ListingDetailsModuleFactoryDependenciesModel: ListingDetailsModuleFactoryDependencies {
+  let interactorFactory: ListingDetailsInteractorFactoryProtocol
+}
+
+// MARK: - ListingsRouterDependencies
+
+private struct ListingsRouterDependenciesModel: ListingsRouterDependencies {
+  let listingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol
 }
 
 // MARK: - ListingsPresenterDependencies
 
-private struct ListingsPresenterDependenciesItem: ListingsPresenterDependencies {
+private struct ListingsPresenterDependenciesModel: ListingsPresenterDependencies {
   let interactor: ListingsInteractorInput
   let stringFormatter: StringFormatterProtocol
+  let dateFormatter: DateFormatterProtocol
+  let priceFormatter: PriceFormatterProtocol
   let localizator: ListingsLocalizable
+  let assetsProvider: ListingsAssetsProviderProtocol
 }
 
 // MARK: - ListingsLocalizable
 
-private struct ListingsLocalizator: ListingsLocalizable {}
+private struct ListingsLocalizator: ListingsLocalizable {
+  var title: String {
+    "Listings"
+  }
+  
+  var fetchingErrorTitle: String {
+    "Technical error"
+  }
+  
+  var fetchingErrorMessage: String {
+    "There is an error while retrieving listings. Please try again later."
+  }
+  
+  var fetchingErrorConfirmationButton: String {
+    "OK"
+  }
+}
+
+// MARK: - ListingsAssetsProviderProtocol
+
+private struct ListingsAssetsProvider: ListingsAssetsProviderProtocol {
+  var listingPlaceholderImage: UIImage {
+    UIImage(named: "placeholder-image") ?? UIImage()
+  }
+}

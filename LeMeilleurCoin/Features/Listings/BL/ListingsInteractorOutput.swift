@@ -12,7 +12,6 @@ protocol ListingsInteractorOutput: AnyObject {
   func setDefaultValues()
   func notifyLoading()
   func notifyEndLoading()
-  func notifyNoDataError()
-  func notifyNetworkError()
-  func notifyServerError()
+  func notifyFetchingError()
+  func updateListings()
 }
