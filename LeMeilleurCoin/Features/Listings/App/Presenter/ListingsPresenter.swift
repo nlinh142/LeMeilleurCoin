@@ -143,7 +143,7 @@ extension ListingsPresenter: ListingsPresenterInput {
                               placeholderImage: assetsProvider.listingPlaceholderImage,
                               priceDescription: NSAttributedString(string: ""),
                               creationDateDescription: NSAttributedString(string: ""),
-                              isUrgent: false)
+                              shouldDisplayUrgentIndicator: false)
     }
     
     return ListingsViewItem(title: formattedTitle(with: item.title),
@@ -152,7 +152,7 @@ extension ListingsPresenter: ListingsPresenterInput {
                             placeholderImage: assetsProvider.listingPlaceholderImage,
                             priceDescription: formattedPriceDescription(with: item.price),
                             creationDateDescription: formattedDateDescription(with: item.creationDate),
-                            isUrgent: item.isUrgent)
+                            shouldDisplayUrgentIndicator: item.isUrgent)
   }
   
   func didSelectItem(at indexPath: IndexPath) {
@@ -196,7 +196,7 @@ private struct ListingsViewItem: ListingsViewItemProtocol {
   let placeholderImage: UIImage
   let priceDescription: NSAttributedString
   let creationDateDescription: NSAttributedString
-  let isUrgent: Bool
+  let shouldDisplayUrgentIndicator: Bool
 }
 
 // MARK: - PriceFormatterParametersProtocol

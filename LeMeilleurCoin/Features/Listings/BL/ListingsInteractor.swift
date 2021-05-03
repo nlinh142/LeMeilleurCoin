@@ -16,6 +16,11 @@ protocol ListingsInteractorDependencies {
   var dataSource: ListingsInteractorDataSourceProtocol { get }
 }
 
+// TODO:
+// - Sort by isUrgent + creationDate
+// - Filter by category
+// dataSource may also need updating
+
 final class ListingsInteractor {
   
   // MARK: - Properties

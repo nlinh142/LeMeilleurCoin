@@ -52,6 +52,6 @@ class ListingCategoryTests: XCTestCase {
 // MARK: - AppListingCategoryDependencies
 
 private struct AppListingCategoryDependenciesMock: AppListingCategoryDependencies {
-  let id: UInt?
+  let id: UInt8?
   let name: String?
 }

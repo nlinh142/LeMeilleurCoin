@@ -36,6 +36,7 @@ final class AppDateFormatter {
   required init(locale: Locale = .current, timeZone: TimeZone = .current) {
     dateFormatter = DateFormatter()
     dateFormatter.locale = locale
+    dateFormatter.timeZone = timeZone
   }
 
   // MARK: - Private
@@ -66,7 +67,7 @@ extension AppDateFormatter: DateFormatterProtocol {
   }
 
   func date(from string: String, with format: String) -> Date? {
-    dateFormatter.setLocalizedDateFormatFromTemplate(format)
+    dateFormatter.dateFormat = format
     return dateFormatter.date(from: string)
   }
 }

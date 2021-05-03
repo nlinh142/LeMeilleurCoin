@@ -15,7 +15,7 @@ protocol ListingsViewItemProtocol {
   var placeholderImage: UIImage { get }
   var priceDescription: NSAttributedString { get }
   var creationDateDescription: NSAttributedString { get }
-  var isUrgent: Bool { get }
+  var shouldDisplayUrgentIndicator: Bool { get }
 }
 
 protocol ListingsPresenterInput {
