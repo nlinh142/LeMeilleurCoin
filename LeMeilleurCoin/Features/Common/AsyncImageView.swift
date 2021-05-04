@@ -7,13 +7,14 @@
 
 import UIKit
 
-// TODO: Loading indicator and/or animation ?
-
-final class AsyncImageView: UIImageView {
+final class AsyncImageView: UIImageView, Loadable {
   
   // MARK: - Properties
   
-  private let downloader: APIServiceProtocol
+  var viewsToHideDuringLoading: [UIView] = []
+  var activityIndicator: UIActivityIndicatorView?
+  
+  private lazy var downloader: APIServiceProtocol = AppAPIService()
   
   var placeholderImage: UIImage? {
     didSet {
@@ -31,27 +32,20 @@ final class AsyncImageView: UIImageView {
     }
   }
   
-  // MARK: - Init
-  
-  init(frame: CGRect, downloader: APIServiceProtocol) {
-    self.downloader = downloader
-    super.init(frame: frame)
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
   // MARK: - Private
   
   private func load(with urlString: String?) {
     guard let urlString = urlString else { return }
+    startLoading(animated: true,
+                 activityIndicatorColor: .systemOrange,
+                 activityIndicatorViewStyle: .gray)
     downloader.fetchData(from: urlString) { [weak self] result in
-      switch result {
-      case let .success(data):
-        self?.image = UIImage(data: data)
-      case .failure:
-        break
+      guard let self = self else { return }
+      self.stopLoading()
+      if let data = try? result.get() {
+        DispatchQueue.main.async {
+          self.image = UIImage(data: data)
+        }
       }
     }
   }

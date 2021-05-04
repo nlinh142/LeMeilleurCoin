@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ListingsInteractorDataSource: ListingsInteractorDataSourceProtocol {
+struct ListingsInteractorDataSource: ListingsInteractorDataSourceProtocol {
   var listings: [Listing] = []
   var categories: [ListingCategory] = []
   var listingsError: ListingsFetchingError?

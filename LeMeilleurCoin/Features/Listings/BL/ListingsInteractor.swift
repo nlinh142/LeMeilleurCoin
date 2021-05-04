@@ -17,14 +17,13 @@ protocol ListingsInteractorDependencies {
 }
 
 // TODO:
-// - Sort by isUrgent + creationDate
 // - Filter by category
 // dataSource may also need updating
 
 final class ListingsInteractor {
   
   // MARK: - Properties
-
+  
   weak var output: ListingsInteractorOutput?
   
   private let listingsRepository: ListingsFetching
@@ -34,7 +33,7 @@ final class ListingsInteractor {
   private var dataSource: ListingsInteractorDataSourceProtocol
   
   // MARK: - Lifecycle
-
+  
   init(dependencies: ListingsInteractorDependencies) {
     listingsRepository = dependencies.listingsRepository
     categoryReferentialRepository = dependencies.categoryReferentialRepository
@@ -42,7 +41,7 @@ final class ListingsInteractor {
     router = dependencies.router
     dataSource = dependencies.dataSource
   }
-
+  
   // MARK: - Private
   
   private func fetchListings(in dispatchGroup: DispatchGroup) {
@@ -118,35 +117,39 @@ final class ListingsInteractor {
 extension ListingsInteractor: ListingsInteractorInput {
   func retrieve() {
     DispatchQueue.main.async {
-      self.output?.setDefaultValues()
       self.output?.notifyLoading()
+      self.output?.setDefaultValues()
     }
     
+    let dispatchGroup = DispatchGroup()
+    dispatchGroup.enter()
+    dispatchGroup.enter()
+    
     DispatchQueue.global(qos: .userInitiated).async {
-      let dispatchGroup = DispatchGroup()
-      dispatchGroup.enter()
-      dispatchGroup.enter()
-      
       self.fetchListings(in: dispatchGroup)
       self.fetchCategoryReferential(in: dispatchGroup)
-      
-      dispatchGroup.notify(queue: DispatchQueue.global(qos: .userInitiated)) {
-        guard self.dataSource.listingsError == nil, self.dataSource.categoryReferentialError == nil else {
-          DispatchQueue.main.async {
-            self.output?.notifyEndLoading()
-            self.output?.notifyFetchingError()
-          }
-          return
-        }
-        
-        self.dataSource.listings = self.dataSource.listings.filter { listing in
-          self.dataSource.categories.contains { $0.id == listing.id }
-        }
-        
+    }
+    
+    dispatchGroup.notify(queue: DispatchQueue.global(qos: .userInitiated)) {
+      guard self.dataSource.listingsError == nil, self.dataSource.categoryReferentialError == nil else {
         DispatchQueue.main.async {
           self.output?.notifyEndLoading()
-          self.output?.updateListings()
+          self.output?.notifyFetchingError()
         }
+        return
+      }
+      
+      self.dataSource.listings = self.dataSource.listings
+        .filter { listing in
+          self.dataSource.categories.contains { $0.id == listing.categoryId }
+        }
+        .sorted { lListing, rListing in
+          lListing.isUrgent && lListing.creationDate.compare(rListing.creationDate) != .orderedAscending
+        } // TODO: Sorting not yet ok
+      
+      DispatchQueue.main.async {
+        self.output?.updateListings()
+        self.output?.notifyEndLoading()
       }
     }
   }

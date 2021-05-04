@@ -29,8 +29,8 @@ final class ListingsPresenter {
     }
     
     enum Category {
-      static let font: UIFont = .systemFont(ofSize: 14.0)
-      static let textColor: UIColor = .black
+      static let font: UIFont = .italicSystemFont(ofSize: 13.0)
+      static let textColor: UIColor = .systemOrange
       static let textAlignment: NSTextAlignment = .natural
     }
     
@@ -45,7 +45,7 @@ final class ListingsPresenter {
     
     enum Date {
       static let font: UIFont = .systemFont(ofSize: 13.0)
-      static let textColor: UIColor = .black
+      static let textColor: UIColor = .gray
       static let textAlignment: NSTextAlignment = .natural
       static let dateStyle: DateFormatterStyle = .medium
       static let timeStyle: DateFormatterStyle = .medium
@@ -178,7 +178,7 @@ extension ListingsPresenter: ListingsInteractorOutput {
   func notifyFetchingError() {
     let alertItem = AlertItem(title: localizator.fetchingErrorTitle,
                               message: localizator.fetchingErrorMessage,
-                              confirmationButton: localizator.fetchingErrorConfirmationButton)
+                              confirmationButtonTitle: localizator.fetchingErrorConfirmationButton)
     output?.display(alert: alertItem)
   }
   

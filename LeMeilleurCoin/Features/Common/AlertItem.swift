@@ -10,11 +10,11 @@ import Foundation
 protocol AlertItemProtocol {
   var title: String { get }
   var message: String { get }
-  var confirmationButton: String { get }
+  var confirmationButtonTitle: String { get }
 }
 
 struct AlertItem: AlertItemProtocol {
   let title: String
   let message: String
-  let confirmationButton: String
+  let confirmationButtonTitle: String
 }
