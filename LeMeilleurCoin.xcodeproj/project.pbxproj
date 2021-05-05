@@ -72,6 +72,10 @@
 		EBA28032264057500063C89E /* AppPriceFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA28031264057500063C89E /* AppPriceFormatterTests.swift */; };
 		EBA280342640575E0063C89E /* AppStringFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA280332640575E0063C89E /* AppStringFormatterTests.swift */; };
 		EBA280362640FBAB0063C89E /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA280352640FBAB0063C89E /* Loadable.swift */; };
+		EBA280392642A7FD0063C89E /* AppTraitCollectionCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA280382642A7FC0063C89E /* AppTraitCollectionCenter.swift */; };
+		EBA2803B2642A80C0063C89E /* TraitCollectionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2803A2642A80C0063C89E /* TraitCollectionWrapper.swift */; };
+		EBA2803D2642A8220063C89E /* AppTraitCollectionCenterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2803C2642A8220063C89E /* AppTraitCollectionCenterProtocols.swift */; };
+		EBA2803F2642A9360063C89E /* AppWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2803E2642A9360063C89E /* AppWindow.swift */; };
 		EBC2A5DB2638837E00528A92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC2A5DA2638837E00528A92 /* AppDelegate.swift */; };
 		EBC2A5E22638837E00528A92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBC2A5E02638837E00528A92 /* Main.storyboard */; };
 		EBC2A5E42638838100528A92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBC2A5E32638838100528A92 /* Assets.xcassets */; };
@@ -154,6 +158,10 @@
 		EBA28031264057500063C89E /* AppPriceFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPriceFormatterTests.swift; sourceTree = "<group>"; };
 		EBA280332640575E0063C89E /* AppStringFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStringFormatterTests.swift; sourceTree = "<group>"; };
 		EBA280352640FBAB0063C89E /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
+		EBA280382642A7FC0063C89E /* AppTraitCollectionCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTraitCollectionCenter.swift; sourceTree = "<group>"; };
+		EBA2803A2642A80C0063C89E /* TraitCollectionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraitCollectionWrapper.swift; sourceTree = "<group>"; };
+		EBA2803C2642A8220063C89E /* AppTraitCollectionCenterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTraitCollectionCenterProtocols.swift; sourceTree = "<group>"; };
+		EBA2803E2642A9360063C89E /* AppWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWindow.swift; sourceTree = "<group>"; };
 		EBC2A5D72638837E00528A92 /* LeMeilleurCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeMeilleurCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC2A5DA2638837E00528A92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBC2A5E12638837E00528A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -539,6 +547,7 @@
 		EBA27FCD26394BAE0063C89E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EBA280372642A7E60063C89E /* TraitCollection */,
 				EBA27FCE26394BC20063C89E /* UrgentIndicatorLabel.swift */,
 				EBA28023263BC9170063C89E /* AsyncImageView.swift */,
 				EBA2802B263E7DCB0063C89E /* AlertItem.swift */,
@@ -591,6 +600,17 @@
 				EBA280332640575E0063C89E /* AppStringFormatterTests.swift */,
 			);
 			path = Formatters;
+			sourceTree = "<group>";
+		};
+		EBA280372642A7E60063C89E /* TraitCollection */ = {
+			isa = PBXGroup;
+			children = (
+				EBA280382642A7FC0063C89E /* AppTraitCollectionCenter.swift */,
+				EBA2803C2642A8220063C89E /* AppTraitCollectionCenterProtocols.swift */,
+				EBA2803A2642A80C0063C89E /* TraitCollectionWrapper.swift */,
+				EBA2803E2642A9360063C89E /* AppWindow.swift */,
+			);
+			path = TraitCollection;
 			sourceTree = "<group>";
 		};
 		EBC2A5CE2638837E00528A92 = {
@@ -739,10 +759,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBA28010263A541E0063C89E /* ListingDetailsInteractorInput.swift in Sources */,
+				EBA2803D2642A8220063C89E /* AppTraitCollectionCenterProtocols.swift in Sources */,
 				EBA2802C263E7DCB0063C89E /* AlertItem.swift in Sources */,
 				EBA2802E263ED78E0063C89E /* Collection+Safe.swift in Sources */,
 				EBA28011263A541E0063C89E /* ListingDetailsInteractorFactoryProtocol.swift in Sources */,
 				EBA27F6C263902EF0063C89E /* ListingsInteractorFactoryProtocol.swift in Sources */,
+				EBA2803B2642A80C0063C89E /* TraitCollectionWrapper.swift in Sources */,
 				EBA27F5A2639027D0063C89E /* ListingsInteractor.swift in Sources */,
 				EBA27F89263908420063C89E /* CategoryReferentialRepositoryProtocols.swift in Sources */,
 				EBA27FCA26394A730063C89E /* ListingsRouting.swift in Sources */,
@@ -755,6 +777,7 @@
 				EBA27F91263908B20063C89E /* ListingsRepositoryProtocols.swift in Sources */,
 				EBA27F7D263907090063C89E /* AppDateFormatter.swift in Sources */,
 				EBA27FBE26390C640063C89E /* ListingsViewController.swift in Sources */,
+				EBA280392642A7FD0063C89E /* AppTraitCollectionCenter.swift in Sources */,
 				EBA27F592639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift in Sources */,
 				EBA27FDF263A52100063C89E /* ListingDetailsPresenter.swift in Sources */,
 				EBA28024263BC9170063C89E /* AsyncImageView.swift in Sources */,
@@ -778,6 +801,7 @@
 				EBA28018263A542D0063C89E /* ListingDetailsInteractorFactory.swift in Sources */,
 				EBA27FE3263A52100063C89E /* ListingDetailsPresenterOutput.swift in Sources */,
 				EBA2800E263A541E0063C89E /* ListingDetailsInteractorOutput.swift in Sources */,
+				EBA2803F2642A9360063C89E /* AppWindow.swift in Sources */,
 				EBA27F582639027D0063C89E /* ListingsInteractorFactory.swift in Sources */,
 				EBA27F7A263906F80063C89E /* APIService.swift in Sources */,
 				EBA27FA6263909DE0063C89E /* CurrentListingRepositoryProtocols.swift in Sources */,

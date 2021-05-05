@@ -46,12 +46,9 @@ class ListingsViewController: UIViewController, Loadable {
     let layout = UICollectionViewFlowLayout()
     layout.minimumInteritemSpacing = 16
     layout.scrollDirection = .vertical
-    layout.itemSize = UICollectionViewFlowLayout.automaticSize
-    layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-    
-    // TODO: Different item width/size in different size classes (collectionView.width/1-2-3 etc...) ? -> Presenter
     
     collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+    collectionView.translatesAutoresizingMaskIntoConstraints = false
     collectionView.register(ListingCollectionViewCell.self,
                             forCellWithReuseIdentifier: ListingCollectionViewCell.identifier)
     collectionView.delegate = self
@@ -99,6 +96,20 @@ extension ListingsViewController: ListingsPresenterOutput {
   
   func refreshListings() {
     collectionView.reloadData()
+  }
+  
+  func set(numberOfListingsPerRow: Int) {
+    guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+    
+    let totalInteritemSpacing = layout.minimumInteritemSpacing * CGFloat(numberOfListingsPerRow - 1)
+    let totalHorizontalContentInsets = collectionView.contentInset.left + collectionView.contentInset.right
+    let availableWidth = collectionView.bounds.width - totalHorizontalContentInsets - totalInteritemSpacing
+    let itemWidth = availableWidth/CGFloat(numberOfListingsPerRow)
+    let itemSize = CGSize(width: itemWidth, height: 100)
+    layout.estimatedItemSize = itemSize
+    
+    collectionView.setNeedsLayout()
+    collectionView.layoutIfNeeded()
   }
 }
 

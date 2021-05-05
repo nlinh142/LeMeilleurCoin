@@ -15,6 +15,7 @@ protocol ListingsPresenterDependencies {
   var priceFormatter: PriceFormatterProtocol { get }
   var localizator: ListingsLocalizable { get }
   var assetsProvider: ListingsAssetsProviderProtocol { get }
+  var traitCollectionCenterHorizontalSizeClass: AppTraitCollectionCenterHorizontalSizeClassGettable { get }
 }
 
 final class ListingsPresenter {
@@ -51,6 +52,11 @@ final class ListingsPresenter {
       static let timeStyle: DateFormatterStyle = .medium
       static let currencyCode: String = "EUR"
     }
+    
+    enum NumberOfItemsPerRow {
+      static let compact = 1
+      static let regular = 3
+    }
   }
 
   // MARK: - Properties
@@ -62,6 +68,7 @@ final class ListingsPresenter {
   private let priceFormatter: PriceFormatterProtocol
   private let localizator: ListingsLocalizable
   private let assetsProvider: ListingsAssetsProviderProtocol
+  private let traitCollectionCenterHorizontalSizeClass: AppTraitCollectionCenterHorizontalSizeClassGettable
 
   // MARK: - Lifecycle
 
@@ -72,6 +79,7 @@ final class ListingsPresenter {
     priceFormatter = dependencies.priceFormatter
     localizator = dependencies.localizator
     assetsProvider = dependencies.assetsProvider
+    traitCollectionCenterHorizontalSizeClass = dependencies.traitCollectionCenterHorizontalSizeClass
   }
   
   // MARK: - Private
@@ -117,6 +125,13 @@ final class ListingsPresenter {
   private func dateDescription(with date: Date) -> String {
     dateFormatter.string(from: date, with: DateFormatterStyles(dateStyle: Constants.Date.dateStyle,
                                                                timeStyle: Constants.Date.timeStyle))
+  }
+  
+  private func configureNumberOfItemsPerRow() {
+    let numberOfItemsPerRow = traitCollectionCenterHorizontalSizeClass.currentHorizontalSizeClass == .regular
+      ? Constants.NumberOfItemsPerRow.regular
+      : Constants.NumberOfItemsPerRow.compact
+    output?.set(numberOfListingsPerRow: numberOfItemsPerRow)
   }
 }
 
@@ -183,7 +198,16 @@ extension ListingsPresenter: ListingsInteractorOutput {
   }
   
   func updateListings() {
+    configureNumberOfItemsPerRow()
     output?.refreshListings()
+  }
+}
+
+// MARK: - AppTraitCollectionCenterHorizontalSizeClassOutput
+
+extension ListingsPresenter: AppTraitCollectionCenterHorizontalSizeClassOutput {
+  func traitCollectionHorizontalSizeClassDidChange() {
+    configureNumberOfItemsPerRow()
   }
 }
 

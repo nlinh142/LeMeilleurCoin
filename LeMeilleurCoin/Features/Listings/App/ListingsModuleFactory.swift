@@ -74,6 +74,10 @@ final class ListingsModuleFactory: ListingsViewDependencies {
 
 extension ListingsModuleFactory: ListingsModuleFactoryProtocol {
   func makeViewController() -> ListingsViewLoadable {
+    let traitCollectionWrapper = TraitCollectionWrapper()
+    let appTraitCollectionCenter = AppTraitCollectionCenter(wrapper: traitCollectionWrapper)
+    traitCollectionWrapper.output = appTraitCollectionCenter
+    
     let interactorFactoryResponse = makeInteractorFactoryResponseModel()
     
     let dependencies = ListingsPresenterDependenciesModel(
@@ -82,7 +86,8 @@ extension ListingsModuleFactory: ListingsModuleFactoryProtocol {
       dateFormatter: dateFormatter,
       priceFormatter: AppPriceFormatter(),
       localizator: ListingsLocalizator(),
-      assetsProvider: ListingsAssetsProvider()
+      assetsProvider: ListingsAssetsProvider(),
+      traitCollectionCenterHorizontalSizeClass: appTraitCollectionCenter
     )
     let presenter = ListingsPresenter(dependencies: dependencies)
 
@@ -139,6 +144,7 @@ private struct ListingsPresenterDependenciesModel: ListingsPresenterDependencies
   let priceFormatter: PriceFormatterProtocol
   let localizator: ListingsLocalizable
   let assetsProvider: ListingsAssetsProviderProtocol
+  let traitCollectionCenterHorizontalSizeClass: AppTraitCollectionCenterHorizontalSizeClassGettable
 }
 
 // MARK: - ListingsLocalizable

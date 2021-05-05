@@ -12,4 +12,5 @@ protocol ListingsPresenterOutput: AnyObject {
   func display(title: String)
   func display(alert: AlertItemProtocol)
   func refreshListings()
+  func set(numberOfListingsPerRow: Int)
 }
