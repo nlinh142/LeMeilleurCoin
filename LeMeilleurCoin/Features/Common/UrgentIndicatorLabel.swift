@@ -9,36 +9,40 @@ import UIKit
 
 final class UrgentIndicatorLabel: UILabel {
   
-  // MARK: - Properties
-  
-  private static let shared = UrgentIndicatorLabel.makeUrgentLabel()
-  
   // MARK: - Setup
   
-  private static func makeUrgentLabel() -> UILabel {
-    let label = UILabel()
+  private static func makeUrgentLabel() -> UrgentIndicatorLabel {
+    let label = UrgentIndicatorLabel()
     label.backgroundColor = .systemOrange
-    label.font = .boldSystemFont(ofSize: 14)
+    label.font = .boldSystemFont(ofSize: 10)
     label.numberOfLines = 1
-    label.text = "  URGENT  "
+    label.text = "URGENT"
     label.textColor = .white
-    label.layer.masksToBounds = true
-    label.layer.cornerRadius = 12
-    label.heightAnchor.constraint(equalToConstant: 24).isActive = true
+    label.heightAnchor.constraint(equalToConstant: 14).isActive = true
     
     return label
   }
   
-  class func add(to containerView: UIView) {
-    let label = UrgentIndicatorLabel.shared
+  // MARK: - Show/hide
+  
+  class func show(on containerView: UIView) {
+    guard !containerView.subviews.contains(where: { $0 is UrgentIndicatorLabel }) else {
+      return
+    }
+    
+    let label = UrgentIndicatorLabel.makeUrgentLabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     containerView.addSubview(label)
     NSLayoutConstraint.activate([
-      label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
-      label.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8)
+      label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+      label.topAnchor.constraint(equalTo: containerView.topAnchor)
     ])
-    label.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
+    label.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
     containerView.setNeedsLayout()
     containerView.layoutIfNeeded()
+  }
+  
+  class func hide(on containerView: UIView) {
+    containerView.subviews.first { $0 is UrgentIndicatorLabel }?.removeFromSuperview()
   }
 }

@@ -91,7 +91,9 @@ final class ListingCollectionViewCell: UICollectionViewCell {
     priceLabel.sizeToFit()
     
     if item.shouldDisplayUrgentIndicator {
-      UrgentIndicatorLabel.add(to: self)
+      UrgentIndicatorLabel.show(on: self)
+    } else {
+      UrgentIndicatorLabel.hide(on: self)
     }
     
     setNeedsLayout()

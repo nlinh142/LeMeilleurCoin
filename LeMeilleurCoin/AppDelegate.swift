@@ -21,8 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let listingsModuleFactory = ListingsModuleFactory(dependencies: dependencies)
     let viewController = listingsModuleFactory.makeViewController()
     let navigationController = UINavigationController(rootViewController: viewController)
-    window?.rootViewController = navigationController
-    window?.makeKeyAndVisible()
+    
+    let window = UIWindow(frame: UIScreen.main.bounds)
+    window.rootViewController = navigationController
+    window.makeKeyAndVisible()
+    
+    self.window = window
     
     return true
   }

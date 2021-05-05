@@ -144,8 +144,15 @@ extension ListingsInteractor: ListingsInteractorInput {
           self.dataSource.categories.contains { $0.id == listing.categoryId }
         }
         .sorted { lListing, rListing in
-          lListing.isUrgent && lListing.creationDate.compare(rListing.creationDate) != .orderedAscending
-        } // TODO: Sorting not yet ok
+          switch (lListing.isUrgent, rListing.isUrgent) {
+          case (true, true), (false, false):
+            return lListing.creationDate.compare(rListing.creationDate) != .orderedAscending
+          case (true, false):
+            return true
+          case (false, true):
+            return false
+          }
+        }
       
       DispatchQueue.main.async {
         self.output?.updateListings()

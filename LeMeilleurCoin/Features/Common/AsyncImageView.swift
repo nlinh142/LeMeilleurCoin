@@ -41,7 +41,9 @@ final class AsyncImageView: UIImageView, Loadable {
                  activityIndicatorViewStyle: .gray)
     downloader.fetchData(from: urlString) { [weak self] result in
       guard let self = self else { return }
-      self.stopLoading()
+      DispatchQueue.main.async {
+        self.stopLoading()
+      }
       if let data = try? result.get() {
         DispatchQueue.main.async {
           self.image = UIImage(data: data)

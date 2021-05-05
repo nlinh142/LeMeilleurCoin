@@ -49,6 +49,8 @@ class ListingsViewController: UIViewController, Loadable {
     layout.itemSize = UICollectionViewFlowLayout.automaticSize
     layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
     
+    // TODO: Different item width/size in different size classes (collectionView.width/1-2-3 etc...) ? -> Presenter
+    
     collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
     collectionView.register(ListingCollectionViewCell.self,
                             forCellWithReuseIdentifier: ListingCollectionViewCell.identifier)

@@ -23,19 +23,19 @@ final class ListingsPresenter {
   
   private enum Constants {
     enum Title {
-      static let font: UIFont = .boldSystemFont(ofSize: 16.0)
+      static let font: UIFont = .boldSystemFont(ofSize: 15.0)
       static let textColor: UIColor = .black
       static let textAlignment: NSTextAlignment = .natural
     }
     
     enum Category {
-      static let font: UIFont = .italicSystemFont(ofSize: 13.0)
+      static let font: UIFont = .italicSystemFont(ofSize: 12.0)
       static let textColor: UIColor = .systemOrange
       static let textAlignment: NSTextAlignment = .natural
     }
     
     enum Price {
-      static let font: UIFont = .boldSystemFont(ofSize: 15.0)
+      static let font: UIFont = .boldSystemFont(ofSize: 14.0)
       static let textColor: UIColor = .black
       static let textAlignment: NSTextAlignment = .natural
       static let minimumFractionDigits: Int = 0
@@ -44,7 +44,7 @@ final class ListingsPresenter {
     }
     
     enum Date {
-      static let font: UIFont = .systemFont(ofSize: 13.0)
+      static let font: UIFont = .systemFont(ofSize: 12.0)
       static let textColor: UIColor = .gray
       static let textAlignment: NSTextAlignment = .natural
       static let dateStyle: DateFormatterStyle = .medium
