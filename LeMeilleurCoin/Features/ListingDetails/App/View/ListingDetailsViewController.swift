@@ -8,7 +8,6 @@
 
 import UIKit
 
-/// sourcery: AutoMockableAccorHotelsApp
 protocol ListingDetailsViewDependencies {
   var presenter: ListingDetailsPresenterInput! { get }
 }
@@ -18,8 +17,6 @@ protocol ListingDetailsViewLoadable: UIViewController {
 }
 
 class ListingDetailsViewController: UIViewController {
-
-  // MARK: - Outlets
 
   // MARK: - Properties
 
@@ -41,10 +38,22 @@ extension ListingDetailsViewController: ListingDetailsViewLoadable {
 
 extension ListingDetailsViewController: ListingDetailsPresenterOutput {
   func showLoading() {
-    
+    // TODO
   }
 
   func hideLoading() {
-    
+    // TODO
+  }
+  
+  func display(title: String) {
+    // TODO
+  }
+  
+  func display(alert: AlertItemProtocol) {
+    // TODO
+  }
+  
+  func display(viewCategories: [ListingDetailsViewCategory]) {
+    // TODO
   }
 }

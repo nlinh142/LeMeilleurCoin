@@ -8,18 +8,17 @@
 
 import Foundation
 
-/// sourcery: AutoMockableAccorHotelsBusinessLogicAPI
 protocol ListingDetailsInteractorFactoryProtocol {
   var output: ListingDetailsInteractorOutput? { get set }
-  func makeResponse(
-    from request: ListingDetailsInteractorFactoryRequest
-  ) -> ListingDetailsInteractorFactoryResponse
+  func makeResponse(with request: ListingDetailsInteractorFactoryRequest) -> ListingDetailsInteractorFactoryResponse
 }
 
-/// sourcery: AutoMockableAccorHotelsBusinessLogicAPI
-protocol ListingDetailsInteractorFactoryRequest {}
+protocol ListingDetailsInteractorFactoryRequest {
+  var currentListingFetchRepository: CurrentListingFetching { get }
+  var currentListingClearRepository: CurrentListingClearing { get }
+  var router: ListingDetailsRouting { get }
+}
 
-/// sourcery: AutoMockableAccorHotelsBusinessLogicAPI
 protocol ListingDetailsInteractorFactoryResponse {
   var interactor: ListingDetailsInteractorInput { get }
 }

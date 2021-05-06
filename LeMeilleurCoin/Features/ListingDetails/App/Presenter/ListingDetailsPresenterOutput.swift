@@ -6,8 +6,21 @@
 //  
 //
 
-/// sourcery: AutoMockableAccorHotelsApp
+import UIKit
+
+enum ListingDetailsViewCategory {
+  case image(url: String?, placeholder: UIImage?)
+  case title(NSAttributedString)
+  case categoryName(NSAttributedString)
+  case priceDescription(NSAttributedString)
+  case description(NSAttributedString)
+  case creationDateDescription(NSAttributedString)
+}
+
 protocol ListingDetailsPresenterOutput: AnyObject {
   func showLoading()
   func hideLoading()
+  func display(title: String)
+  func display(alert: AlertItemProtocol)
+  func display(viewCategories: [ListingDetailsViewCategory])
 }

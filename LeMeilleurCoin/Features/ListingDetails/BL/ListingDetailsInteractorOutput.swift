@@ -9,14 +9,19 @@
 import Foundation
 
 enum ListingDetailsCategory {
+  case imageUrl(String?)
+  case title(String)
+  case categoryName(String)
+  case price(Float)
+  case description(String?)
+  case creationDate(Date)
 }
 
-/// sourcery: AutoMockableAccorHotelsBusinessLogicAPI
 protocol ListingDetailsInteractorOutput: AnyObject {
   func setDefaultValues()
   func notifyLoading()
   func notifyEndLoading()
   func notifyNoDataError()
-  func notifyNetworkError()
-  func notifyServerError()
+  func notify(categories: [ListingDetailsCategory])
+  func notify(isUrgent: Bool)
 }

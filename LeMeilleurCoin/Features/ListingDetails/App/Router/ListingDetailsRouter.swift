@@ -18,5 +18,7 @@ final class ListingDetailsRouter {
 // MARK: - ListingDetailsRouterProtocol
 
 extension ListingDetailsRouter: ListingDetailsRouterProtocol {
-  
+  func routeBack() {
+    // TODO
+  }
 }

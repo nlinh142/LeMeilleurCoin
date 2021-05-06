@@ -76,6 +76,8 @@
 		EBA2803B2642A80C0063C89E /* TraitCollectionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2803A2642A80C0063C89E /* TraitCollectionWrapper.swift */; };
 		EBA2803D2642A8220063C89E /* AppTraitCollectionCenterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2803C2642A8220063C89E /* AppTraitCollectionCenterProtocols.swift */; };
 		EBA2803F2642A9360063C89E /* AppWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2803E2642A9360063C89E /* AppWindow.swift */; };
+		EBA280422643C8F30063C89E /* ListingDetailsRouterAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA280412643C8F30063C89E /* ListingDetailsRouterAdapter.swift */; };
+		EBA280442643C94C0063C89E /* ListingDetailsAssetsProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA280432643C94C0063C89E /* ListingDetailsAssetsProviderProtocol.swift */; };
 		EBC2A5DB2638837E00528A92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC2A5DA2638837E00528A92 /* AppDelegate.swift */; };
 		EBC2A5E22638837E00528A92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBC2A5E02638837E00528A92 /* Main.storyboard */; };
 		EBC2A5E42638838100528A92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBC2A5E32638838100528A92 /* Assets.xcassets */; };
@@ -162,6 +164,8 @@
 		EBA2803A2642A80C0063C89E /* TraitCollectionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraitCollectionWrapper.swift; sourceTree = "<group>"; };
 		EBA2803C2642A8220063C89E /* AppTraitCollectionCenterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTraitCollectionCenterProtocols.swift; sourceTree = "<group>"; };
 		EBA2803E2642A9360063C89E /* AppWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWindow.swift; sourceTree = "<group>"; };
+		EBA280412643C8F30063C89E /* ListingDetailsRouterAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsRouterAdapter.swift; sourceTree = "<group>"; };
+		EBA280432643C94C0063C89E /* ListingDetailsAssetsProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsAssetsProviderProtocol.swift; sourceTree = "<group>"; };
 		EBC2A5D72638837E00528A92 /* LeMeilleurCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeMeilleurCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC2A5DA2638837E00528A92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBC2A5E12638837E00528A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -562,6 +566,7 @@
 			children = (
 				EBA27FD7263A52100063C89E /* ListingDetailsRouter.swift */,
 				EBA27FDC263A52100063C89E /* ListingDetailsRouterProtocol.swift */,
+				EBA280412643C8F30063C89E /* ListingDetailsRouterAdapter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -588,6 +593,7 @@
 			isa = PBXGroup;
 			children = (
 				EBA27FD5263A52100063C89E /* ListingDetailsLocalizable.swift */,
+				EBA280432643C94C0063C89E /* ListingDetailsAssetsProviderProtocol.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -800,6 +806,8 @@
 				EBA27FC226390C640063C89E /* ListingsRouterProtocol.swift in Sources */,
 				EBA28018263A542D0063C89E /* ListingDetailsInteractorFactory.swift in Sources */,
 				EBA27FE3263A52100063C89E /* ListingDetailsPresenterOutput.swift in Sources */,
+				EBA280422643C8F30063C89E /* ListingDetailsRouterAdapter.swift in Sources */,
+				EBA280442643C94C0063C89E /* ListingDetailsAssetsProviderProtocol.swift in Sources */,
 				EBA2800E263A541E0063C89E /* ListingDetailsInteractorOutput.swift in Sources */,
 				EBA2803F2642A9360063C89E /* AppWindow.swift in Sources */,
 				EBA27F582639027D0063C89E /* ListingsInteractorFactory.swift in Sources */,

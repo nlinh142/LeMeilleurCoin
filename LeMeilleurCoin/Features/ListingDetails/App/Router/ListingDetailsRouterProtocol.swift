@@ -6,7 +6,6 @@
 //  
 //
 
-/// sourcery: AutoMockableAccorHotelsAppRouters
 protocol ListingDetailsRouterProtocol {
-
+  func routeBack()
 }

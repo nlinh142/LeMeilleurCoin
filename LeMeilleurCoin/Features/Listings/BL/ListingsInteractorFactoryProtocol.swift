@@ -11,7 +11,7 @@ import Foundation
 protocol ListingsInteractorFactoryProtocol {
   var output: ListingsInteractorOutput? { get set }
   func makeResponse(
-    from request: ListingsInteractorFactoryRequest
+    with request: ListingsInteractorFactoryRequest
   ) -> ListingsInteractorFactoryResponse
 }
 

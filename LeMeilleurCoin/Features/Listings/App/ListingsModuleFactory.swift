@@ -66,7 +66,7 @@ final class ListingsModuleFactory: ListingsViewDependencies {
       router: routerAdapter
     )
     
-    return interactorFactory.makeResponse(from: interactorFactoryRequest)
+    return interactorFactory.makeResponse(with: interactorFactoryRequest)
   }
 }
 

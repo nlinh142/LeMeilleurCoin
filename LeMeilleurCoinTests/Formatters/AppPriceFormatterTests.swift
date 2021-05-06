@@ -26,7 +26,7 @@ class AppPriceFormatterTests: XCTestCase {
     let price = priceFormatter.formattedPrice(with: priceFormatterParameters)
     
     // THEN
-    XCTAssertEqual(price, "10 000 €")
+    XCTAssertEqual(price, "10 000 €")
   }
 }
 

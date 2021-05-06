@@ -6,7 +6,8 @@
 //  
 //
 
-/// sourcery: AutoMockableAccorHotelsApp
 protocol ListingDetailsPresenterInput {
   func viewDidLoad()
+  func didTapBackButton()
+  func didTapNoDataAlertConfirmationButton()
 }

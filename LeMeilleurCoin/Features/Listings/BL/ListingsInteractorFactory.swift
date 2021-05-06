@@ -23,7 +23,7 @@ final class ListingsInteractorFactory: ListingsInteractorFactoryProtocol {
   // MARK: - ListingsInteractorInput
 
   func makeResponse(
-    from request: ListingsInteractorFactoryRequest
+    with request: ListingsInteractorFactoryRequest
   ) -> ListingsInteractorFactoryResponse {
     let dependencies = ListingsInteractorDependenciesModel(
       listingsRepository: request.listingsRepository,

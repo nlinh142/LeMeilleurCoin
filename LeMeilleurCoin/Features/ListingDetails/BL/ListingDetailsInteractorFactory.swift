@@ -21,16 +21,14 @@ final class ListingDetailsInteractorFactory: ListingDetailsInteractorFactoryProt
 
   private weak var interactor: ListingDetailsInteractor?
 
-  // MARK: - Lifecycle
-
-  init() {}
-
   // MARK: - ListingDetailsInteractorInput
 
-  func makeResponse(
-    from request: ListingDetailsInteractorFactoryRequest
-  ) -> ListingDetailsInteractorFactoryResponse {
-    let dependencies = ListingDetailsInteractorDependenciesModel()
+  func makeResponse(with request: ListingDetailsInteractorFactoryRequest) -> ListingDetailsInteractorFactoryResponse {
+    let dependencies = ListingDetailsInteractorDependenciesModel(
+      currentListingFetchRepository: request.currentListingFetchRepository,
+      currentListingClearRepository: request.currentListingClearRepository,
+      router: request.router
+    )
     let interactor = ListingDetailsInteractor(dependencies: dependencies)
     self.interactor = interactor
 
@@ -51,4 +49,7 @@ private struct ListingDetailsInteractorFactoryResponseModel: ListingDetailsInter
 // MARK: - ListingDetailsInteractorDependencies
 
 private struct ListingDetailsInteractorDependenciesModel: ListingDetailsInteractorDependencies {
+  let currentListingFetchRepository: CurrentListingFetching
+  let currentListingClearRepository: CurrentListingClearing
+  let router: ListingDetailsRouting
 }

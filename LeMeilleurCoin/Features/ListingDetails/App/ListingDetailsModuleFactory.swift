@@ -6,14 +6,12 @@
 //  
 //
 
-import Foundation
+import UIKit
 
-/// sourcery: AutoMockableModuleFactories
 protocol ListingDetailsModuleFactoryProtocol {
   func makeViewController() -> ListingDetailsViewLoadable
 }
 
-/// sourcery: AutoMockableModuleFactories
 protocol ListingDetailsModuleFactoryDependencies {
   var interactorFactory: ListingDetailsInteractorFactoryProtocol { get }
 }
@@ -24,11 +22,26 @@ final class ListingDetailsModuleFactory: ListingDetailsViewDependencies {
 
   var presenter: ListingDetailsPresenterInput!
   private var interactorFactory: ListingDetailsInteractorFactoryProtocol
+  private lazy var router: ListingDetailsRouter = .init()
 
   // MARK: - Lifecycle
 
   init(dependencies: ListingDetailsModuleFactoryDependencies) {
     interactorFactory = dependencies.interactorFactory
+  }
+  
+  // MARK: - Private
+  
+  private func makeInteractorFactoryResponseModel() -> ListingDetailsInteractorFactoryResponse {
+    let routerAdapter = ListingDetailsRouterAdapter(router: router)
+    
+    let interactorFactoryRequest = ListingDetailsInteractorFactoryRequestModel(
+      currentListingFetchRepository: CurrentListingRepository.shared,
+      currentListingClearRepository: CurrentListingRepository.shared,
+      router: routerAdapter
+    )
+    
+    return interactorFactory.makeResponse(with: interactorFactoryRequest)
   }
 }
 
@@ -36,13 +49,15 @@ final class ListingDetailsModuleFactory: ListingDetailsViewDependencies {
 
 extension ListingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol {
   func makeViewController() -> ListingDetailsViewLoadable {
-
-    let request = ListingDetailsInteractorFactoryRequestModel()
-    let response = interactorFactory.makeResponse(from: request)
+    let interactorFactoryResponse = makeInteractorFactoryResponseModel()
+    
     let dependencies = ListingDetailsPresenterDependenciesModel(
-      interactor: response.interactor,
+      interactor: interactorFactoryResponse.interactor,
       stringFormatter: AppStringFormatter(),
-      localizator: ListingDetailsLocalizator()
+      dateFormatter: AppDateFormatter(),
+      priceFormatter: AppPriceFormatter(),
+      localizator: ListingDetailsLocalizator(),
+      assetsProvider: ListingDetailsAssetsProvider()
     )
     let presenter = ListingDetailsPresenter(dependencies: dependencies)
 
@@ -50,6 +65,7 @@ extension ListingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol {
     let viewController = ListingDetailsViewController()
     viewController.dependencies = self
     presenter.output = viewController
+    router.viewController = viewController
     self.presenter = presenter
     return viewController
   }
@@ -58,6 +74,15 @@ extension ListingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol {
 // MARK: - ListingDetailsInteractorFactoryRequest
 
 private struct ListingDetailsInteractorFactoryRequestModel: ListingDetailsInteractorFactoryRequest {
+  let currentListingFetchRepository: CurrentListingFetching
+  let currentListingClearRepository: CurrentListingClearing
+  let router: ListingDetailsRouting
+}
+
+// MARK: - ListingDetailsModuleFactoryDependencies
+
+private struct ListingDetailsModuleFactoryDependenciesModel: ListingDetailsModuleFactoryDependencies {
+  let interactorFactory: ListingDetailsInteractorFactoryProtocol
 }
 
 // MARK: - ListingDetailsPresenterDependencies
@@ -65,9 +90,36 @@ private struct ListingDetailsInteractorFactoryRequestModel: ListingDetailsIntera
 private struct ListingDetailsPresenterDependenciesModel: ListingDetailsPresenterDependencies {
   let interactor: ListingDetailsInteractorInput
   let stringFormatter: StringFormatterProtocol
+  let dateFormatter: DateFormatterProtocol
+  let priceFormatter: PriceFormatterProtocol
   let localizator: ListingDetailsLocalizable
+  let assetsProvider: ListingDetailsAssetsProviderProtocol
 }
 
 // MARK: - ListingDetailsLocalizable
 
-private struct ListingDetailsLocalizator: ListingDetailsLocalizable {}
+private struct ListingDetailsLocalizator: ListingDetailsLocalizable {
+  var title: String {
+    "ListingDetails"
+  }
+  
+  var fetchingErrorTitle: String {
+    "Technical error"
+  }
+  
+  var fetchingErrorMessage: String {
+    "There is an error while retrieving listing details. Please try again later."
+  }
+  
+  var fetchingErrorConfirmationButton: String {
+    "OK"
+  }
+}
+
+// MARK: - ListingDetailsAssetsProviderProtocol
+
+private struct ListingDetailsAssetsProvider: ListingDetailsAssetsProviderProtocol {
+  var listingPlaceholderImage: UIImage {
+    UIImage(named: "placeholder-image") ?? UIImage()
+  }
+}

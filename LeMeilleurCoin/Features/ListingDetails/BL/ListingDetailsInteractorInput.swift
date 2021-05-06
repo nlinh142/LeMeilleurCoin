@@ -6,9 +6,8 @@
 //  
 //
 
-import Foundation
-
-/// sourcery: AutoMockableAccorHotelsBusinessLogicAPI
 protocol ListingDetailsInteractorInput {
   func retrieve()
+  func quit()
+  func handleNoDataErrorConfirmation()
 }
