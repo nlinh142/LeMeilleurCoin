@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class UrgentIndicatorLabel: UILabel {
+final class UrgentIndicatorLabel: PaddedLabel {
   
   // MARK: - Setup
   
@@ -16,8 +16,9 @@ final class UrgentIndicatorLabel: UILabel {
     label.backgroundColor = .systemOrange
     label.font = .boldSystemFont(ofSize: 10)
     label.numberOfLines = 1
-    label.text = " URGENT "
+    label.text = "URGENT"
     label.textColor = .white
+    label.textInsets = .init(top: 2.0, left: 4.0, bottom: 2.0, right: 4.0)
     label.layer.masksToBounds = true
     label.layer.cornerRadius = 8.0
     label.heightAnchor.constraint(equalToConstant: 16.0).isActive = true
