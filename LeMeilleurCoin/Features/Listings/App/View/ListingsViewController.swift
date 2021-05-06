@@ -41,9 +41,10 @@ class ListingsViewController: UIViewController, Loadable {
   // MARK: - Private
   
   private func setupUI() {
-    view.backgroundColor = .lightGray
+    view.backgroundColor = .init(white: 0.95, alpha: 1.0)
     
     let layout = UICollectionViewFlowLayout()
+    layout.minimumLineSpacing = 16
     layout.minimumInteritemSpacing = 16
     layout.scrollDirection = .vertical
     
@@ -77,7 +78,7 @@ extension ListingsViewController: ListingsViewLoadable {}
 
 extension ListingsViewController: ListingsPresenterOutput {
   func showLoading() {
-    startLoading()
+    startLoading(animated: true, activityIndicatorColor: .systemOrange, activityIndicatorViewStyle: .whiteLarge)
   }
   
   func hideLoading() {
@@ -105,8 +106,8 @@ extension ListingsViewController: ListingsPresenterOutput {
     let totalHorizontalContentInsets = collectionView.contentInset.left + collectionView.contentInset.right
     let availableWidth = collectionView.bounds.width - totalHorizontalContentInsets - totalInteritemSpacing
     let itemWidth = availableWidth/CGFloat(numberOfListingsPerRow)
-    let itemSize = CGSize(width: itemWidth, height: 100)
-    layout.estimatedItemSize = itemSize
+    let itemSize = CGSize(width: itemWidth, height: 130)
+    layout.itemSize = itemSize
     
     collectionView.setNeedsLayout()
     collectionView.layoutIfNeeded()

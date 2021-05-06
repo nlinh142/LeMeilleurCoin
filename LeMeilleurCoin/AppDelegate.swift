@@ -20,8 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let dependencies = ListingsModuleFactoryDependenciesModel(interactorFactory: ListingsInteractorFactory())
     let listingsModuleFactory = ListingsModuleFactory(dependencies: dependencies)
     let viewController = listingsModuleFactory.makeViewController()
-    let navigationController = UINavigationController(rootViewController: viewController)
     
+    let navigationController = UINavigationController(rootViewController: viewController)
+    navigationController.navigationBar.prefersLargeTitles = true
+    navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationController.navigationBar.shadowImage = UIImage()
+    navigationController.navigationBar.isTranslucent = true
+    navigationController.view.backgroundColor = .clear
+        
     let window = UIWindow(frame: UIScreen.main.bounds)
     window.rootViewController = navigationController
     window.makeKeyAndVisible()

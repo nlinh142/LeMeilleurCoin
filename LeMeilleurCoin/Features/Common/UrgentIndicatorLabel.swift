@@ -16,9 +16,11 @@ final class UrgentIndicatorLabel: UILabel {
     label.backgroundColor = .systemOrange
     label.font = .boldSystemFont(ofSize: 10)
     label.numberOfLines = 1
-    label.text = "URGENT"
+    label.text = " URGENT "
     label.textColor = .white
-    label.heightAnchor.constraint(equalToConstant: 14).isActive = true
+    label.layer.masksToBounds = true
+    label.layer.cornerRadius = 8.0
+    label.heightAnchor.constraint(equalToConstant: 16.0).isActive = true
     
     return label
   }
@@ -34,10 +36,10 @@ final class UrgentIndicatorLabel: UILabel {
     label.translatesAutoresizingMaskIntoConstraints = false
     containerView.addSubview(label)
     NSLayoutConstraint.activate([
-      label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-      label.topAnchor.constraint(equalTo: containerView.topAnchor)
+      label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 4.0),
+      label.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 4.0)
     ])
-    label.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+    label.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
     containerView.setNeedsLayout()
     containerView.layoutIfNeeded()
   }

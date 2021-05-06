@@ -35,10 +35,9 @@ final class AsyncImageView: UIImageView, Loadable {
   // MARK: - Private
   
   private func load(with urlString: String?) {
+    image = placeholderImage
     guard let urlString = urlString else { return }
-    startLoading(animated: true,
-                 activityIndicatorColor: .systemOrange,
-                 activityIndicatorViewStyle: .gray)
+    startLoading(animated: true, activityIndicatorColor: .systemOrange, activityIndicatorViewStyle: .gray)
     downloader.fetchData(from: urlString) { [weak self] result in
       guard let self = self else { return }
       DispatchQueue.main.async {

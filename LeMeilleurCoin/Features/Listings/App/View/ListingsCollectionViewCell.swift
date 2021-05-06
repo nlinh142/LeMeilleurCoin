@@ -37,38 +37,39 @@ final class ListingCollectionViewCell: UICollectionViewCell {
   
   private func setupUI() {
     backgroundColor = .white
+    layer.masksToBounds = true
+    layer.cornerRadius = 8.0
     
     contentStackView.spacing = 8.0
     contentStackView.distribution = .fill
     contentStackView.alignment = .center
     contentStackView.axis = .horizontal
-    addSubview(contentStackView)
+    contentStackView.translatesAutoresizingMaskIntoConstraints = false
+    contentView.addSubview(contentStackView)
     
-    imageView.contentMode = .scaleAspectFit
+    imageView.layer.masksToBounds = true
+    imageView.layer.cornerRadius = 8.0
+    imageView.contentMode = .scaleAspectFill
     contentStackView.addArrangedSubview(imageView)
     
     textStackView.spacing = 8.0
     textStackView.distribution = .fill
     textStackView.axis = .vertical
-    contentStackView.addArrangedSubview(textStackView)
-    
     textStackView.addArrangedSubview(titleLabel)
     textStackView.addArrangedSubview(categoryLabel)
-    textStackView.addArrangedSubview(creationDateLabel)
     textStackView.addArrangedSubview(priceLabel)
+    textStackView.addArrangedSubview(creationDateLabel)
+    contentStackView.addArrangedSubview(textStackView)
     
     NSLayoutConstraint.activate([
-      contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4.0),
+      contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4.0),
       contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
       contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
       
       imageView.widthAnchor.constraint(equalToConstant: 75.0),
       imageView.heightAnchor.constraint(equalToConstant: 100.0)
     ])
-    
-    setNeedsLayout()
-    layoutIfNeeded()
   }
   
   // MARK: - Configuration
@@ -79,24 +80,14 @@ final class ListingCollectionViewCell: UICollectionViewCell {
     
     titleLabel.numberOfLines = 0
     titleLabel.attributedText = item.title
-    titleLabel.sizeToFit()
-    
     categoryLabel.attributedText = item.category
-    categoryLabel.sizeToFit()
-    
     creationDateLabel.attributedText = item.creationDateDescription
-    creationDateLabel.sizeToFit()
-    
     priceLabel.attributedText = item.priceDescription
-    priceLabel.sizeToFit()
     
     if item.shouldDisplayUrgentIndicator {
       UrgentIndicatorLabel.show(on: self)
     } else {
       UrgentIndicatorLabel.hide(on: self)
     }
-    
-    setNeedsLayout()
-    layoutIfNeeded()
   }
 }

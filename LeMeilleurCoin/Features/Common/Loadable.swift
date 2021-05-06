@@ -64,10 +64,10 @@ public extension Loadable {
     activityIndicatorContainerView.backgroundColor = .white
     dependencies.view.addSubview(activityIndicatorContainerView)
     NSLayoutConstraint.activate([
-      activityIndicatorContainerView.leadingAnchor.constraint(equalTo: activityIndicatorContainerView.leadingAnchor),
-      activityIndicatorContainerView.trailingAnchor.constraint(equalTo: activityIndicatorContainerView.trailingAnchor),
-      activityIndicatorContainerView.topAnchor.constraint(equalTo: activityIndicatorContainerView.topAnchor),
-      activityIndicatorContainerView.bottomAnchor.constraint(equalTo: activityIndicatorContainerView.bottomAnchor),
+      activityIndicatorContainerView.leadingAnchor.constraint(equalTo: dependencies.view.leadingAnchor),
+      activityIndicatorContainerView.trailingAnchor.constraint(equalTo: dependencies.view.trailingAnchor),
+      activityIndicatorContainerView.topAnchor.constraint(equalTo: dependencies.view.topAnchor),
+      activityIndicatorContainerView.bottomAnchor.constraint(equalTo: dependencies.view.bottomAnchor),
     ])
     for viewToHideDuringLoading in viewsToHideDuringLoading {
       viewToHideDuringLoading.alpha = 0
