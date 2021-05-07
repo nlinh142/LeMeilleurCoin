@@ -13,17 +13,17 @@ class AppPriceFormatterTests: XCTestCase {
   
   func test_givenLocale_frFR_whenFormattedPriceIsCalled_thenReturnPriceInFrFRFormat() {
     // GIVEN
-    let priceFormatter = AppPriceFormatter(locale: .init(identifier: "fr_FR"))
+    let sut = AppPriceFormatter(locale: .init(identifier: "fr_FR"))
     
     let fractionDigits = FractionDigitsMinMaxMock(minimumFractionDigits: 0,
                                                   maximumFractionDigits: 0)
     
-    let priceFormatterParameters = PriceFormatterParametersMock(price: 10000,
+    let sutParameters = PriceFormatterParametersMock(price: 10000,
                                                                 currencyCode: "EUR",
                                                                 fractionDigitsMinMax: fractionDigits)
 
     // WHEN
-    let price = priceFormatter.formattedPrice(with: priceFormatterParameters)
+    let price = sut.formattedPrice(with: sutParameters)
     
     // THEN
     XCTAssertEqual(price, "10 000 €")

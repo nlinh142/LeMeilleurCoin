@@ -13,5 +13,6 @@ protocol ListingsInteractorOutput: AnyObject {
   func notifyLoading()
   func notifyEndLoading()
   func notifyFetchingError()
+  func notifyNoValidListings()
   func updateListings()
 }

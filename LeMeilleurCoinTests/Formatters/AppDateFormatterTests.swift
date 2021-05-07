@@ -13,18 +13,18 @@ class AppDateFormatterTests: XCTestCase {
 
   // MARK: - Properties
   
-  private var dateFormatter: AppDateFormatter!
+  private var sut: AppDateFormatter!
 
   // MARK: - Setup
   
   override func setUp() {
     super.setUp()
-    dateFormatter = AppDateFormatter(locale: .init(identifier: "en_US"),
+    sut = AppDateFormatter(locale: .init(identifier: "en_US"),
                                      timeZone: .init(identifier: "GMT")!)
   }
 
   override func tearDown() {
-    dateFormatter = nil
+    sut = nil
     super.tearDown()
   }
   
@@ -39,7 +39,7 @@ class AppDateFormatterTests: XCTestCase {
     let expectedDate = "May 5, 2021 at 3:30 PM"
 
     // WHEN
-    let formattedDate = dateFormatter.string(from: date, with: formatStyles)
+    let formattedDate = sut.string(from: date, with: formatStyles)
 
     // THEN
     XCTAssertEqual(formattedDate, expectedDate)
@@ -54,7 +54,7 @@ class AppDateFormatterTests: XCTestCase {
     let expectedDate = "May 5, 2021 at 3:30:00 PM Greenwich Mean Time"
 
     // WHEN
-    let formattedDate = dateFormatter.string(from: date, with: formatStyles)
+    let formattedDate = sut.string(from: date, with: formatStyles)
 
     // THEN
     XCTAssertEqual(formattedDate, expectedDate)
@@ -69,7 +69,7 @@ class AppDateFormatterTests: XCTestCase {
     let expectedDate = "May 5, 2021"
 
     // WHEN
-    let formattedDate = dateFormatter.string(from: date, with: formatStyles)
+    let formattedDate = sut.string(from: date, with: formatStyles)
 
     // THEN
     XCTAssertEqual(formattedDate, expectedDate)
@@ -84,7 +84,7 @@ class AppDateFormatterTests: XCTestCase {
     let expectedDate = "May 5, 2021 at 3:30:00 PM"
 
     // WHEN
-    let formattedDate = dateFormatter.string(from: date, with: formatStyles)
+    let formattedDate = sut.string(from: date, with: formatStyles)
 
     // THEN
     XCTAssertEqual(formattedDate, expectedDate)
@@ -99,7 +99,7 @@ class AppDateFormatterTests: XCTestCase {
     let expectedDate = "Wednesday, May 5, 2021 at 3:30 PM"
 
     // WHEN
-    let formattedDate = dateFormatter.string(from: date, with: formatStyles)
+    let formattedDate = sut.string(from: date, with: formatStyles)
 
     // THEN
     XCTAssertEqual(formattedDate, expectedDate)
@@ -114,7 +114,7 @@ class AppDateFormatterTests: XCTestCase {
     let expectedDate = "May 5, 2021 at 3:30 PM"
 
     // WHEN
-    let formattedDate = dateFormatter.string(from: date, with: formatStyles)
+    let formattedDate = sut.string(from: date, with: formatStyles)
 
     // THEN
     XCTAssertEqual(formattedDate, expectedDate)
@@ -129,7 +129,7 @@ class AppDateFormatterTests: XCTestCase {
     let expectedDate = "3:30 PM"
 
     // WHEN
-    let formattedDate = dateFormatter.string(from: date, with: formatStyles)
+    let formattedDate = sut.string(from: date, with: formatStyles)
 
     // THEN
     XCTAssertEqual(formattedDate, expectedDate)
@@ -142,7 +142,7 @@ class AppDateFormatterTests: XCTestCase {
     let expectedDate = "5/5/21, 3:30 PM"
 
     // WHEN
-    let formattedDate = dateFormatter.string(from: date, with: formatStyles)
+    let formattedDate = sut.string(from: date, with: formatStyles)
 
     // THEN
     XCTAssertEqual(formattedDate, expectedDate)
@@ -155,7 +155,7 @@ class AppDateFormatterTests: XCTestCase {
     let expectedDate = Date.makeStub(year: 2019, month: 11, day: 5, hour: 15, minute: 56, second: 59)
     
     // WHEN
-    let date = dateFormatter.date(from: dateString, with: dateFormat)
+    let date = sut.date(from: dateString, with: dateFormat)
     
     // THEN
     XCTAssertEqual(date, expectedDate)

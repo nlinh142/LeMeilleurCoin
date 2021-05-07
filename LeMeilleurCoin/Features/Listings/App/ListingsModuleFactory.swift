@@ -155,7 +155,7 @@ private struct ListingsLocalizator: ListingsLocalizable {
   }
   
   var fetchingErrorTitle: String {
-    "Technical error"
+    "Technical issue"
   }
   
   var fetchingErrorMessage: String {
@@ -163,6 +163,18 @@ private struct ListingsLocalizator: ListingsLocalizable {
   }
   
   var fetchingErrorConfirmationButton: String {
+    "OK"
+  }
+  
+  var noValidListingsTitle: String {
+    "No data"
+  }
+  
+  var noValidListingsMessage: String {
+    "No valid listings have been retrieved. Please try again later."
+  }
+  
+  var noValidListingsConfirmationButton: String {
     "OK"
   }
 }

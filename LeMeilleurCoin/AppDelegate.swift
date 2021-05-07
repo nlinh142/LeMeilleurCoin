@@ -17,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // MARK: - UIApplicationDelegate
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    if AppDelegate.isRunningTests() {
+      return true
+    }
+    
     let dependencies = ListingsModuleFactoryDependenciesModel(interactorFactory: ListingsInteractorFactory())
     let listingsModuleFactory = ListingsModuleFactory(dependencies: dependencies)
     let viewController = listingsModuleFactory.makeViewController()
@@ -26,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
     navigationController.navigationBar.shadowImage = UIImage()
     navigationController.navigationBar.isTranslucent = true
+    navigationController.navigationBar.tintColor = .systemOrange
     navigationController.view.backgroundColor = .clear
         
     let window = UIWindow(frame: UIScreen.main.bounds)
@@ -35,6 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window = window
     
     return true
+  }
+  
+  // MARK: - isRunningTests
+  
+  private static func isRunningTests() -> Bool {
+    NSClassFromString("XCTest") != nil
   }
 }
 

@@ -16,9 +16,7 @@ protocol ListingsInteractorDependencies {
   var dataSource: ListingsInteractorDataSourceProtocol { get }
 }
 
-// TODO:
-// - Filter by category
-// dataSource may also need updating
+// TODO: Filter by category. input + output + dataSource need updating
 
 final class ListingsInteractor {
   
@@ -110,6 +108,61 @@ final class ListingsInteractor {
   private func saveCategoryRequest(from category: ListingCategory) -> CurrentListingSavingCategoryRequest {
     CurrentListingSavingCategoryRequestModel(id: category.id, name: category.name)
   }
+  
+  private func handleFetchingResults() {
+    guard dataSource.listingsError == nil, dataSource.categoryReferentialError == nil else {
+      notifyFetchingError()
+      return
+    }
+    
+    guard !dataSource.listings.isEmpty, !dataSource.categories.isEmpty else {
+      notifyNoValidListings()
+      return
+    }
+    
+    dataSource.listings = dataSource.listings.filter { listing in
+      dataSource.categories.contains { $0.id == listing.categoryId }
+    }
+    
+    guard !dataSource.listings.isEmpty else {
+      notifyNoValidListings()
+      return
+    }
+    
+    dataSource.listings = dataSource.listings.sorted { lListing, rListing in
+      switch (lListing.isUrgent, rListing.isUrgent) {
+      case (true, true), (false, false):
+        return lListing.creationDate.compare(rListing.creationDate) != .orderedAscending
+      case (true, false):
+        return true
+      case (false, true):
+        return false
+      }
+    }
+    
+    updateListings()
+  }
+  
+  private func updateListings() {
+    DispatchQueue.main.async {
+      self.output?.updateListings()
+      self.output?.notifyEndLoading()
+    }
+  }
+  
+  private func notifyFetchingError() {
+    DispatchQueue.main.async {
+      self.output?.notifyEndLoading()
+      self.output?.notifyFetchingError()
+    }
+  }
+  
+  private func notifyNoValidListings() {
+    DispatchQueue.main.async {
+      self.output?.notifyEndLoading()
+      self.output?.notifyNoValidListings()
+    }
+  }
 }
 
 // MARK: - ListingsInteractorInput
@@ -131,33 +184,7 @@ extension ListingsInteractor: ListingsInteractorInput {
     }
     
     dispatchGroup.notify(queue: DispatchQueue.global(qos: .userInitiated)) {
-      guard self.dataSource.listingsError == nil, self.dataSource.categoryReferentialError == nil else {
-        DispatchQueue.main.async {
-          self.output?.notifyEndLoading()
-          self.output?.notifyFetchingError()
-        }
-        return
-      }
-      
-      self.dataSource.listings = self.dataSource.listings
-        .filter { listing in
-          self.dataSource.categories.contains { $0.id == listing.categoryId }
-        }
-        .sorted { lListing, rListing in
-          switch (lListing.isUrgent, rListing.isUrgent) {
-          case (true, true), (false, false):
-            return lListing.creationDate.compare(rListing.creationDate) != .orderedAscending
-          case (true, false):
-            return true
-          case (false, true):
-            return false
-          }
-        }
-      
-      DispatchQueue.main.async {
-        self.output?.updateListings()
-        self.output?.notifyEndLoading()
-      }
+      self.handleFetchingResults()
     }
   }
   

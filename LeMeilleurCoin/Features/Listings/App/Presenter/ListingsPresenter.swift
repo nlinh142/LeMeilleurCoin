@@ -197,6 +197,13 @@ extension ListingsPresenter: ListingsInteractorOutput {
     output?.display(alert: alertItem)
   }
   
+  func notifyNoValidListings() {
+    let alertItem = AlertItem(title: localizator.noValidListingsTitle,
+                              message: localizator.noValidListingsMessage,
+                              confirmationButtonTitle: localizator.noValidListingsConfirmationButton)
+    output?.display(alert: alertItem)
+  }
+  
   func updateListings() {
     configureNumberOfItemsPerRow()
     output?.refreshListings()

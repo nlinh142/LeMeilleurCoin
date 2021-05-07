@@ -117,10 +117,3 @@ private struct AppListingDependenciesMock: AppListingDependencies {
                                isUrgent: isUrgent)
   }
 }
-
-// MARK: - ListingImageUrls
-
-private struct ListingImageUrlsMock: ListingImageUrls {
-  let small: String?
-  let thumb: String?
-}

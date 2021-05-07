@@ -14,23 +14,23 @@ class AppStringFormatterTests: XCTestCase {
 
   // MARK: - Properties
 
-  private var formatter: AppStringFormatter!
+  private var sut: AppStringFormatter!
 
   // MARK: - Setup
 
   override func setUpWithError() throws {
-    formatter = AppStringFormatter()
+    sut = AppStringFormatter()
   }
 
   override func tearDownWithError() throws {
-    formatter = nil
+    sut = nil
   }
 
   // MARK: - Tests
   
   func test_givenTextAttributes_whenTextIsFormatted_thenReturnsExpectedResult() {
     // GIVEN - WHEN
-    let formattedString = formatter.format(string: "string",
+    let formattedString = sut.format(string: "string",
                                            font: .systemFont(ofSize: 15),
                                            textColor: .blue,
                                            textAlignment: .left)
