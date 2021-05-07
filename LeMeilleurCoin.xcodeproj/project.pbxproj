@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB431B5F2645308C00D55E71 /* UINavigationController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B5E2645308C00D55E71 /* UINavigationController+Configuration.swift */; };
 		EBA27F582639027D0063C89E /* ListingsInteractorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */; };
 		EBA27F592639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */; };
 		EBA27F5A2639027D0063C89E /* ListingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F552639027D0063C89E /* ListingsInteractor.swift */; };
@@ -74,7 +75,6 @@
 		EBA2803F2642A9360063C89E /* AppWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2803E2642A9360063C89E /* AppWindow.swift */; };
 		EBA280422643C8F30063C89E /* ListingDetailsRouterAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA280412643C8F30063C89E /* ListingDetailsRouterAdapter.swift */; };
 		EBA280442643C94C0063C89E /* ListingDetailsAssetsProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA280432643C94C0063C89E /* ListingDetailsAssetsProviderProtocol.swift */; };
-		EBA2806726444BBE0063C89E /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2806626444BBE0063C89E /* PaddedLabel.swift */; };
 		EBA2804A2643F5760063C89E /* CurrentListingRepositoryMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA280492643F5760063C89E /* CurrentListingRepositoryMocks.swift */; };
 		EBA2804C2643F5830063C89E /* ListingsRepositoryMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2804B2643F5830063C89E /* ListingsRepositoryMocks.swift */; };
 		EBA2804E2643F6C10063C89E /* ListingDetailsInteractorOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2804D2643F6C10063C89E /* ListingDetailsInteractorOutputMock.swift */; };
@@ -86,6 +86,7 @@
 		EBA280602644364E0063C89E /* XCTestCase+Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2805F2644364C0063C89E /* XCTestCase+Expectation.swift */; };
 		EBA2806326443A8A0063C89E /* ListingCategoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2806226443A8A0063C89E /* ListingCategoryMock.swift */; };
 		EBA2806526443A920063C89E /* ListingMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2806426443A920063C89E /* ListingMock.swift */; };
+		EBA2806726444BBE0063C89E /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2806626444BBE0063C89E /* PaddedLabel.swift */; };
 		EBC2A5DB2638837E00528A92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC2A5DA2638837E00528A92 /* AppDelegate.swift */; };
 		EBC2A5E42638838100528A92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBC2A5E32638838100528A92 /* Assets.xcassets */; };
 		EBC2A5E72638838100528A92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBC2A5E52638838100528A92 /* LaunchScreen.storyboard */; };
@@ -102,6 +103,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB431B5E2645308C00D55E71 /* UINavigationController+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Configuration.swift"; sourceTree = "<group>"; };
 		EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorFactory.swift; sourceTree = "<group>"; };
 		EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorDataSourceProtocol.swift; sourceTree = "<group>"; };
 		EBA27F552639027D0063C89E /* ListingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractor.swift; sourceTree = "<group>"; };
@@ -169,7 +171,6 @@
 		EBA2803E2642A9360063C89E /* AppWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWindow.swift; sourceTree = "<group>"; };
 		EBA280412643C8F30063C89E /* ListingDetailsRouterAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsRouterAdapter.swift; sourceTree = "<group>"; };
 		EBA280432643C94C0063C89E /* ListingDetailsAssetsProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsAssetsProviderProtocol.swift; sourceTree = "<group>"; };
-		EBA2806626444BBE0063C89E /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		EBA280492643F5760063C89E /* CurrentListingRepositoryMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListingRepositoryMocks.swift; sourceTree = "<group>"; };
 		EBA2804B2643F5830063C89E /* ListingsRepositoryMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsRepositoryMocks.swift; sourceTree = "<group>"; };
 		EBA2804D2643F6C10063C89E /* ListingDetailsInteractorOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsInteractorOutputMock.swift; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 		EBA2805F2644364C0063C89E /* XCTestCase+Expectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Expectation.swift"; sourceTree = "<group>"; };
 		EBA2806226443A8A0063C89E /* ListingCategoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingCategoryMock.swift; sourceTree = "<group>"; };
 		EBA2806426443A920063C89E /* ListingMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingMock.swift; sourceTree = "<group>"; };
+		EBA2806626444BBE0063C89E /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		EBC2A5D72638837E00528A92 /* LeMeilleurCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeMeilleurCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC2A5DA2638837E00528A92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBC2A5E32638838100528A92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				EBA280352640FBAB0063C89E /* Loadable.swift */,
 				EBA2806626444BBE0063C89E /* PaddedLabel.swift */,
 				EBA280372642A7E60063C89E /* TraitCollection */,
+				EB431B5E2645308C00D55E71 /* UINavigationController+Configuration.swift */,
 				EBA27FCE26394BC20063C89E /* UrgentIndicatorLabel.swift */,
 			);
 			path = Common;
@@ -819,6 +822,7 @@
 				EBA27FC226390C640063C89E /* ListingsRouterProtocol.swift in Sources */,
 				EBA28018263A542D0063C89E /* ListingDetailsInteractorFactory.swift in Sources */,
 				EBA27FE3263A52100063C89E /* ListingDetailsPresenterOutput.swift in Sources */,
+				EB431B5F2645308C00D55E71 /* UINavigationController+Configuration.swift in Sources */,
 				EBA280422643C8F30063C89E /* ListingDetailsRouterAdapter.swift in Sources */,
 				EBA280442643C94C0063C89E /* ListingDetailsAssetsProviderProtocol.swift in Sources */,
 				EBA2800E263A541E0063C89E /* ListingDetailsInteractorOutput.swift in Sources */,

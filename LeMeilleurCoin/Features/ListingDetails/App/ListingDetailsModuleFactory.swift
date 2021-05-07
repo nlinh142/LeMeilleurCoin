@@ -120,6 +120,6 @@ private struct ListingDetailsLocalizator: ListingDetailsLocalizable {
 
 private struct ListingDetailsAssetsProvider: ListingDetailsAssetsProviderProtocol {
   var listingPlaceholderImage: UIImage {
-    UIImage(named: "placeholder-image") ?? UIImage()
+    UIImage(named: "placeholder") ?? UIImage()
   }
 }

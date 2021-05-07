@@ -183,6 +183,6 @@ private struct ListingsLocalizator: ListingsLocalizable {
 
 private struct ListingsAssetsProvider: ListingsAssetsProviderProtocol {
   var listingPlaceholderImage: UIImage {
-    UIImage(named: "placeholder-image") ?? UIImage()
+    UIImage(named: "placeholder_small") ?? UIImage()
   }
 }
