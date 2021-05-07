@@ -32,6 +32,7 @@ struct ListingsFetchingResponseMock: ListingsFetchingResponse {
   let imageUrls: ListingsFetchingImageUrlsResponse?
   let creationDate: Date?
   let isUrgent: Bool?
+  let siret: String?
   
   static func makeStub(id: UInt? = 1234,
                        categoryId: UInt8? = 1,
@@ -45,7 +46,8 @@ struct ListingsFetchingResponseMock: ListingsFetchingResponse {
                                  price: price,
                                  imageUrls: ListingsFetchingImageUrlsResponseMock(small: "small", thumb: "thumb"),
                                  creationDate: creationDate,
-                                 isUrgent: false)
+                                 isUrgent: false,
+                                 siret: "000 111 222")
   }
 }
 

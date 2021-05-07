@@ -55,7 +55,8 @@ final class ListingsRepository {
                                     price: $0.price,
                                     imageUrls: self.imageUrlsResponse(from: $0.imageUrls),
                                     creationDate: self.date(from: $0.creationDate),
-                                    isUrgent: $0.isUrgent)
+                                    isUrgent: $0.isUrgent,
+                                    siret: $0.siret)
     }
   }
   
@@ -100,6 +101,7 @@ private struct ListingsFetchingResponseModel: ListingsFetchingResponse {
   let imageUrls: ListingsFetchingImageUrlsResponse?
   let creationDate: Date?
   let isUrgent: Bool?
+  let siret: String?
 }
 
 // MARK: - ListingsFetchingImageUrlsResponse
@@ -120,6 +122,7 @@ private struct ListingFetchingAPIResponse: Codable {
   var imageUrls: [String: String]?
   var creationDate: String?
   var isUrgent: Bool?
+  var siret: String?
   
   enum CodingKeys: String, CodingKey {
     case id
@@ -130,5 +133,6 @@ private struct ListingFetchingAPIResponse: Codable {
     case imageUrls = "images_url"
     case creationDate = "creation_date"
     case isUrgent = "is_urgent"
+    case siret
   }
 }

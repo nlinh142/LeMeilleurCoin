@@ -15,6 +15,7 @@ enum ListingDetailsCategory {
   case price(Float)
   case description(String?)
   case creationDate(Date)
+  case siret(String?)
 }
 
 protocol ListingDetailsInteractorOutput: AnyObject {

@@ -18,6 +18,7 @@ struct ListingMock: Listing {
   let imageUrls: ListingImageUrls?
   let creationDate: Date
   let isUrgent: Bool
+  let siret: String?
 }
 
 struct ListingImageUrlsMock: ListingImageUrls {

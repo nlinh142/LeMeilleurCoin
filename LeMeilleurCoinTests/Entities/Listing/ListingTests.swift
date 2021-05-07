@@ -84,6 +84,7 @@ class ListingTests: XCTestCase {
     XCTAssertEqual(item?.imageUrls?.thumb, "thumb")
     XCTAssertEqual(item?.creationDate, Date(timeIntervalSince1970: 12345678))
     XCTAssertEqual(item?.isUrgent, false)
+    XCTAssertEqual(item?.siret, "000 111 222")
   }
 }
 
@@ -98,6 +99,7 @@ private struct AppListingDependenciesMock: AppListingDependencies {
   let imageUrls: ListingImageUrls?
   let creationDate: Date?
   let isUrgent: Bool?
+  let siret: String?
   
   static func make(id: UInt? = 100,
                    categoryId: UInt8? = 1,
@@ -106,7 +108,8 @@ private struct AppListingDependenciesMock: AppListingDependencies {
                    price: Float? = 100.00,
                    imageUrls: ListingImageUrls = ListingImageUrlsMock(small: "small", thumb: "thumb"),
                    creationDate: Date? = Date(timeIntervalSince1970: 12345678),
-                   isUrgent: Bool? = false) -> AppListingDependenciesMock {
+                   isUrgent: Bool? = false,
+                   siret: String? = "000 111 222") -> AppListingDependenciesMock {
     AppListingDependenciesMock(id: id,
                                categoryId: categoryId,
                                title: title,
@@ -114,6 +117,7 @@ private struct AppListingDependenciesMock: AppListingDependencies {
                                price: price,
                                imageUrls: imageUrls,
                                creationDate: creationDate,
-                               isUrgent: isUrgent)
+                               isUrgent: isUrgent,
+                               siret: siret)
   }
 }

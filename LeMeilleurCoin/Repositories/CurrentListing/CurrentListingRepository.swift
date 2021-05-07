@@ -52,7 +52,8 @@ extension CurrentListingRepository: CurrentListingSaving {
       price: request.price,
       imageUrls: responseImageUrls(from: request.imageUrls),
       creationDate: request.creationDate,
-      isUrgent: request.isUrgent
+      isUrgent: request.isUrgent,
+      siret: request.siret
     )
   }
 }
@@ -76,6 +77,7 @@ private struct CurrentListingFetchingResponseModel: CurrentListingFetchingRespon
   let imageUrls: CurrentListingFetchingImageUrlsResponse?
   let creationDate: Date?
   let isUrgent: Bool?
+  let siret: String?
 }
 
 // MARK: - CurrentListingFetchingImageUrlsResponse

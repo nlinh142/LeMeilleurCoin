@@ -21,6 +21,7 @@ protocol ListingsFetchingResponse {
   var imageUrls: ListingsFetchingImageUrlsResponse? { get }
   var creationDate: Date? { get }
   var isUrgent: Bool? { get }
+  var siret: String? { get }
 }
 
 protocol ListingsFetchingImageUrlsResponse {

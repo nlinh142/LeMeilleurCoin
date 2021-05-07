@@ -81,7 +81,8 @@ final class ListingsInteractor {
       price: listingItem.price,
       imageUrls: listingImageUrls(from: listingItem.imageUrls),
       creationDate: listingItem.creationDate,
-      isUrgent: listingItem.isUrgent
+      isUrgent: listingItem.isUrgent,
+      siret: listingItem.siret
     )
     return try? AppListing(dependencies: dependencies)
   }
@@ -220,7 +221,8 @@ extension ListingsInteractor: ListingsInteractorInput {
       price: selectedItem.price,
       imageUrls: saveImageUrlsRequest(from: selectedItem.imageUrls),
       creationDate: selectedItem.creationDate,
-      isUrgent: selectedItem.isUrgent)
+      isUrgent: selectedItem.isUrgent,
+      siret: selectedItem.siret)
     
     DispatchQueue.main.async {
       self.currentListingRepository.save(with: saveRequest)
@@ -251,6 +253,7 @@ private struct CurrentListingSavingRequestModel: CurrentListingSavingRequest {
   let imageUrls: CurrentListingSavingImageUrlsRequest?
   let creationDate: Date
   let isUrgent: Bool
+  let siret: String?
 }
 
 // MARK: - CurrentListingSavingImageUrlsRequest
@@ -278,13 +281,7 @@ private struct AppListingDependenciesItem: AppListingDependencies {
   let imageUrls: ListingImageUrls?
   let creationDate: Date?
   let isUrgent: Bool?
-}
-
-// MARK: - AppListingCategoryDependencies
-
-private struct AppListingCategoryDependenciesItem: AppListingCategoryDependencies {
-  let id: UInt8?
-  let name: String?
+  let siret: String?
 }
 
 // MARK: - ListingImageUrls
@@ -292,4 +289,11 @@ private struct AppListingCategoryDependenciesItem: AppListingCategoryDependencie
 private struct ListingImageUrlsItem: ListingImageUrls {
   let small: String?
   let thumb: String?
+}
+
+// MARK: - AppListingCategoryDependencies
+
+private struct AppListingCategoryDependenciesItem: AppListingCategoryDependencies {
+  let id: UInt8?
+  let name: String?
 }

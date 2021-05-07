@@ -16,6 +16,7 @@ protocol CurrentListingSavingRequest {
   var imageUrls: CurrentListingSavingImageUrlsRequest? { get }
   var creationDate: Date { get }
   var isUrgent: Bool { get }
+  var siret: String? { get }
 }
 
 protocol CurrentListingSavingCategoryRequest {
@@ -37,6 +38,7 @@ protocol CurrentListingFetchingResponse {
   var imageUrls: CurrentListingFetchingImageUrlsResponse? { get }
   var creationDate: Date? { get }
   var isUrgent: Bool? { get }
+  var siret: String? { get }
 }
 
 protocol CurrentListingFetchingImageUrlsResponse {

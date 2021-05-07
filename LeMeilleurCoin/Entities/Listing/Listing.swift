@@ -20,6 +20,7 @@ protocol Listing {
   var imageUrls: ListingImageUrls? { get }
   var creationDate: Date { get }
   var isUrgent: Bool { get }
+  var siret: String? { get }
 }
 
 protocol ListingImageUrls {
@@ -36,6 +37,7 @@ protocol AppListingDependencies {
   var imageUrls: ListingImageUrls? { get }
   var creationDate: Date? { get }
   var isUrgent: Bool? { get }
+  var siret: String? { get }
 }
 
 final class AppListing: Listing {
@@ -50,6 +52,7 @@ final class AppListing: Listing {
   let imageUrls: ListingImageUrls?
   let creationDate: Date
   let isUrgent: Bool
+  let siret: String?
   
   // MARK: - Init
   
@@ -72,5 +75,6 @@ final class AppListing: Listing {
     self.imageUrls = dependencies.imageUrls
     self.creationDate = creationDate
     self.isUrgent = dependencies.isUrgent ?? false
+    self.siret = dependencies.siret
   }
 }

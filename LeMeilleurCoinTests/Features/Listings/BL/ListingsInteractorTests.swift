@@ -326,7 +326,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 120.99,
                   imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
                   creationDate: Date(timeIntervalSince1970: 123456789),
-                  isUrgent: false)
+                  isUrgent: false,
+                  siret: "222 444 666")
     ]
     
     // WHEN
@@ -364,7 +365,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 120.99,
                   imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
                   creationDate: Date(timeIntervalSince1970: 123456789),
-                  isUrgent: false),
+                  isUrgent: false,
+                  siret: "111 222 333"),
       ListingMock(id: 13579,
                   categoryId: 2,
                   title: "Title2",
@@ -372,7 +374,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 5999.00,
                   imageUrls: ListingImageUrlsMock(small: "small2", thumb: "thumb2"),
                   creationDate: Date(timeIntervalSince1970: 123456790),
-                  isUrgent: true)
+                  isUrgent: true,
+                  siret: "111 333 555")
     ]
     
     // WHEN
@@ -410,7 +413,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 120.99,
                   imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
                   creationDate: Date(timeIntervalSince1970: 123456791),
-                  isUrgent: true),
+                  isUrgent: true,
+                  siret: "123 678 345"),
       ListingMock(id: 2222,
                   categoryId: 2,
                   title: "Title2",
@@ -418,7 +422,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 5999.00,
                   imageUrls: ListingImageUrlsMock(small: "small2", thumb: "thumb2"),
                   creationDate: Date(timeIntervalSince1970: 1234567989),
-                  isUrgent: true),
+                  isUrgent: true,
+                  siret: "111 333 555"),
       ListingMock(id: 553125,
                   categoryId: 2,
                   title: "Title3",
@@ -426,7 +431,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 3500.00,
                   imageUrls: ListingImageUrlsMock(small: "small3", thumb: "thumb3"),
                   creationDate: Date(timeIntervalSince1970: 123456790),
-                  isUrgent: false)
+                  isUrgent: false,
+                  siret: "111 222 333")
     ]
     
     // WHEN
@@ -462,7 +468,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 120.99,
                   imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
                   creationDate: Date(timeIntervalSince1970: 123456791),
-                  isUrgent: true),
+                  isUrgent: true,
+                  siret: "444 333 777"),
       ListingMock(id: 2222,
                   categoryId: 2,
                   title: "Title2",
@@ -470,7 +477,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 5999.00,
                   imageUrls: ListingImageUrlsMock(small: "small2", thumb: "thumb2"),
                   creationDate: Date(timeIntervalSince1970: 1234567989),
-                  isUrgent: true),
+                  isUrgent: true,
+                  siret: "111 333 555"),
       ListingMock(id: 553125,
                   categoryId: 2,
                   title: "Title3",
@@ -478,7 +486,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 3500.00,
                   imageUrls: ListingImageUrlsMock(small: "small3", thumb: "thumb3"),
                   creationDate: Date(timeIntervalSince1970: 123456790),
-                  isUrgent: false)
+                  isUrgent: false,
+                  siret: "111 222 333")
     ]
     
     // WHEN
@@ -522,7 +531,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 120.99,
                   imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
                   creationDate: Date(timeIntervalSince1970: 123456791),
-                  isUrgent: true),
+                  isUrgent: true,
+                  siret: "444 333 777"),
       ListingMock(id: 2222,
                   categoryId: 2,
                   title: "Title2",
@@ -530,7 +540,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 5999.00,
                   imageUrls: ListingImageUrlsMock(small: "small2", thumb: "thumb2"),
                   creationDate: Date(timeIntervalSince1970: 1234567989),
-                  isUrgent: true),
+                  isUrgent: true,
+                  siret: "111 333 555"),
       ListingMock(id: 553125,
                   categoryId: 2,
                   title: "Title3",
@@ -538,7 +549,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 3500.00,
                   imageUrls: ListingImageUrlsMock(small: "small3", thumb: "thumb3"),
                   creationDate: Date(timeIntervalSince1970: 123456790),
-                  isUrgent: false)
+                  isUrgent: false,
+                  siret: "111 222 333")
     ]
     
     // WHEN
@@ -572,7 +584,8 @@ class ListingsInteractorTests: XCTestCase {
                   price: 120.99,
                   imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
                   creationDate: Date(timeIntervalSince1970: 123456791),
-                  isUrgent: true),
+                  isUrgent: true,
+                  siret: nil),
       ListingMock(id: 2222,
                   categoryId: 2,
                   title: "Title2",
@@ -580,15 +593,17 @@ class ListingsInteractorTests: XCTestCase {
                   price: 5999.00,
                   imageUrls: ListingImageUrlsMock(small: "small2", thumb: "thumb2"),
                   creationDate: Date(timeIntervalSince1970: 1234567989),
-                  isUrgent: true),
+                  isUrgent: true,
+                  siret: "111 222 333"),
       ListingMock(id: 553125,
                   categoryId: 2,
                   title: "Title3",
                   description: "Description3",
                   price: 3500.00,
-                  imageUrls: ListingImageUrlsMock(small: "small3", thumb: "thumb3"),
+                  imageUrls: nil,
                   creationDate: Date(timeIntervalSince1970: 123456790),
-                  isUrgent: false)
+                  isUrgent: false,
+                  siret: "444 555 666")
     ]
     
     // WHEN
@@ -615,6 +630,7 @@ class ListingsInteractorTests: XCTestCase {
         && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.isUrgent == true
         && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.title == "Title2"
         && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.description == "Description2"
+        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.siret == "444 555 666"
         && self.router.routeToListingDetailsCallsCount == 1
     }
   }
