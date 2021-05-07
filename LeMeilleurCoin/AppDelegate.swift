@@ -26,12 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let viewController = listingsModuleFactory.makeViewController()
     
     let navigationController = UINavigationController(rootViewController: viewController)
-    navigationController.navigationBar.prefersLargeTitles = true
-    navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    navigationController.navigationBar.shadowImage = UIImage()
-    navigationController.navigationBar.isTranslucent = true
-    navigationController.navigationBar.tintColor = .systemOrange
-    navigationController.view.backgroundColor = .clear
+    navigationController.configure(prefersLargeTitles: true)
         
     let window = UIWindow(frame: UIScreen.main.bounds)
     window.rootViewController = navigationController

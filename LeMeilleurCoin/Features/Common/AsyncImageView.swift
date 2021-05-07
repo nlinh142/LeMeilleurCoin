@@ -28,6 +28,8 @@ final class AsyncImageView: UIImageView, Loadable {
     didSet {
       if let imageUrl = imageUrl {
         load(with: imageUrl)
+      } else {
+        image = placeholderImage
       }
     }
   }
@@ -41,12 +43,10 @@ final class AsyncImageView: UIImageView, Loadable {
     downloader.fetchData(from: urlString) { [weak self] result in
       guard let self = self else { return }
       DispatchQueue.main.async {
-        self.stopLoading()
-      }
-      if let data = try? result.get() {
-        DispatchQueue.main.async {
-          self.image = UIImage(data: data)
+        if let data = try? result.get(), let image = UIImage(data: data) {
+          self.image = image
         }
+        self.stopLoading()
       }
     }
   }

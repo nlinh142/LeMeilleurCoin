@@ -16,6 +16,8 @@ protocol ListingsViewLoadable: UIViewController {
   func viewDidLoad()
 }
 
+// TODO: Filter by category
+
 class ListingsViewController: UIViewController, Loadable {
   
   // MARK: - Properties
@@ -55,8 +57,10 @@ class ListingsViewController: UIViewController, Loadable {
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.backgroundColor = .clear
-    collectionView.showsVerticalScrollIndicator = true
-    collectionView.alwaysBounceVertical = true
+    collectionView.showsVerticalScrollIndicator = false
+    collectionView.showsHorizontalScrollIndicator = false
+    collectionView.alwaysBounceVertical = false
+    collectionView.alwaysBounceHorizontal = false
     collectionView.contentInset = .init(top: 16, left: 16, bottom: 16, right: 16)
     
     view.addSubview(collectionView)
@@ -106,7 +110,7 @@ extension ListingsViewController: ListingsPresenterOutput {
     let totalHorizontalContentInsets = collectionView.contentInset.left + collectionView.contentInset.right
     let availableWidth = collectionView.bounds.width - totalHorizontalContentInsets - totalInteritemSpacing
     let itemWidth = availableWidth/CGFloat(numberOfListingsPerRow)
-    let itemSize = CGSize(width: itemWidth, height: 130)
+    let itemSize = CGSize(width: itemWidth, height: 140)
     layout.itemSize = itemSize
     
     collectionView.setNeedsLayout()

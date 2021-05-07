@@ -13,13 +13,13 @@ final class ListingCollectionViewCell: UICollectionViewCell {
   
   static let identifier: String = "ListingConnectionViewCell"
   
-  private var imageView: AsyncImageView = .init()
-  private var titleLabel: UILabel = .init()
-  private var categoryLabel: UILabel = .init()
-  private var creationDateLabel: UILabel = .init()
-  private var priceLabel: UILabel = .init()
-  private var textStackView: UIStackView = .init()
-  private var contentStackView: UIStackView = .init()
+  private lazy var imageView: AsyncImageView = .init()
+  private lazy var titleLabel: UILabel = .init()
+  private lazy var categoryLabel: UILabel = .init()
+  private lazy var creationDateLabel: UILabel = .init()
+  private lazy var priceLabel: UILabel = .init()
+  private lazy var textStackView: UIStackView = .init()
+  private lazy var contentStackView: UIStackView = .init()
   
   // MARK: - Init
   
