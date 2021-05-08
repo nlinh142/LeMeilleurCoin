@@ -19,6 +19,6 @@ final class ListingDetailsRouter {
 
 extension ListingDetailsRouter: ListingDetailsRouterProtocol {
   func routeBack() {
-    // TODO
+    viewController?.dismiss(animated: true, completion: nil)
   }
 }

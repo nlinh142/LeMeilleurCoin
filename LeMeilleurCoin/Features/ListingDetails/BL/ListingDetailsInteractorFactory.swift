@@ -24,7 +24,7 @@ final class ListingDetailsInteractorFactory: ListingDetailsInteractorFactoryProt
   // MARK: - ListingDetailsInteractorInput
 
   func makeResponse(with request: ListingDetailsInteractorFactoryRequest) -> ListingDetailsInteractorFactoryResponse {
-    let dependencies = ListingDetailsInteractorDependenciesModel(
+    let dependencies = TestListingDetailsInteractorDependencies(
       currentListingFetchRepository: request.currentListingFetchRepository,
       currentListingClearRepository: request.currentListingClearRepository,
       router: request.router
@@ -48,7 +48,7 @@ private struct ListingDetailsInteractorFactoryResponseModel: ListingDetailsInter
 
 // MARK: - ListingDetailsInteractorDependencies
 
-private struct ListingDetailsInteractorDependenciesModel: ListingDetailsInteractorDependencies {
+private struct TestListingDetailsInteractorDependencies: ListingDetailsInteractorDependencies {
   let currentListingFetchRepository: CurrentListingFetching
   let currentListingClearRepository: CurrentListingClearing
   let router: ListingDetailsRouting

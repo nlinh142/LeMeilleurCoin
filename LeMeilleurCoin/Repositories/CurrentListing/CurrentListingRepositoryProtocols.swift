@@ -47,8 +47,8 @@ protocol CurrentListingFetchingImageUrlsResponse {
 }
 
 protocol CurrentListingFetchingCategoryResponse {
-  var id: UInt8 { get }
-  var name: String { get }
+  var id: UInt8? { get }
+  var name: String? { get }
 }
 
 protocol CurrentListingFetching {

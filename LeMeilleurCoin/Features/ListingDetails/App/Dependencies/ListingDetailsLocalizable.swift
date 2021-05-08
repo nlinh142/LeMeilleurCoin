@@ -9,8 +9,7 @@
 import Foundation
 
 protocol ListingDetailsLocalizable {
-  var title: String { get }
   var fetchingErrorTitle: String { get }
   var fetchingErrorMessage: String { get }
-  var fetchingErrorConfirmationButton: String { get }
+  var fetchingErrorConfirmationButtonTitle: String { get }
 }

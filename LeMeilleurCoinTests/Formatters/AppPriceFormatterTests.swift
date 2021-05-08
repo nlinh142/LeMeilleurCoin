@@ -11,9 +11,9 @@ import XCTest
 
 class AppPriceFormatterTests: XCTestCase {
   
-  func test_givenLocale_frFR_whenFormattedPriceIsCalled_thenReturnPriceInFrFRFormat() {
+  func test_givenLocaleEnUs_whenFormattedPriceIsCalled_thenReturnPriceInEnUsFormat() {
     // GIVEN
-    let sut = AppPriceFormatter(locale: .init(identifier: "fr_FR"))
+    let sut = AppPriceFormatter(locale: .init(identifier: "en_US"))
     
     let fractionDigits = FractionDigitsMinMaxMock(minimumFractionDigits: 0,
                                                   maximumFractionDigits: 0)
@@ -26,7 +26,7 @@ class AppPriceFormatterTests: XCTestCase {
     let price = sut.formattedPrice(with: sutParameters)
     
     // THEN
-    XCTAssertEqual(price, "10 000 €")
+    XCTAssertEqual(price, "€10,000")
   }
 }
 

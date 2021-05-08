@@ -8,6 +8,6 @@
 
 protocol ListingDetailsPresenterInput {
   func viewDidLoad()
-  func didTapBackButton()
-  func didTapNoDataAlertConfirmationButton()
+  func didTapCloseButton()
+  func didTapAlertConfirmationButton()
 }

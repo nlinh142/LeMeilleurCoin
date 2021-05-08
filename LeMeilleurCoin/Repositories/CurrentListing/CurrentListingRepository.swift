@@ -90,6 +90,6 @@ private struct CurrentListingFetchingImageUrlsResponseModel: CurrentListingFetch
 // MARK: - CurrentListingFetchingCategoryResponse
 
 private struct CurrentListingFetchingCategoryResponseModel: CurrentListingFetchingCategoryResponse {
-  let id: UInt8
-  let name: String
+  let id: UInt8?
+  let name: String?
 }

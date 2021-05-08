@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ListingDetailsCategory {
+enum ListingDetailsCategory: Equatable {
   case imageUrl(String?)
   case title(String)
   case categoryName(String)

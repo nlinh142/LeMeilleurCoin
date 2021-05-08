@@ -99,10 +99,6 @@ private struct ListingDetailsPresenterDependenciesModel: ListingDetailsPresenter
 // MARK: - ListingDetailsLocalizable
 
 private struct ListingDetailsLocalizator: ListingDetailsLocalizable {
-  var title: String {
-    "ListingDetails"
-  }
-  
   var fetchingErrorTitle: String {
     "Technical error"
   }
@@ -111,7 +107,7 @@ private struct ListingDetailsLocalizator: ListingDetailsLocalizable {
     "There is an error while retrieving listing details. Please try again later."
   }
   
-  var fetchingErrorConfirmationButton: String {
+  var fetchingErrorConfirmationButtonTitle: String {
     "OK"
   }
 }
