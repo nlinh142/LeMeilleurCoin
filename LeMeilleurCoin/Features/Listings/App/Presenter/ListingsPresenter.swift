@@ -57,6 +57,14 @@ final class ListingsPresenter {
       static let compact = 1
       static let regular = 3
     }
+    
+    enum Filter {
+      static let defaultTitle: String = "-"
+      static let defaultCount: Int = 0
+      static let titleFormat: String = "%@ (%d)"
+    }
+    
+    static let pageTitleFormatWithCount: String = "%@ (%d)"
   }
 
   // MARK: - Properties
@@ -133,6 +141,25 @@ final class ListingsPresenter {
       : Constants.NumberOfItemsPerRow.compact
     output?.set(numberOfListingsPerRow: numberOfItemsPerRow)
   }
+  
+  private func formattedPageTitle(default defaultTitle: String, categoryName: String?, count: Int?) -> String {
+    switch (categoryName, count) {
+    case let (.some(categoryName), .some(count)):
+      return String(format: Constants.pageTitleFormatWithCount, categoryName, count)
+    case let (.none, .some(count)):
+      return String(format: Constants.pageTitleFormatWithCount, defaultTitle, count)
+    case let (.some(categoryName), .none):
+      return categoryName
+    case (.none, .none):
+      return defaultTitle
+    }
+  }
+  
+  private func formattedFilterTitle(with filterName: String?, count: Int?) -> String {
+    String(format: Constants.Filter.titleFormat,
+           filterName ?? Constants.Filter.defaultTitle,
+           count ?? Constants.Filter.defaultCount)
+  }
 }
 
 // MARK: - ListingsPresenterInput
@@ -173,13 +200,36 @@ extension ListingsPresenter: ListingsPresenterInput {
   func didSelectItem(at indexPath: IndexPath) {
     interactor.selectItem(at: indexPath.row, for: indexPath.section)
   }
+  
+  func didTapFiltersButton() {
+    interactor.selectFilters()
+  }
+  
+  func numberOfFilters() -> Int {
+    interactor.numberOfFilters()
+  }
+  
+  func filterTitle(at index: Int) -> String {
+    formattedFilterTitle(with: interactor.filterName(at: index),
+                         count: interactor.numberOfListings(filteredByCategoryAt: index))
+  }
+
+  func didSelectFilter(at index: Int) {
+    interactor.filter(byCategoryAt: index)
+  }
+  
+  func didTapResetButton() {
+    interactor.selectReset()
+  }
 }
 
 // MARK: - ListingsInteractorOutput
 
 extension ListingsPresenter: ListingsInteractorOutput {
   func setDefaultValues() {
-    output?.display(title: localizator.title)
+    output?.set(title: localizator.title)
+    output?.set(filtersButtonTitle: localizator.filtersButtonTitle)
+    output?.set(resetButtonTitle: localizator.resetButtonTitle)
   }
 
   func notifyLoading() {
@@ -193,20 +243,27 @@ extension ListingsPresenter: ListingsInteractorOutput {
   func notifyFetchingError() {
     let alertItem = AlertItem(title: localizator.fetchingErrorTitle,
                               message: localizator.fetchingErrorMessage,
-                              confirmationButtonTitle: localizator.fetchingErrorConfirmationButton)
+                              confirmationButtonTitle: localizator.fetchingErrorConfirmationButtonTitle)
     output?.display(alert: alertItem)
   }
   
   func notifyNoValidListings() {
     let alertItem = AlertItem(title: localizator.noValidListingsTitle,
                               message: localizator.noValidListingsMessage,
-                              confirmationButtonTitle: localizator.noValidListingsConfirmationButton)
+                              confirmationButtonTitle: localizator.noValidListingsConfirmationButtonTitle)
     output?.display(alert: alertItem)
   }
   
-  func updateListings() {
+  func updateListings(categoryName: String?, count: Int?) {
     configureNumberOfItemsPerRow()
+    let formattedTitle = formattedPageTitle(default: localizator.title, categoryName: categoryName, count: count)
+    output?.set(title: formattedTitle)
     output?.refreshListings()
+  }
+  
+  func launchFilterSelector() {
+    output?.displayFilterSelector(title: localizator.filterSelectorTitle,
+                                  cancelTitle: localizator.filterSelectorCancelTitle)
   }
 }
 

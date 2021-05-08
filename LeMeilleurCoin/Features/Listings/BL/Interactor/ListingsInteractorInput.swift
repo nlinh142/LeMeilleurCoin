@@ -14,6 +14,12 @@ protocol ListingsInteractorInput {
   func numberOfItems(for categoryIndex: Int) -> Int
   func item(at index: Int, for categoryIndex: Int) -> ListingItemProtocol?
   func selectItem(at index: Int, for categoryIndex: Int)
+  func selectFilters()
+  func selectReset()
+  func numberOfFilters() -> Int
+  func filterName(at index: Int) -> String?
+  func numberOfListings(filteredByCategoryAt index: Int) -> Int?
+  func filter(byCategoryAt index: Int)
 }
 
 protocol ListingItemProtocol {

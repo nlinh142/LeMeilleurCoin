@@ -204,6 +204,85 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB431B6026469DBC00D55E71 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				EBA28015263A542D0063C89E /* ListingDetailsInteractor.swift */,
+				EBA2800A263A541E0063C89E /* ListingDetailsInteractorInput.swift */,
+				EBA28008263A541E0063C89E /* ListingDetailsInteractorOutput.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		EB431B6126469DCA00D55E71 /* InteractorFactory */ = {
+			isa = PBXGroup;
+			children = (
+				EBA28013263A542D0063C89E /* ListingDetailsInteractorFactory.swift */,
+				EBA2800B263A541E0063C89E /* ListingDetailsInteractorFactoryProtocol.swift */,
+			);
+			path = InteractorFactory;
+			sourceTree = "<group>";
+		};
+		EB431B6226469DDC00D55E71 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				EBA2801C263A54710063C89E /* ListingDetailsRouting.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		EB431B6326469DEB00D55E71 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				EBA27F552639027D0063C89E /* ListingsInteractor.swift */,
+				EBA27F65263902EF0063C89E /* ListingsInteractorInput.swift */,
+				EBA27F63263902EF0063C89E /* ListingsInteractorOutput.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		EB431B6426469DF400D55E71 /* InteractorFactory */ = {
+			isa = PBXGroup;
+			children = (
+				EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */,
+				EBA27F66263902EF0063C89E /* ListingsInteractorFactoryProtocol.swift */,
+			);
+			path = InteractorFactory;
+			sourceTree = "<group>";
+		};
+		EB431B6526469DFC00D55E71 /* InteractorDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				EBA27F562639027D0063C89E /* ListingsInteractorDataSource.swift */,
+				EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */,
+			);
+			path = InteractorDataSource;
+			sourceTree = "<group>";
+		};
+		EB431B6626469E0A00D55E71 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				EBA27FC926394A730063C89E /* ListingsRouting.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		EB431B6726469E3C00D55E71 /* ModuleFactory */ = {
+			isa = PBXGroup;
+			children = (
+				EBA27FB826390C640063C89E /* ListingsModuleFactory.swift */,
+			);
+			path = ModuleFactory;
+			sourceTree = "<group>";
+		};
+		EB431B6826469E4E00D55E71 /* ModuleFactory */ = {
+			isa = PBXGroup;
+			children = (
+				EBA27FDB263A52100063C89E /* ListingDetailsModuleFactory.swift */,
+			);
+			path = ModuleFactory;
+			sourceTree = "<group>";
+		};
 		EBA27F4F263902270063C89E /* Listings */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,14 +295,10 @@
 		EBA27F512639025B0063C89E /* BL */ = {
 			isa = PBXGroup;
 			children = (
-				EBA27F552639027D0063C89E /* ListingsInteractor.swift */,
-				EBA27F562639027D0063C89E /* ListingsInteractorDataSource.swift */,
-				EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */,
-				EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */,
-				EBA27F66263902EF0063C89E /* ListingsInteractorFactoryProtocol.swift */,
-				EBA27F65263902EF0063C89E /* ListingsInteractorInput.swift */,
-				EBA27F63263902EF0063C89E /* ListingsInteractorOutput.swift */,
-				EBA27FC926394A730063C89E /* ListingsRouting.swift */,
+				EB431B6326469DEB00D55E71 /* Interactor */,
+				EB431B6526469DFC00D55E71 /* InteractorDataSource */,
+				EB431B6426469DF400D55E71 /* InteractorFactory */,
+				EB431B6626469E0A00D55E71 /* Routing */,
 			);
 			path = BL;
 			sourceTree = "<group>";
@@ -231,12 +306,9 @@
 		EBA27F6D263905000063C89E /* BL */ = {
 			isa = PBXGroup;
 			children = (
-				EBA28015263A542D0063C89E /* ListingDetailsInteractor.swift */,
-				EBA28013263A542D0063C89E /* ListingDetailsInteractorFactory.swift */,
-				EBA2800B263A541E0063C89E /* ListingDetailsInteractorFactoryProtocol.swift */,
-				EBA2800A263A541E0063C89E /* ListingDetailsInteractorInput.swift */,
-				EBA28008263A541E0063C89E /* ListingDetailsInteractorOutput.swift */,
-				EBA2801C263A54710063C89E /* ListingDetailsRouting.swift */,
+				EB431B6226469DDC00D55E71 /* Routing */,
+				EB431B6126469DCA00D55E71 /* InteractorFactory */,
+				EB431B6026469DBC00D55E71 /* Interactor */,
 			);
 			path = BL;
 			sourceTree = "<group>";
@@ -274,7 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				EBA27FC526390C830063C89E /* Dependencies */,
-				EBA27FB826390C640063C89E /* ListingsModuleFactory.swift */,
+				EB431B6726469E3C00D55E71 /* ModuleFactory */,
 				EBA27FC426390C7A0063C89E /* Presenter */,
 				EBA27FC626390CA40063C89E /* Router */,
 				EBA27FC326390C730063C89E /* View */,
@@ -286,7 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				EBA27FE9263A523F0063C89E /* Dependencies */,
-				EBA27FDB263A52100063C89E /* ListingDetailsModuleFactory.swift */,
+				EB431B6826469E4E00D55E71 /* ModuleFactory */,
 				EBA27FE7263A52270063C89E /* Presenter */,
 				EBA27FE6263A521C0063C89E /* Router */,
 				EBA27FE8263A52390063C89E /* View */,
@@ -426,8 +498,8 @@
 		EBA27F9C2639095E0063C89E /* BL */ = {
 			isa = PBXGroup;
 			children = (
-				EBA27FF0263A52E50063C89E /* ListingDetailsInteractorTests.swift */,
 				EBA27FF1263A52E50063C89E /* ListingDetailsInteractorFactoryTests.swift */,
+				EBA27FF0263A52E50063C89E /* ListingDetailsInteractorTests.swift */,
 			);
 			path = BL;
 			sourceTree = "<group>";
@@ -435,8 +507,8 @@
 		EBA27F9E263909680063C89E /* BL */ = {
 			isa = PBXGroup;
 			children = (
-				EBA2801E263A54B30063C89E /* ListingsInteractorTests.swift */,
 				EBA2801F263A54B30063C89E /* ListingsInteractorFactoryTests.swift */,
+				EBA2801E263A54B30063C89E /* ListingsInteractorTests.swift */,
 			);
 			path = BL;
 			sourceTree = "<group>";
@@ -453,8 +525,8 @@
 		EBA27FC326390C730063C89E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EBA27FB526390C640063C89E /* ListingsViewController.swift */,
 				EBA27FCB26394B8D0063C89E /* ListingsCollectionViewCell.swift */,
+				EBA27FB526390C640063C89E /* ListingsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -472,8 +544,8 @@
 		EBA27FC526390C830063C89E /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				EBA27FB226390C640063C89E /* ListingsLocalizable.swift */,
 				EBA28029263E77B60063C89E /* ListingsAssetsProviderProtocol.swift */,
+				EBA27FB226390C640063C89E /* ListingsLocalizable.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -482,8 +554,8 @@
 			isa = PBXGroup;
 			children = (
 				EBA27FB426390C640063C89E /* ListingsRouter.swift */,
-				EBA27FB926390C640063C89E /* ListingsRouterProtocol.swift */,
 				EBA27FC726394A550063C89E /* ListingsRouterAdapter.swift */,
+				EBA27FB926390C640063C89E /* ListingsRouterProtocol.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -507,8 +579,8 @@
 			isa = PBXGroup;
 			children = (
 				EBA27FD7263A52100063C89E /* ListingDetailsRouter.swift */,
-				EBA27FDC263A52100063C89E /* ListingDetailsRouterProtocol.swift */,
 				EBA280412643C8F30063C89E /* ListingDetailsRouterAdapter.swift */,
+				EBA27FDC263A52100063C89E /* ListingDetailsRouterProtocol.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -534,8 +606,8 @@
 		EBA27FE9263A523F0063C89E /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				EBA27FD5263A52100063C89E /* ListingDetailsLocalizable.swift */,
 				EBA280432643C94C0063C89E /* ListingDetailsAssetsProviderProtocol.swift */,
+				EBA27FD5263A52100063C89E /* ListingDetailsLocalizable.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -555,13 +627,13 @@
 			children = (
 				EBA280382642A7FC0063C89E /* AppTraitCollectionCenter.swift */,
 				EBA2803C2642A8220063C89E /* AppTraitCollectionCenterProtocols.swift */,
-				EBA2803A2642A80C0063C89E /* TraitCollectionWrapper.swift */,
 				EBA2803E2642A9360063C89E /* AppWindow.swift */,
+				EBA2803A2642A80C0063C89E /* TraitCollectionWrapper.swift */,
 			);
 			path = TraitCollection;
 			sourceTree = "<group>";
 		};
-		EBA280452643F4950063C89E /* Mocks */ = {
+		EBA280452643F4950063C89E /* TestDoubles */ = {
 			isa = PBXGroup;
 			children = (
 				EBA2806126443A750063C89E /* Entities */,
@@ -569,7 +641,7 @@
 				EBA280462643F5440063C89E /* Listings */,
 				EBA280482643F5630063C89E /* Repositories */,
 			);
-			path = Mocks;
+			path = TestDoubles;
 			sourceTree = "<group>";
 		};
 		EBA280462643F5440063C89E /* Listings */ = {
@@ -603,6 +675,7 @@
 		EBA2805E2644363B0063C89E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EBA280452643F4950063C89E /* TestDoubles */,
 				EBA2805F2644364C0063C89E /* XCTestCase+Expectation.swift */,
 			);
 			path = Common;
@@ -653,7 +726,6 @@
 			isa = PBXGroup;
 			children = (
 				EBA2805E2644363B0063C89E /* Common */,
-				EBA280452643F4950063C89E /* Mocks */,
 				EBA27FF4263A52F50063C89E /* Formatters */,
 				EBA27F95263909060063C89E /* Features */,
 				EBA27F94263908FF0063C89E /* Entities */,

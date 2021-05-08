@@ -167,12 +167,7 @@ class ListingDetailsInteractorTests: XCTestCase {
       self.currentListingClearRepository.clearCallsCount == 1
         && self.router.routeBackCallsCount == 1
         && self.currentListingFetchRepository.fetchCallsCount == 0
-        && self.output.setDefaultValuesCallsCount == 0
-        && self.output.notifyLoadingCallsCount == 0
-        && self.output.notifyEndLoadingCallsCount == 0
-        && self.output.notifyNoDataErrorCallsCount == 0
-        && self.output.notifyCategoriesCallsCount == 0
-        && self.output.notifyIsUrgentCallsCount == 0
+        && self.output.noMethodsCalled
     }
   }
   
@@ -187,12 +182,7 @@ class ListingDetailsInteractorTests: XCTestCase {
       self.currentListingClearRepository.clearCallsCount == 1
         && self.router.routeBackCallsCount == 1
         && self.currentListingFetchRepository.fetchCallsCount == 0
-        && self.output.setDefaultValuesCallsCount == 0
-        && self.output.notifyLoadingCallsCount == 0
-        && self.output.notifyEndLoadingCallsCount == 0
-        && self.output.notifyNoDataErrorCallsCount == 0
-        && self.output.notifyCategoriesCallsCount == 0
-        && self.output.notifyIsUrgentCallsCount == 0
+        && self.output.noMethodsCalled
     }
   }
 }

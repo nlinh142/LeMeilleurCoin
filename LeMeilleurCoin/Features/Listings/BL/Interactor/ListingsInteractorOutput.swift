@@ -14,5 +14,6 @@ protocol ListingsInteractorOutput: AnyObject {
   func notifyEndLoading()
   func notifyFetchingError()
   func notifyNoValidListings()
-  func updateListings()
+  func updateListings(categoryName: String?, count: Int?)
+  func launchFilterSelector()
 }

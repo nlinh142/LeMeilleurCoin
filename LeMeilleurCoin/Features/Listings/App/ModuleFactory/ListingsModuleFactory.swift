@@ -151,7 +151,15 @@ private struct ListingsPresenterDependenciesModel: ListingsPresenterDependencies
 
 private struct ListingsLocalizator: ListingsLocalizable {
   var title: String {
-    "Listings"
+    "All"
+  }
+  
+  var filtersButtonTitle: String {
+    "Filters"
+  }
+  
+  var resetButtonTitle: String {
+    "Reset"
   }
   
   var fetchingErrorTitle: String {
@@ -162,7 +170,7 @@ private struct ListingsLocalizator: ListingsLocalizable {
     "There is an error while retrieving listings. Please try again later."
   }
   
-  var fetchingErrorConfirmationButton: String {
+  var fetchingErrorConfirmationButtonTitle: String {
     "OK"
   }
   
@@ -174,8 +182,16 @@ private struct ListingsLocalizator: ListingsLocalizable {
     "No valid listings have been retrieved. Please try again later."
   }
   
-  var noValidListingsConfirmationButton: String {
+  var noValidListingsConfirmationButtonTitle: String {
     "OK"
+  }
+  
+  var filterSelectorTitle: String {
+    "View all listings of a category"
+  }
+  
+  var filterSelectorCancelTitle: String {
+    "Cancel"
   }
 }
 

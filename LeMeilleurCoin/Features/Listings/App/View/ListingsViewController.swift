@@ -16,8 +16,6 @@ protocol ListingsViewLoadable: UIViewController {
   func viewDidLoad()
 }
 
-// TODO: Filter by category
-
 class ListingsViewController: UIViewController, Loadable {
   
   // MARK: - Properties
@@ -31,6 +29,8 @@ class ListingsViewController: UIViewController, Loadable {
   var activityIndicator: UIActivityIndicatorView?
   
   private var collectionView: UICollectionView!
+  private var filtersButton: UIBarButtonItem!
+  private var resetButton: UIBarButtonItem!
   
   // MARK: - Lifecycle
   
@@ -44,6 +44,10 @@ class ListingsViewController: UIViewController, Loadable {
   
   private func setupUI() {
     view.backgroundColor = .init(white: 0.95, alpha: 1.0)
+    
+    filtersButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(filtersButtonDidTouchUpInside(_:)))
+    resetButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(resetButtonDidTouchUpInside(_:)))
+    navigationItem.rightBarButtonItems = [filtersButton, resetButton]
     
     let layout = UICollectionViewFlowLayout()
     layout.minimumLineSpacing = 16
@@ -72,6 +76,16 @@ class ListingsViewController: UIViewController, Loadable {
       collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     ])
   }
+  
+  @objc
+  private func filtersButtonDidTouchUpInside(_ sender: UIBarButtonItem) {
+    dependencies.presenter.didTapFiltersButton()
+  }
+  
+  @objc
+  private func resetButtonDidTouchUpInside(_ sender: UIBarButtonItem) {
+    dependencies.presenter.didTapResetButton()
+  }
 }
 
 // MARK: - ListingsViewLoadable
@@ -89,8 +103,16 @@ extension ListingsViewController: ListingsPresenterOutput {
     stopLoading()
   }
   
-  func display(title: String) {
+  func set(title: String) {
     self.title = title
+  }
+  
+  func set(filtersButtonTitle: String) {
+    filtersButton.title = filtersButtonTitle
+  }
+  
+  func set(resetButtonTitle: String) {
+    resetButton.title = resetButtonTitle
   }
   
   func display(alert: AlertItemProtocol) {
@@ -101,6 +123,7 @@ extension ListingsViewController: ListingsPresenterOutput {
   
   func refreshListings() {
     collectionView.reloadData()
+    collectionView.setContentOffset(.init(x: -16, y: -16), animated: true)
   }
   
   func set(numberOfListingsPerRow: Int) {
@@ -115,6 +138,23 @@ extension ListingsViewController: ListingsPresenterOutput {
     
     collectionView.setNeedsLayout()
     collectionView.layoutIfNeeded()
+  }
+  
+  func displayFilterSelector(title: String, cancelTitle: String) {
+    let actionSheetController: UIAlertController = .init(title: title, message: nil, preferredStyle: .actionSheet)
+    actionSheetController.popoverPresentationController?.barButtonItem = filtersButton
+    
+    for index in 0...dependencies.presenter.numberOfFilters() - 1 {
+      let action: UIAlertAction = .init(title: dependencies.presenter.filterTitle(at: index), style: .default) { _ in
+        self.dependencies.presenter.didSelectFilter(at: index)
+      }
+      actionSheetController.addAction(action)
+    }
+
+    let cancelAction: UIAlertAction = .init(title: cancelTitle, style: .cancel, handler: nil)
+    actionSheetController.addAction(cancelAction)
+    
+    present(actionSheetController, animated: true, completion: nil)
   }
 }
 

@@ -50,4 +50,13 @@ class ListingDetailsInteractorOutputMock: ListingDetailsInteractorOutput {
     notifyIsUrgentCallsCount += 1
     notifyIsUrgentReceivedListOfIsUrgent.append(isUrgent)
   }
+
+  var noMethodsCalled: Bool {
+    setDefaultValuesCallsCount == 0
+    && notifyLoadingCallsCount == 0
+    && notifyEndLoadingCallsCount == 0
+    && notifyNoDataErrorCallsCount == 0
+    && notifyCategoriesCallsCount == 0
+    && notifyIsUrgentCallsCount == 0
+  }
 }

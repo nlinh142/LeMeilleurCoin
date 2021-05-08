@@ -10,8 +10,6 @@ import XCTest
 
 @testable import LeMeilleurCoin
 
-// TODO
-
 class ListingsInteractorTests: XCTestCase {
   
   // MARK: - Properties
@@ -86,6 +84,7 @@ class ListingsInteractorTests: XCTestCase {
         && self.output.notifyFetchingErrorCallsCount == 1
         && self.output.notifyNoValidListingsCallsCount == 0
         && self.output.updateListingsCallsCount == 0
+        && self.output.launchFilterSelectorCallsCount == 0
         && self.currentListingRepository.saveCallsCount == 0
         && self.router.routeToListingDetailsCallsCount == 0
     }
@@ -114,6 +113,7 @@ class ListingsInteractorTests: XCTestCase {
         && self.output.notifyFetchingErrorCallsCount == 1
         && self.output.notifyNoValidListingsCallsCount == 0
         && self.output.updateListingsCallsCount == 0
+        && self.output.launchFilterSelectorCallsCount == 0
         && self.currentListingRepository.saveCallsCount == 0
         && self.router.routeToListingDetailsCallsCount == 0
     }
@@ -142,6 +142,7 @@ class ListingsInteractorTests: XCTestCase {
         && self.output.notifyFetchingErrorCallsCount == 1
         && self.output.notifyNoValidListingsCallsCount == 0
         && self.output.updateListingsCallsCount == 0
+        && self.output.launchFilterSelectorCallsCount == 0
         && self.currentListingRepository.saveCallsCount == 0
         && self.router.routeToListingDetailsCallsCount == 0
     }
@@ -170,6 +171,7 @@ class ListingsInteractorTests: XCTestCase {
         && self.output.notifyFetchingErrorCallsCount == 1
         && self.output.notifyNoValidListingsCallsCount == 0
         && self.output.updateListingsCallsCount == 0
+        && self.output.launchFilterSelectorCallsCount == 0
         && self.currentListingRepository.saveCallsCount == 0
         && self.router.routeToListingDetailsCallsCount == 0
     }
@@ -201,6 +203,7 @@ class ListingsInteractorTests: XCTestCase {
         && self.output.notifyNoValidListingsCallsCount == 1
         && self.output.notifyFetchingErrorCallsCount == 0
         && self.output.updateListingsCallsCount == 0
+        && self.output.launchFilterSelectorCallsCount == 0
         && self.currentListingRepository.saveCallsCount == 0
         && self.router.routeToListingDetailsCallsCount == 0
     }
@@ -235,6 +238,7 @@ class ListingsInteractorTests: XCTestCase {
         && self.output.notifyNoValidListingsCallsCount == 1
         && self.output.notifyFetchingErrorCallsCount == 0
         && self.output.updateListingsCallsCount == 0
+        && self.output.launchFilterSelectorCallsCount == 0
         && self.currentListingRepository.saveCallsCount == 0
         && self.router.routeToListingDetailsCallsCount == 0
     }
@@ -270,6 +274,7 @@ class ListingsInteractorTests: XCTestCase {
         && self.output.notifyNoValidListingsCallsCount == 1
         && self.output.notifyFetchingErrorCallsCount == 0
         && self.output.updateListingsCallsCount == 0
+        && self.output.launchFilterSelectorCallsCount == 0
         && self.currentListingRepository.saveCallsCount == 0
         && self.router.routeToListingDetailsCallsCount == 0
     }
@@ -303,6 +308,10 @@ class ListingsInteractorTests: XCTestCase {
         && self.output.notifyLoadingCallsCount == 1
         && self.output.notifyEndLoadingCallsCount == 1
         && self.output.updateListingsCallsCount == 1
+        && self.output.updateListingsListOfArguments.count == 1
+        && self.output.updateListingsListOfArguments[0].categoryName == nil
+        && self.output.updateListingsListOfArguments[0].count == 2
+        && self.output.launchFilterSelectorCallsCount == 0
         && self.output.notifyNoValidListingsCallsCount == 0
         && self.output.notifyFetchingErrorCallsCount == 0
         && self.currentListingRepository.saveCallsCount == 0
@@ -313,24 +322,7 @@ class ListingsInteractorTests: XCTestCase {
   // MARK: numberOfCategories
   
   func test_givenValidListingsHaveBeenFetched_whenNumberOfCategoriesIsRequested_thenReturnsCorrectValue() {
-    // GIVEN
-    dataSource.categories = [
-      ListingCategoryMock(id: 1, name: "Tech")
-    ]
-    
-    dataSource.listings = [
-      ListingMock(id: 10000,
-                  categoryId: 1,
-                  title: "Title",
-                  description: "Description",
-                  price: 120.99,
-                  imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
-                  creationDate: Date(timeIntervalSince1970: 123456789),
-                  isUrgent: false,
-                  siret: "222 444 666")
-    ]
-    
-    // WHEN
+    // GIVEN-WHEN
     let count = sut.numberOfCategories()
     
     // THEN
@@ -338,12 +330,7 @@ class ListingsInteractorTests: XCTestCase {
     
     XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
     XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
-    XCTAssertEqual(output.setDefaultValuesCallsCount, 0)
-    XCTAssertEqual(output.notifyLoadingCallsCount, 0)
-    XCTAssertEqual(output.notifyEndLoadingCallsCount, 0)
-    XCTAssertEqual(output.notifyFetchingErrorCallsCount, 0)
-    XCTAssertEqual(output.notifyNoValidListingsCallsCount, 0)
-    XCTAssertEqual(output.updateListingsCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
     XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
     XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
   }
@@ -352,31 +339,7 @@ class ListingsInteractorTests: XCTestCase {
   
   func test_givenValidListingsHaveBeenFetched_whenNumberOfItemsIsRequested_thenReturnsCorrectValue() {
     // GIVEN
-    dataSource.categories = [
-      ListingCategoryMock(id: 1, name: "Tech"),
-      ListingCategoryMock(id: 2, name: "Vehicles"),
-    ]
-    
-    dataSource.listings = [
-      ListingMock(id: 10000,
-                  categoryId: 1,
-                  title: "Title",
-                  description: "Description",
-                  price: 120.99,
-                  imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
-                  creationDate: Date(timeIntervalSince1970: 123456789),
-                  isUrgent: false,
-                  siret: "111 222 333"),
-      ListingMock(id: 13579,
-                  categoryId: 2,
-                  title: "Title2",
-                  description: "Description2",
-                  price: 5999.00,
-                  imageUrls: ListingImageUrlsMock(small: "small2", thumb: "thumb2"),
-                  creationDate: Date(timeIntervalSince1970: 123456790),
-                  isUrgent: true,
-                  siret: "111 333 555")
-    ]
+    dataSource.currentListings = makeListingsStubs(categoryIds: [1, 2])
     
     // WHEN
     let count = sut.numberOfItems(for: 0)
@@ -386,12 +349,7 @@ class ListingsInteractorTests: XCTestCase {
     
     XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
     XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
-    XCTAssertEqual(output.setDefaultValuesCallsCount, 0)
-    XCTAssertEqual(output.notifyLoadingCallsCount, 0)
-    XCTAssertEqual(output.notifyEndLoadingCallsCount, 0)
-    XCTAssertEqual(output.notifyFetchingErrorCallsCount, 0)
-    XCTAssertEqual(output.notifyNoValidListingsCallsCount, 0)
-    XCTAssertEqual(output.updateListingsCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
     XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
     XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
   }
@@ -400,40 +358,7 @@ class ListingsInteractorTests: XCTestCase {
   
   func test_givenValidListingsHaveBeenFetchedAndInvalidIndexes_whenAnItemIsRequested_thenReturnsNothing() {
     // GIVEN
-    dataSource.categories = [
-      ListingCategoryMock(id: 1, name: "Tech"),
-      ListingCategoryMock(id: 2, name: "Vehicles"),
-    ]
-    
-    dataSource.listings = [
-      ListingMock(id: 10000,
-                  categoryId: 1,
-                  title: "Title",
-                  description: "Description",
-                  price: 120.99,
-                  imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
-                  creationDate: Date(timeIntervalSince1970: 123456791),
-                  isUrgent: true,
-                  siret: "123 678 345"),
-      ListingMock(id: 2222,
-                  categoryId: 2,
-                  title: "Title2",
-                  description: "Description2",
-                  price: 5999.00,
-                  imageUrls: ListingImageUrlsMock(small: "small2", thumb: "thumb2"),
-                  creationDate: Date(timeIntervalSince1970: 1234567989),
-                  isUrgent: true,
-                  siret: "111 333 555"),
-      ListingMock(id: 553125,
-                  categoryId: 2,
-                  title: "Title3",
-                  description: "Description3",
-                  price: 3500.00,
-                  imageUrls: ListingImageUrlsMock(small: "small3", thumb: "thumb3"),
-                  creationDate: Date(timeIntervalSince1970: 123456790),
-                  isUrgent: false,
-                  siret: "111 222 333")
-    ]
+    dataSource.currentListings = makeListingsStubs(categoryIds: [1, 2, 2])
     
     // WHEN
     let item = sut.item(at: 200, for: 0)
@@ -443,12 +368,7 @@ class ListingsInteractorTests: XCTestCase {
     
     XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
     XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
-    XCTAssertEqual(output.setDefaultValuesCallsCount, 0)
-    XCTAssertEqual(output.notifyLoadingCallsCount, 0)
-    XCTAssertEqual(output.notifyEndLoadingCallsCount, 0)
-    XCTAssertEqual(output.notifyFetchingErrorCallsCount, 0)
-    XCTAssertEqual(output.notifyNoValidListingsCallsCount, 0)
-    XCTAssertEqual(output.updateListingsCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
     XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
     XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
   }
@@ -460,56 +380,23 @@ class ListingsInteractorTests: XCTestCase {
       ListingCategoryMock(id: 2, name: "Vehicles"),
     ]
     
-    dataSource.listings = [
-      ListingMock(id: 10000,
-                  categoryId: 1,
-                  title: "Title",
-                  description: "Description",
-                  price: 120.99,
-                  imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
-                  creationDate: Date(timeIntervalSince1970: 123456791),
-                  isUrgent: true,
-                  siret: "444 333 777"),
-      ListingMock(id: 2222,
-                  categoryId: 2,
-                  title: "Title2",
-                  description: "Description2",
-                  price: 5999.00,
-                  imageUrls: ListingImageUrlsMock(small: "small2", thumb: "thumb2"),
-                  creationDate: Date(timeIntervalSince1970: 1234567989),
-                  isUrgent: true,
-                  siret: "111 333 555"),
-      ListingMock(id: 553125,
-                  categoryId: 2,
-                  title: "Title3",
-                  description: "Description3",
-                  price: 3500.00,
-                  imageUrls: ListingImageUrlsMock(small: "small3", thumb: "thumb3"),
-                  creationDate: Date(timeIntervalSince1970: 123456790),
-                  isUrgent: false,
-                  siret: "111 222 333")
-    ]
+    dataSource.currentListings = makeListingsStubs(categoryIds: [1, 2, 2])
     
     // WHEN
     let item = sut.item(at: 2, for: 0)
     
     // THEN
     XCTAssertNotNil(item)
-    XCTAssertEqual(item?.title, "Title3")
+    XCTAssertEqual(item?.title, "Title2")
     XCTAssertEqual(item?.category, "Vehicles")
-    XCTAssertEqual(item?.price, 3500.00)
-    XCTAssertEqual(item?.imageUrl, "small3")
-    XCTAssertEqual(item?.creationDate, Date(timeIntervalSince1970: 123456790))
-    XCTAssertEqual(item?.isUrgent, false)
+    XCTAssertEqual(item?.price, 200.99)
+    XCTAssertEqual(item?.imageUrl, "small2")
+    XCTAssertEqual(item?.creationDate, Date(timeIntervalSince1970: 123456789))
+    XCTAssertEqual(item?.isUrgent, true)
     
     XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
     XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
-    XCTAssertEqual(output.setDefaultValuesCallsCount, 0)
-    XCTAssertEqual(output.notifyLoadingCallsCount, 0)
-    XCTAssertEqual(output.notifyEndLoadingCallsCount, 0)
-    XCTAssertEqual(output.notifyFetchingErrorCallsCount, 0)
-    XCTAssertEqual(output.notifyNoValidListingsCallsCount, 0)
-    XCTAssertEqual(output.updateListingsCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
     XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
     XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
   }
@@ -523,35 +410,7 @@ class ListingsInteractorTests: XCTestCase {
       ListingCategoryMock(id: 2, name: "Vehicles"),
     ]
     
-    dataSource.listings = [
-      ListingMock(id: 10000,
-                  categoryId: 1,
-                  title: "Title",
-                  description: "Description",
-                  price: 120.99,
-                  imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
-                  creationDate: Date(timeIntervalSince1970: 123456791),
-                  isUrgent: true,
-                  siret: "444 333 777"),
-      ListingMock(id: 2222,
-                  categoryId: 2,
-                  title: "Title2",
-                  description: "Description2",
-                  price: 5999.00,
-                  imageUrls: ListingImageUrlsMock(small: "small2", thumb: "thumb2"),
-                  creationDate: Date(timeIntervalSince1970: 1234567989),
-                  isUrgent: true,
-                  siret: "111 333 555"),
-      ListingMock(id: 553125,
-                  categoryId: 2,
-                  title: "Title3",
-                  description: "Description3",
-                  price: 3500.00,
-                  imageUrls: ListingImageUrlsMock(small: "small3", thumb: "thumb3"),
-                  creationDate: Date(timeIntervalSince1970: 123456790),
-                  isUrgent: false,
-                  siret: "111 222 333")
-    ]
+    dataSource.currentListings = makeListingsStubs(categoryIds: [1, 2, 2])
     
     // WHEN
     sut.selectItem(at: 200, for: 0)
@@ -559,12 +418,7 @@ class ListingsInteractorTests: XCTestCase {
     // THEN
     XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
     XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
-    XCTAssertEqual(output.setDefaultValuesCallsCount, 0)
-    XCTAssertEqual(output.notifyLoadingCallsCount, 0)
-    XCTAssertEqual(output.notifyEndLoadingCallsCount, 0)
-    XCTAssertEqual(output.notifyFetchingErrorCallsCount, 0)
-    XCTAssertEqual(output.notifyNoValidListingsCallsCount, 0)
-    XCTAssertEqual(output.updateListingsCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
     XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
     XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
   }
@@ -576,35 +430,7 @@ class ListingsInteractorTests: XCTestCase {
       ListingCategoryMock(id: 2, name: "Vehicles"),
     ]
     
-    dataSource.listings = [
-      ListingMock(id: 10000,
-                  categoryId: 1,
-                  title: "Title",
-                  description: "Description",
-                  price: 120.99,
-                  imageUrls: ListingImageUrlsMock(small: "small", thumb: "thumb"),
-                  creationDate: Date(timeIntervalSince1970: 123456791),
-                  isUrgent: true,
-                  siret: nil),
-      ListingMock(id: 2222,
-                  categoryId: 2,
-                  title: "Title2",
-                  description: "Description2",
-                  price: 5999.00,
-                  imageUrls: ListingImageUrlsMock(small: "small2", thumb: "thumb2"),
-                  creationDate: Date(timeIntervalSince1970: 1234567989),
-                  isUrgent: true,
-                  siret: "111 222 333"),
-      ListingMock(id: 553125,
-                  categoryId: 2,
-                  title: "Title3",
-                  description: "Description3",
-                  price: 3500.00,
-                  imageUrls: nil,
-                  creationDate: Date(timeIntervalSince1970: 123456790),
-                  isUrgent: false,
-                  siret: "444 555 666")
-    ]
+    dataSource.currentListings = makeListingsStubs(categoryIds: [1, 2, 2])
     
     // WHEN
     sut.selectItem(at: 1, for: 0)
@@ -613,26 +439,283 @@ class ListingsInteractorTests: XCTestCase {
     expectation(timeout: timeout) {
       self.listingsRepository.fetchCallsCount == 0
         && self.categoryReferentialRepository.fetchCallsCount == 0
-        && self.output.setDefaultValuesCallsCount == 0
-        && self.output.notifyLoadingCallsCount == 0
-        && self.output.notifyEndLoadingCallsCount == 0
-        && self.output.notifyFetchingErrorCallsCount == 0
-        && self.output.notifyNoValidListingsCallsCount == 0
-        && self.output.updateListingsCallsCount == 0
+        && self.output.noMethodsCalled
         && self.currentListingRepository.saveCallsCount == 1
         && self.currentListingRepository.saveReceivedListOfRequests.count == 1
-        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.category.id == 2
-        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.category.name == "Vehicles"
-        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.creationDate == Date(timeIntervalSince1970: 1234567989)
-        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.price == 5999.00
-        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.imageUrls?.small == "small2"
-        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.imageUrls?.thumb == "thumb2"
-        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.isUrgent == true
-        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.title == "Title2"
-        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.description == "Description2"
-        && self.currentListingRepository.saveReceivedListOfRequests[safe: 0]?.siret == "444 555 666"
+        && self.currentListingRepository.saveReceivedListOfRequests[0].category.id == 2
+        && self.currentListingRepository.saveReceivedListOfRequests[0].category.name == "Vehicles"
+        && self.currentListingRepository.saveReceivedListOfRequests[0].creationDate == Date(timeIntervalSince1970: 123456789)
+        && self.currentListingRepository.saveReceivedListOfRequests[0].price == 100.99
+        && self.currentListingRepository.saveReceivedListOfRequests[0].imageUrls?.small == "small1"
+        && self.currentListingRepository.saveReceivedListOfRequests[0].imageUrls?.thumb == "thumb1"
+        && self.currentListingRepository.saveReceivedListOfRequests[0].isUrgent == true
+        && self.currentListingRepository.saveReceivedListOfRequests[0].title == "Title1"
+        && self.currentListingRepository.saveReceivedListOfRequests[0].description == "Description1"
+        && self.currentListingRepository.saveReceivedListOfRequests[0].siret == "111 222 333"
         && self.router.routeToListingDetailsCallsCount == 1
     }
+  }
+  
+  // MARK: - selectFilters
+  
+  func test_givenValidListingsHaveBeenFetched_whenSelectFilters_thenLaunchesFilterSelector() {
+    // GIVEN-WHEN
+    sut.selectFilters()
+    
+    // THEN
+    XCTAssertEqual(output.launchFilterSelectorCallsCount, 1)
+    XCTAssert(output.launchFilterSelectorCalledOnly)
+    XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
+    XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
+    XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
+    XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
+  }
+  
+  // MARK: - selectReset
+  
+  func test_givenValidListingsHaveBeenFetchedAndNotYetFiltered_whenSelectReset_thenNothingHappens() {
+    // GIVEN
+    dataSource.selectedCategoryIndex = nil
+    
+    // WHEN
+    sut.selectReset()
+    
+    // THEN
+    XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
+    XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
+    XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
+    XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
+  }
+  
+  func test_givenValidListingsHaveBeenFetchedAndFiltered_whenSelectReset_thenUpdatesListings() {
+    // GIVEN
+    dataSource.categories = [
+      ListingCategoryMock(id: 1, name: "Tech"),
+      ListingCategoryMock(id: 2, name: "Vehicles"),
+    ]
+    
+    dataSource.listings = makeListingsStubs(categoryIds: [1, 2, 2])
+    dataSource.currentListings = makeListingsStubs(categoryIds: [1])
+    dataSource.selectedCategoryIndex = 1
+    
+    // WHEN
+    sut.selectReset()
+    
+    // THEN
+    expectation(timeout: timeout) {
+      self.output.updateListingsCallsCount == 1
+      && self.output.updateListingsCalledOnly
+        && self.output.updateListingsListOfArguments.count == 1
+        && self.output.updateListingsListOfArguments[0].categoryName == nil
+        && self.output.updateListingsListOfArguments[0].count == 3
+        && self.listingsRepository.fetchCallsCount == 0
+        && self.categoryReferentialRepository.fetchCallsCount == 0
+        && self.currentListingRepository.saveCallsCount == 0
+        && self.router.routeToListingDetailsCallsCount == 0
+    }
+  }
+  
+  // MARK: - numberOfFilters
+  
+  func test_givenValidListingsHaveBeenFetched_whenNumberOfFiltersIsRequested_thenReturnsCorrectValue() {
+    // GIVEN
+    dataSource.categories = [
+      ListingCategoryMock(id: 1, name: "Tech"),
+      ListingCategoryMock(id: 2, name: "Vehicles"),
+    ]
+    
+    // WHEN
+    let filtersCount = sut.numberOfFilters()
+    
+    // THEN
+    XCTAssertEqual(filtersCount, 2)
+    
+    XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
+    XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
+    XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
+    XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
+  }
+  
+  // MARK: - filterName
+  
+  func test_givenValidListingsHaveBeenFetchedAndInvalidIndex_whenFilterNameIsRequested_thenReturnsCorrectValue() {
+    // GIVEN
+    dataSource.categories = [
+      ListingCategoryMock(id: 1, name: "Tech"),
+      ListingCategoryMock(id: 2, name: "Vehicles"),
+    ]
+    
+    // WHEN
+    let filterName = sut.filterName(at: 10)
+    
+    // THEN
+    XCTAssertNil(filterName)
+    
+    XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
+    XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
+    XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
+    XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
+  }
+  
+  func test_givenValidListingsHaveBeenFetchedAndValidIndex_whenFilterNameIsRequested_thenReturnsCorrectValue() {
+    // GIVEN
+    dataSource.categories = [
+      ListingCategoryMock(id: 1, name: "Tech"),
+      ListingCategoryMock(id: 2, name: "Vehicles"),
+    ]
+    
+    // WHEN
+    let filterName = sut.filterName(at: 0)
+    
+    // THEN
+    XCTAssertEqual(filterName, "Tech")
+    
+    XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
+    XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
+    XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
+    XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
+  }
+  
+  // MARK: - numberOfListings
+  
+  func test_givenValidListingsHaveBeenFetchedAndInvalidIndex_whenNumberOfListingsOfACategoryIsRequested_thenReturnsNothing() {
+    // GIVEN
+    dataSource.listingsGroups = [
+      (
+        ListingCategoryMock(id: 1, name: "Tech"),
+        makeListingsStubs(categoryIds: [1])
+      ),
+      (
+        ListingCategoryMock(id: 2, name: "Vehicles"),
+        makeListingsStubs(categoryIds: [2, 2])
+      )
+    ]
+    
+    // WHEN
+    let listingsCount = sut.numberOfListings(filteredByCategoryAt: 10)
+    
+    // THEN
+    XCTAssertNil(listingsCount)
+    
+    XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
+    XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
+    XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
+    XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
+  }
+  
+  func test_givenValidListingsHaveBeenFetchedAndValidIndex_whenNumberOfListingsOfACategoryIsRequested_thenReturnsCorrectValue() {
+    // GIVEN
+    dataSource.listingsGroups = [
+      (
+        ListingCategoryMock(id: 1, name: "Tech"),
+        makeListingsStubs(categoryIds: [1])
+      ),
+      (
+        ListingCategoryMock(id: 2, name: "Vehicles"),
+        makeListingsStubs(categoryIds: [2, 2])
+      )
+    ]
+    
+    // WHEN
+    let listingsCount = sut.numberOfListings(filteredByCategoryAt: 1)
+    
+    // THEN
+    XCTAssertEqual(listingsCount, 2)
+    
+    XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
+    XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
+    XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
+    XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
+  }
+  
+  // MARK: - filter
+  
+  func test_givenValidListingsHaveBeenFetched_whenFilterByTheSameCategory_thenNothingHappens() {
+    // GIVEN
+    dataSource.listingsGroups = [
+      (
+        ListingCategoryMock(id: 1, name: "Tech"),
+        makeListingsStubs(categoryIds: [1])
+      ),
+      (
+        ListingCategoryMock(id: 2, name: "Vehicles"),
+        makeListingsStubs(categoryIds: [2, 2])
+      )
+    ]
+    
+    dataSource.currentListings = makeListingsStubs(categoryIds: [1])
+    dataSource.selectedCategoryIndex = 0
+    
+    // WHEN
+    sut.filter(byCategoryAt: 0)
+    
+    // THEN
+    XCTAssertEqual(listingsRepository.fetchCallsCount, 0)
+    XCTAssertEqual(categoryReferentialRepository.fetchCallsCount, 0)
+    XCTAssert(output.noMethodsCalled)
+    XCTAssertEqual(currentListingRepository.saveCallsCount, 0)
+    XCTAssertEqual(router.routeToListingDetailsCallsCount, 0)
+  }
+  
+  func test_givenValidListingsHaveBeenFetched_whenFilterByAnotherCategory_thenUpdateListings() {
+    // GIVEN
+    dataSource.listingsGroups = [
+      (
+        ListingCategoryMock(id: 1, name: "Tech"),
+        makeListingsStubs(categoryIds: [1])
+      ),
+      (
+        ListingCategoryMock(id: 2, name: "Vehicles"),
+        makeListingsStubs(categoryIds: [2, 2])
+      )
+    ]
+    
+    dataSource.currentListings = makeListingsStubs(categoryIds: [1])
+    dataSource.selectedCategoryIndex = 0
+    
+    // WHEN
+    sut.filter(byCategoryAt: 1)
+    
+    // THEN
+    expectation(timeout: timeout) {
+      self.output.updateListingsCallsCount == 1
+        && self.output.updateListingsCalledOnly
+        && self.output.updateListingsListOfArguments.count == 1
+        && self.output.updateListingsListOfArguments[0].categoryName == "Vehicles"
+        && self.output.updateListingsListOfArguments[0].count == 2
+        && self.listingsRepository.fetchCallsCount == 0
+        && self.categoryReferentialRepository.fetchCallsCount == 0
+        && self.currentListingRepository.saveCallsCount == 0
+        && self.router.routeToListingDetailsCallsCount == 0
+    }
+  }
+  
+  // MARK: - Private
+  
+  private func makeListingsStubs(categoryIds: [UInt8]) -> [ListingMock] {
+    var stubs: [ListingMock] = []
+    
+    if categoryIds.isEmpty { return stubs }
+    
+    for i in 0...categoryIds.count - 1 {
+      stubs.append(ListingMock(id: UInt(i),
+                               categoryId: categoryIds[i],
+                               title: "Title\(i)",
+                               description: "Description\(i)",
+                               price: Float(i) * 100 + 0.99,
+                               imageUrls: ListingImageUrlsMock(small: "small\(i)", thumb: "thumb\(i)"),
+                               creationDate: Date(timeIntervalSince1970: 123456789),
+                               isUrgent: categoryIds[i].isMultiple(of: 2),
+                               siret: "111 222 333"))
+    }
+    
+    return stubs
   }
 }
 
@@ -653,4 +736,7 @@ private class ListingsInteractorDataSourceMock: ListingsInteractorDataSourceProt
   var categories: [ListingCategory] = []
   var listingsError: ListingsFetchingError?
   var categoryReferentialError: CategoryReferentialFetchingError?
+  var listingsGroups: [(category: ListingCategory, listings: [Listing])] = []
+  var selectedCategoryIndex: Int?
+  var currentListings: [Listing] = []
 }

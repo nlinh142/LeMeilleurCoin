@@ -24,4 +24,9 @@ protocol ListingsPresenterInput {
   func numberOfItems(in section: Int) -> Int
   func viewItem(at indexPath: IndexPath) -> ListingsViewItemProtocol
   func didSelectItem(at indexPath: IndexPath)
+  func didTapResetButton()
+  func didTapFiltersButton()
+  func numberOfFilters() -> Int
+  func filterTitle(at index: Int) -> String
+  func didSelectFilter(at index: Int)
 }

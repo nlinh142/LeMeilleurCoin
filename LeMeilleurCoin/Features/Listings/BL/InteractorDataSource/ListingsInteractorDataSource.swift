@@ -13,4 +13,7 @@ struct ListingsInteractorDataSource: ListingsInteractorDataSourceProtocol {
   var categories: [ListingCategory] = []
   var listingsError: ListingsFetchingError?
   var categoryReferentialError: CategoryReferentialFetchingError?
+  var listingsGroups: [(category: ListingCategory, listings: [Listing])] = []
+  var selectedCategoryIndex: Int?
+  var currentListings: [Listing] = []
 }

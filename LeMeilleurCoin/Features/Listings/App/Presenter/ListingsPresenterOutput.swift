@@ -9,8 +9,11 @@
 protocol ListingsPresenterOutput: AnyObject {
   func showLoading()
   func hideLoading()
-  func display(title: String)
+  func set(title: String)
+  func set(filtersButtonTitle: String)
+  func set(resetButtonTitle: String)
   func display(alert: AlertItemProtocol)
   func refreshListings()
   func set(numberOfListingsPerRow: Int)
+  func displayFilterSelector(title: String, cancelTitle: String)
 }

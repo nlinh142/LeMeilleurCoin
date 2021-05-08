@@ -16,8 +16,6 @@ protocol ListingsInteractorDependencies {
   var dataSource: ListingsInteractorDataSourceProtocol { get }
 }
 
-// TODO: Filter by category. input + output + dataSource need updating
-
 final class ListingsInteractor {
   
   // MARK: - Properties
@@ -141,13 +139,25 @@ final class ListingsInteractor {
       }
     }
     
-    updateListings()
+    dataSource.listingsGroups = dataSource.categories.map { category in
+      (category, dataSource.listings.filter { $0.categoryId == category.id })
+    }
+    
+    updateListingsWithoutFilters()
   }
   
-  private func updateListings() {
+  private func updateListingsWithoutFilters(shouldNotifyEndLoading: Bool = true) {
+    dataSource.selectedCategoryIndex = nil
+    dataSource.currentListings = dataSource.listings
+    updateListings(count: dataSource.listings.count, shouldNotifyEndLoading: shouldNotifyEndLoading)
+  }
+  
+  private func updateListings(categoryName: String? = nil, count: Int?, shouldNotifyEndLoading: Bool) {
     DispatchQueue.main.async {
-      self.output?.updateListings()
-      self.output?.notifyEndLoading()
+      self.output?.updateListings(categoryName: categoryName, count: count)
+      if shouldNotifyEndLoading {
+        self.output?.notifyEndLoading()
+      }
     }
   }
   
@@ -194,11 +204,11 @@ extension ListingsInteractor: ListingsInteractorInput {
   }
   
   func numberOfItems(for categoryIndex: Int) -> Int {
-    dataSource.listings.count
+    return dataSource.currentListings.count
   }
   
   func item(at index: Int, for categoryIndex: Int) -> ListingItemProtocol? {
-    guard let item = dataSource.listings[safe: index],
+    guard let item = dataSource.currentListings[safe: index],
           let category = self.category(havingId: item.categoryId) else { return nil }
     
     return ListingItem(category: category.name,
@@ -210,7 +220,7 @@ extension ListingsInteractor: ListingsInteractorInput {
   }
   
   func selectItem(at index: Int, for categoryIndex: Int) {
-    guard let selectedItem = dataSource.listings[safe: index],
+    guard let selectedItem = dataSource.currentListings[safe: index],
           let category = self.category(havingId: selectedItem.categoryId) else { return }
     
     let saveRequest = CurrentListingSavingRequestModel(
@@ -228,6 +238,37 @@ extension ListingsInteractor: ListingsInteractorInput {
       self.currentListingRepository.save(with: saveRequest)
       self.router.routeToListingDetails()
     }
+  }
+  
+  func selectReset() {
+    guard dataSource.selectedCategoryIndex != nil else { return }
+    updateListingsWithoutFilters(shouldNotifyEndLoading: false)
+  }
+  
+  func selectFilters() {
+    output?.launchFilterSelector()
+  }
+  
+  func numberOfFilters() -> Int {
+    dataSource.categories.count
+  }
+  
+  func filterName(at index: Int) -> String? {
+    dataSource.categories[safe: index]?.name
+  }
+  
+  func numberOfListings(filteredByCategoryAt index: Int) -> Int? {
+    dataSource.listingsGroups[safe: index]?.listings.count
+  }
+  
+  func filter(byCategoryAt index: Int) {
+    guard dataSource.selectedCategoryIndex != index else { return }
+    dataSource.selectedCategoryIndex = index
+    let group = dataSource.listingsGroups[safe: index]
+    dataSource.currentListings = group?.listings ?? []
+    updateListings(categoryName: group?.category.name,
+                   count: dataSource.currentListings.count,
+                   shouldNotifyEndLoading: false)
   }
 }
 
