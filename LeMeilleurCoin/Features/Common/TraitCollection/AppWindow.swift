@@ -8,13 +8,13 @@
 import UIKit
 
 class AppWindow: UIWindow {
-
+  
   // MARK: - Properties
-
+  
   private lazy var notificationCenter = NotificationCenter.default
-
+  
   // MARK: - Layout
-
+  
   override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     super.traitCollectionDidChange(previousTraitCollection)
     notificationCenter.post(

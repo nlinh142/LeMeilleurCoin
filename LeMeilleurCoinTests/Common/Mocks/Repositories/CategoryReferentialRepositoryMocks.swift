@@ -21,13 +21,13 @@ class CategoryReferentialFetchingMock: CategoryReferentialFetching {
   }
 }
 
-// MARK: - CategoryReferentialFetchingResponseMock
+// MARK: - CategoryReferentialFetchingTestResponse
 
-struct CategoryReferentialFetchingResponseMock: CategoryReferentialFetchingResponse {
+struct CategoryReferentialFetchingTestResponse: CategoryReferentialFetchingResponse {
   var id: UInt8?
   var name: String?
   
-  static func makeStub(id: UInt8? = 1, name: String? = "Tech") -> CategoryReferentialFetchingResponseMock {
-    CategoryReferentialFetchingResponseMock(id: id, name: name)
+  static func make(id: UInt8? = 1, name: String? = "Tech") -> CategoryReferentialFetchingTestResponse {
+    CategoryReferentialFetchingTestResponse(id: id, name: name)
   }
 }

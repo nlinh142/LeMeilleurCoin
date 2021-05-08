@@ -11,26 +11,26 @@ import XCTest
 @testable import LeMeilleurCoin
 
 class ListingsInteractorFactoryTests: XCTestCase {
-
+  
   // MARK: - Properties
-
+  
   private var sut: ListingsInteractorFactory!
   private var output: ListingsInteractorOutputMock!
-  private var request: ListingsInteractorFactoryRequestMock!
+  private var request: ListingsInteractorFactoryTestRequest!
   
   // MARK: - Setup
-
+  
   override func setUpWithError() throws {
     sut = ListingsInteractorFactory()
     output = ListingsInteractorOutputMock()
-    request = ListingsInteractorFactoryRequestMock(
+    request = ListingsInteractorFactoryTestRequest(
       listingsRepository: ListingsFetchingMock(),
       categoryReferentialRepository: CategoryReferentialFetchingMock(),
       currentListingRepository: CurrentListingSavingMock(),
       router: ListingsRoutingMock()
     )
   }
-
+  
   override func tearDownWithError() throws {
     sut = nil
     output = nil
@@ -38,7 +38,7 @@ class ListingsInteractorFactoryTests: XCTestCase {
   }
   
   // MARK: - Tests
-
+  
   func test_givenDependenciesAreAllSet_whenMakeResponse_thenReturnsCorrectResponse() {
     // GIVEN-WHEN
     let response = sut.makeResponse(with: request)
@@ -46,22 +46,22 @@ class ListingsInteractorFactoryTests: XCTestCase {
     // THEN
     XCTAssert(response.interactor is ListingsInteractor)
   }
-
+  
   func test_givenInteractorResponseHasBeenGenerated_whenConfigureOutput_thenOutputIsSet() {
     // GIVEN
     let response = sut.makeResponse(with: request)
-
+    
     // WHEN
     sut.output = output
-
+    
     // THEN
     XCTAssertNotNil((response.interactor as? ListingsInteractor)?.output)
   }
 }
 
-// MARK: - ListingsInteractorFactoryRequestMock
+// MARK: - ListingsInteractorFactoryTestRequest
 
-private struct ListingsInteractorFactoryRequestMock: ListingsInteractorFactoryRequest {
+private struct ListingsInteractorFactoryTestRequest: ListingsInteractorFactoryRequest {
   let listingsRepository: ListingsFetching
   let categoryReferentialRepository: CategoryReferentialFetching
   let currentListingRepository: CurrentListingSaving

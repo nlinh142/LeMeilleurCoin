@@ -9,9 +9,9 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+  
   // MARK: - Properties
-
+  
   var window: UIWindow?
   
   // MARK: - UIApplicationDelegate
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let navigationController = UINavigationController(rootViewController: viewController)
     navigationController.configure(prefersLargeTitles: true)
-        
+    
     let window = UIWindow(frame: UIScreen.main.bounds)
     window.rootViewController = navigationController
     window.makeKeyAndVisible()

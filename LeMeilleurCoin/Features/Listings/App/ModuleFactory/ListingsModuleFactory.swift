@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol ListingsModuleFactoryProtocol {
-  func makeViewController() -> ListingsViewLoadable
-}
-
 protocol ListingsModuleFactoryDependencies {
   var interactorFactory: ListingsInteractorFactoryProtocol { get }
 }
@@ -19,7 +15,7 @@ protocol ListingsModuleFactoryDependencies {
 final class ListingsModuleFactory: ListingsViewDependencies {
   
   // MARK: - Properties
-
+  
   var presenter: ListingsPresenterInput!
   private var interactorFactory: ListingsInteractorFactoryProtocol
   
@@ -32,9 +28,9 @@ final class ListingsModuleFactory: ListingsViewDependencies {
     let listingsRouterDependencies = ListingsRouterDependenciesModel(listingDetailsModuleFactory: listingDetailsModuleFactory)
     return ListingsRouter(dependencies: listingsRouterDependencies)
   }()
-
+  
   // MARK: - Lifecycle
-
+  
   init(dependencies: ListingsModuleFactoryDependencies) {
     interactorFactory = dependencies.interactorFactory
   }
@@ -90,7 +86,7 @@ extension ListingsModuleFactory: ListingsModuleFactoryProtocol {
       traitCollectionCenterHorizontalSizeClass: appTraitCollectionCenter
     )
     let presenter = ListingsPresenter(dependencies: dependencies)
-
+    
     interactorFactory.output = presenter
     let viewController = ListingsViewController()
     viewController.dependencies = self

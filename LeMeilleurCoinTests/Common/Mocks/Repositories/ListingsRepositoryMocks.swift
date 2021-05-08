@@ -21,9 +21,9 @@ class ListingsFetchingMock: ListingsFetching {
   }
 }
 
-// MARK: - ListingsFetchingResponseMock
+// MARK: - ListingsFetchingTestResponse
 
-struct ListingsFetchingResponseMock: ListingsFetchingResponse {
+struct ListingsFetchingTestResponse: ListingsFetchingResponse {
   let id: UInt?
   let categoryId: UInt8?
   let title: String?
@@ -34,26 +34,26 @@ struct ListingsFetchingResponseMock: ListingsFetchingResponse {
   let isUrgent: Bool?
   let siret: String?
   
-  static func makeStub(id: UInt? = 1234,
-                       categoryId: UInt8? = 1,
-                       title: String? = "Title",
-                       price: Float? = 120.99,
-                       creationDate: Date? = .init(timeIntervalSince1970: 123456789)) -> ListingsFetchingResponseMock {
-    ListingsFetchingResponseMock(id: id,
+  static func make(id: UInt? = 1234,
+                   categoryId: UInt8? = 1,
+                   title: String? = "Title",
+                   price: Float? = 120.99,
+                   creationDate: Date? = .init(timeIntervalSince1970: 123456789)) -> ListingsFetchingTestResponse {
+    ListingsFetchingTestResponse(id: id,
                                  categoryId: categoryId,
                                  title: title,
                                  description: "Description",
                                  price: price,
-                                 imageUrls: ListingsFetchingImageUrlsResponseMock(small: "small", thumb: "thumb"),
+                                 imageUrls: ListingsFetchingImageUrlsTestResponse(small: "small", thumb: "thumb"),
                                  creationDate: creationDate,
                                  isUrgent: false,
                                  siret: "000 111 222")
   }
 }
 
-// MARK: - ListingsFetchingImageUrlsResponseMock
+// MARK: - ListingsFetchingImageUrlsTestResponse
 
-struct ListingsFetchingImageUrlsResponseMock: ListingsFetchingImageUrlsResponse {
+struct ListingsFetchingImageUrlsTestResponse: ListingsFetchingImageUrlsResponse {
   let small: String?
   let thumb: String?
 }

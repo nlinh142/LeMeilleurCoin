@@ -15,13 +15,13 @@ class AppPriceFormatterTests: XCTestCase {
     // GIVEN
     let sut = AppPriceFormatter(locale: .init(identifier: "en_US"))
     
-    let fractionDigits = FractionDigitsMinMaxMock(minimumFractionDigits: 0,
-                                                  maximumFractionDigits: 0)
+    let fractionDigits = FractionDigitsMinMax(minimumFractionDigits: 0,
+                                              maximumFractionDigits: 0)
     
-    let sutParameters = PriceFormatterParametersMock(price: 10000,
-                                                                currencyCode: "EUR",
-                                                                fractionDigitsMinMax: fractionDigits)
-
+    let sutParameters = PriceFormatterParameters(price: 10000,
+                                                 currencyCode: "EUR",
+                                                 fractionDigitsMinMax: fractionDigits)
+    
     // WHEN
     let price = sut.formattedPrice(with: sutParameters)
     
@@ -30,16 +30,16 @@ class AppPriceFormatterTests: XCTestCase {
   }
 }
 
-// MARK: - FractionDigitsMinMaxMock
+// MARK: - FractionDigitsMinMax
 
-private struct FractionDigitsMinMaxMock: FractionDigitsMinMaxProtocol {
+private struct FractionDigitsMinMax: FractionDigitsMinMaxProtocol {
   let minimumFractionDigits: Int
   let maximumFractionDigits: Int
 }
 
-// MARK: - FractionDigitsMinMaxMock
+// MARK: - PriceFormatterParameters
 
-private struct PriceFormatterParametersMock: PriceFormatterParametersProtocol {
+private struct PriceFormatterParameters: PriceFormatterParametersProtocol {
   let price: Float
   let currencyCode: String
   let fractionDigitsMinMax: FractionDigitsMinMaxProtocol

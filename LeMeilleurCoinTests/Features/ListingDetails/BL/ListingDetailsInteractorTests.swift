@@ -29,7 +29,7 @@ class ListingDetailsInteractorTests: XCTestCase {
     currentListingFetchRepository = CurrentListingFetchingMock()
     currentListingClearRepository = CurrentListingClearingMock()
     router = ListingDetailsRoutingMock()
-    let dependencies = ListingDetailsInteractorDependenciesMock(
+    let dependencies = ListingDetailsInteractorTestDependencies(
       currentListingFetchRepository: currentListingFetchRepository,
       currentListingClearRepository: currentListingClearRepository,
       router: router
@@ -79,7 +79,7 @@ class ListingDetailsInteractorTests: XCTestCase {
   func test_givenListingDetailsNotHavingAllMandatoryInformation_whenRetrieveContent_thenNotifiesNoDataError() {
     // GIVEN
     currentListingFetchRepository.fetchCompletion = { completion in
-      completion(CurrentListingFetchingResponseMock.makeStub(id: nil))
+      completion(CurrentListingFetchingTestResponse.make(id: nil))
     }
     
     // WHEN
@@ -102,7 +102,7 @@ class ListingDetailsInteractorTests: XCTestCase {
   func test_givenListingDetailsNotHavingAllMandatoryCategoryInformation_whenRetrieveContent_thenNotifiesNoDataError() {
     // GIVEN
     currentListingFetchRepository.fetchCompletion = { completion in
-      completion(CurrentListingFetchingResponseMock.makeStub(categoryId: nil))
+      completion(CurrentListingFetchingTestResponse.make(categoryId: nil))
     }
     
     // WHEN
@@ -125,7 +125,7 @@ class ListingDetailsInteractorTests: XCTestCase {
   func test_givenValidListingDetails_whenRetrieveContent_thenNotifiesListingInformation() {
     // GIVEN
     currentListingFetchRepository.fetchCompletion = { completion in
-      completion(CurrentListingFetchingResponseMock.makeStub())
+      completion(CurrentListingFetchingTestResponse.make())
     }
     
     // WHEN
@@ -187,9 +187,9 @@ class ListingDetailsInteractorTests: XCTestCase {
   }
 }
 
-// MARK: - ListingDetailsInteractorDependenciesMock
+// MARK: - ListingDetailsInteractorTestDependencies
 
-private struct ListingDetailsInteractorDependenciesMock: ListingDetailsInteractorDependencies {
+private struct ListingDetailsInteractorTestDependencies: ListingDetailsInteractorDependencies {
   let currentListingFetchRepository: CurrentListingFetching
   let currentListingClearRepository: CurrentListingClearing
   let router: ListingDetailsRouting

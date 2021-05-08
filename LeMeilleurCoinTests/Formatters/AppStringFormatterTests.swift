@@ -11,29 +11,29 @@ import UIKit
 @testable import LeMeilleurCoin
 
 class AppStringFormatterTests: XCTestCase {
-
+  
   // MARK: - Properties
-
+  
   private var sut: AppStringFormatter!
-
+  
   // MARK: - Setup
-
+  
   override func setUpWithError() throws {
     sut = AppStringFormatter()
   }
-
+  
   override func tearDownWithError() throws {
     sut = nil
   }
-
+  
   // MARK: - Tests
   
   func test_givenTextAttributes_whenTextIsFormatted_thenReturnsExpectedResult() {
     // GIVEN - WHEN
     let formattedString = sut.format(string: "string",
-                                           font: .systemFont(ofSize: 15),
-                                           textColor: .blue,
-                                           textAlignment: .left)
+                                     font: .systemFont(ofSize: 15),
+                                     textColor: .blue,
+                                     textAlignment: .left)
     
     // THEN
     XCTAssertEqual(formattedString.string, "string")

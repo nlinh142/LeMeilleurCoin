@@ -12,7 +12,7 @@ class ListingTests: XCTestCase {
   
   func test_givenNoId_whenInit_thenThrowsError() {
     // GIVEN
-    let dependencies = AppListingDependenciesMock.make(id: nil)
+    let dependencies = AppListingTestDependencies.make(id: nil)
     
     // WHEN-THEN
     XCTAssertThrowsError(try AppListing(dependencies: dependencies))
@@ -20,7 +20,7 @@ class ListingTests: XCTestCase {
   
   func test_givenNoCategoryId_whenInit_thenThrowsError() {
     // GIVEN
-    let dependencies = AppListingDependenciesMock.make(categoryId: nil)
+    let dependencies = AppListingTestDependencies.make(categoryId: nil)
     
     // WHEN-THEN
     XCTAssertThrowsError(try AppListing(dependencies: dependencies))
@@ -28,7 +28,7 @@ class ListingTests: XCTestCase {
   
   func test_givenNoTitle_whenInit_thenThrowsError() {
     // GIVEN
-    let dependencies = AppListingDependenciesMock.make(title: nil)
+    let dependencies = AppListingTestDependencies.make(title: nil)
     
     // WHEN-THEN
     XCTAssertThrowsError(try AppListing(dependencies: dependencies))
@@ -36,7 +36,7 @@ class ListingTests: XCTestCase {
   
   func test_givenEmptyTitle_whenInit_thenThrowsError() {
     // GIVEN
-    let dependencies = AppListingDependenciesMock.make(title: "")
+    let dependencies = AppListingTestDependencies.make(title: "")
     
     // WHEN-THEN
     XCTAssertThrowsError(try AppListing(dependencies: dependencies))
@@ -44,7 +44,7 @@ class ListingTests: XCTestCase {
   
   func test_givenNoPrice_whenInit_thenThrowsError() {
     // GIVEN
-    let dependencies = AppListingDependenciesMock.make(price: nil)
+    let dependencies = AppListingTestDependencies.make(price: nil)
     
     // WHEN-THEN
     XCTAssertThrowsError(try AppListing(dependencies: dependencies))
@@ -52,7 +52,7 @@ class ListingTests: XCTestCase {
   
   func test_givenNegativePrice_whenInit_thenThrowsError() {
     // GIVEN
-    let dependencies = AppListingDependenciesMock.make(price: -100.00)
+    let dependencies = AppListingTestDependencies.make(price: -100.00)
     
     // WHEN-THEN
     XCTAssertThrowsError(try AppListing(dependencies: dependencies))
@@ -60,7 +60,7 @@ class ListingTests: XCTestCase {
   
   func test_givenNoCreationDate_whenInit_thenThrowsError() {
     // GIVEN
-    let dependencies = AppListingDependenciesMock.make(creationDate: nil)
+    let dependencies = AppListingTestDependencies.make(creationDate: nil)
     
     // WHEN-THEN
     XCTAssertThrowsError(try AppListing(dependencies: dependencies))
@@ -68,7 +68,7 @@ class ListingTests: XCTestCase {
   
   func test_givenValidParameters_whenInit_thenAnInstanceIsCreated() {
     // GIVEN
-    let dependencies = AppListingDependenciesMock.make()
+    let dependencies = AppListingTestDependencies.make()
     
     // WHEN
     let item = try? AppListing(dependencies: dependencies)
@@ -90,7 +90,7 @@ class ListingTests: XCTestCase {
 
 // MARK: - AppListingDependencies
 
-private struct AppListingDependenciesMock: AppListingDependencies {
+private struct AppListingTestDependencies: AppListingDependencies {
   let id: UInt?
   let categoryId: UInt8?
   let title: String?
@@ -109,8 +109,8 @@ private struct AppListingDependenciesMock: AppListingDependencies {
                    imageUrls: ListingImageUrls = ListingImageUrlsMock(small: "small", thumb: "thumb"),
                    creationDate: Date? = Date(timeIntervalSince1970: 12345678),
                    isUrgent: Bool? = false,
-                   siret: String? = "000 111 222") -> AppListingDependenciesMock {
-    AppListingDependenciesMock(id: id,
+                   siret: String? = "000 111 222") -> AppListingTestDependencies {
+    AppListingTestDependencies(id: id,
                                categoryId: categoryId,
                                title: title,
                                description: description,

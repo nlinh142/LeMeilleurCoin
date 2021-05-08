@@ -18,20 +18,20 @@ protocol ListingDetailsInteractorDependencies {
 final class ListingDetailsInteractor {
   
   // MARK: - Properties
-
+  
   weak var output: ListingDetailsInteractorOutput?
   private let currentListingFetchRepository: CurrentListingFetching
   private let currentListingClearRepository: CurrentListingClearing
   private let router: ListingDetailsRouting
-
+  
   // MARK: - Lifecycle
-
+  
   init(dependencies: ListingDetailsInteractorDependencies) {
     currentListingFetchRepository = dependencies.currentListingFetchRepository
     currentListingClearRepository = dependencies.currentListingClearRepository
     router = dependencies.router
   }
-
+  
   // MARK: - Private
   
   private func notifyNoData() {

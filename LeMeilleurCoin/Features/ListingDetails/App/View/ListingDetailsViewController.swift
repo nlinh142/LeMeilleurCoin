@@ -12,10 +12,6 @@ protocol ListingDetailsViewDependencies {
   var presenter: ListingDetailsPresenterInput! { get }
 }
 
-protocol ListingDetailsViewLoadable: UIViewController {
-  func viewDidLoad()
-}
-
 class ListingDetailsViewController: UIViewController, Loadable {
   
   // MARK: - Properties

@@ -7,22 +7,21 @@
 //
 
 import Foundation
-import Foundation
 
 final class ListingDetailsInteractorFactory: ListingDetailsInteractorFactoryProtocol {
   
   // MARK: - Properties
-
+  
   weak var output: ListingDetailsInteractorOutput? {
     didSet {
       interactor?.output = output
     }
   }
-
+  
   private weak var interactor: ListingDetailsInteractor?
-
+  
   // MARK: - ListingDetailsInteractorInput
-
+  
   func makeResponse(with request: ListingDetailsInteractorFactoryRequest) -> ListingDetailsInteractorFactoryResponse {
     let dependencies = TestListingDetailsInteractorDependencies(
       currentListingFetchRepository: request.currentListingFetchRepository,
@@ -31,11 +30,11 @@ final class ListingDetailsInteractorFactory: ListingDetailsInteractorFactoryProt
     )
     let interactor = ListingDetailsInteractor(dependencies: dependencies)
     self.interactor = interactor
-
+    
     let response = ListingDetailsInteractorFactoryResponseModel(
       interactor: interactor
     )
-
+    
     return response
   }
 }

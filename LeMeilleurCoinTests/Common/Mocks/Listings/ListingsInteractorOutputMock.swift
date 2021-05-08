@@ -48,7 +48,7 @@ class ListingsInteractorOutputMock: ListingsInteractorOutput {
     updateListingsCallsCount += 1
     updateListingsListOfArguments.append((categoryName, count))
   }
-
+  
   var launchFilterSelectorCallsCount: Int = 0
   
   func launchFilterSelector() {
@@ -57,31 +57,31 @@ class ListingsInteractorOutputMock: ListingsInteractorOutput {
   
   var noMethodsCalled: Bool {
     setDefaultValuesCallsCount == 0
-    && notifyLoadingCallsCount == 0
-    && notifyEndLoadingCallsCount == 0
-    && notifyFetchingErrorCallsCount == 0
-    && notifyNoValidListingsCallsCount == 0
-    && updateListingsCallsCount == 0
-    && launchFilterSelectorCallsCount == 0
+      && notifyLoadingCallsCount == 0
+      && notifyEndLoadingCallsCount == 0
+      && notifyFetchingErrorCallsCount == 0
+      && notifyNoValidListingsCallsCount == 0
+      && updateListingsCallsCount == 0
+      && launchFilterSelectorCallsCount == 0
   }
   
   var launchFilterSelectorCalledOnly: Bool {
     setDefaultValuesCallsCount == 0
-    && notifyLoadingCallsCount == 0
-    && notifyEndLoadingCallsCount == 0
-    && notifyFetchingErrorCallsCount == 0
-    && notifyNoValidListingsCallsCount == 0
-    && updateListingsCallsCount == 0
-    && launchFilterSelectorCallsCount > 0
+      && notifyLoadingCallsCount == 0
+      && notifyEndLoadingCallsCount == 0
+      && notifyFetchingErrorCallsCount == 0
+      && notifyNoValidListingsCallsCount == 0
+      && updateListingsCallsCount == 0
+      && launchFilterSelectorCallsCount > 0
   }
   
   var updateListingsCalledOnly: Bool {
     setDefaultValuesCallsCount == 0
-    && notifyLoadingCallsCount == 0
-    && notifyEndLoadingCallsCount == 0
-    && notifyFetchingErrorCallsCount == 0
-    && notifyNoValidListingsCallsCount == 0
-    && updateListingsCallsCount > 0
-    && launchFilterSelectorCallsCount == 0
+      && notifyLoadingCallsCount == 0
+      && notifyEndLoadingCallsCount == 0
+      && notifyFetchingErrorCallsCount == 0
+      && notifyNoValidListingsCallsCount == 0
+      && updateListingsCallsCount > 0
+      && launchFilterSelectorCallsCount == 0
   }
 }

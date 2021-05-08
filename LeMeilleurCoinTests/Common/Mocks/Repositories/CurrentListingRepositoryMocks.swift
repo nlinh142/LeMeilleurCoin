@@ -43,9 +43,9 @@ class CurrentListingClearingMock: CurrentListingClearing {
   }
 }
 
-// MARK: - CurrentListingFetchingResponseMock
+// MARK: - CurrentListingFetchingTestResponse
 
-struct CurrentListingFetchingResponseMock: CurrentListingFetchingResponse {
+struct CurrentListingFetchingTestResponse: CurrentListingFetchingResponse {
   let id: UInt?
   let category: CurrentListingFetchingCategoryResponse?
   let title: String?
@@ -56,14 +56,14 @@ struct CurrentListingFetchingResponseMock: CurrentListingFetchingResponse {
   let isUrgent: Bool?
   let siret: String?
   
-  static func makeStub(id: UInt? = 1234, categoryId: UInt8? = 1) -> CurrentListingFetchingResponseMock {
-    CurrentListingFetchingResponseMock(
+  static func make(id: UInt? = 1234, categoryId: UInt8? = 1) -> CurrentListingFetchingTestResponse {
+    CurrentListingFetchingTestResponse(
       id: id,
-      category: CurrentListingFetchingCategoryResponseMock(id: categoryId, name: "CategoryName"),
+      category: CurrentListingFetchingCategoryTestResponse(id: categoryId, name: "CategoryName"),
       title: "Title",
       description: "Description",
       price: 129.99,
-      imageUrls: CurrentListingFetchingImageUrlsResponseMock(small: "small", thumb: "thumb"),
+      imageUrls: CurrentListingFetchingImageUrlsTestResponse(small: "small", thumb: "thumb"),
       creationDate: Date(timeIntervalSince1970: 123456789),
       isUrgent: false,
       siret: "000 111 222"
@@ -71,16 +71,16 @@ struct CurrentListingFetchingResponseMock: CurrentListingFetchingResponse {
   }
 }
 
-// MARK: - CurrentListingFetchingCategoryResponseMock
+// MARK: - CurrentListingFetchingCategoryTestResponse
 
-struct CurrentListingFetchingCategoryResponseMock: CurrentListingFetchingCategoryResponse {
+struct CurrentListingFetchingCategoryTestResponse: CurrentListingFetchingCategoryResponse {
   let id: UInt8?
   let name: String?
 }
 
-// MARK: - CurrentListingFetchingImageUrlsResponseMock
+// MARK: - CurrentListingFetchingImageUrlsTestResponse
 
-struct CurrentListingFetchingImageUrlsResponseMock: CurrentListingFetchingImageUrlsResponse {
+struct CurrentListingFetchingImageUrlsTestResponse: CurrentListingFetchingImageUrlsResponse {
   let small: String?
   let thumb: String?
 }

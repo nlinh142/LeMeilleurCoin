@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EB431B5F2645308C00D55E71 /* UINavigationController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B5E2645308C00D55E71 /* UINavigationController+Configuration.swift */; };
+		EB431B6A2646E1E600D55E71 /* ListingDetailsModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B692646E1E600D55E71 /* ListingDetailsModuleFactoryProtocol.swift */; };
+		EB431B6C2646E28000D55E71 /* ListingsModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B6B2646E28000D55E71 /* ListingsModuleFactoryProtocol.swift */; };
 		EBA27F582639027D0063C89E /* ListingsInteractorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */; };
 		EBA27F592639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */; };
 		EBA27F5A2639027D0063C89E /* ListingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F552639027D0063C89E /* ListingsInteractor.swift */; };
@@ -101,6 +103,8 @@
 
 /* Begin PBXFileReference section */
 		EB431B5E2645308C00D55E71 /* UINavigationController+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Configuration.swift"; sourceTree = "<group>"; };
+		EB431B692646E1E600D55E71 /* ListingDetailsModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		EB431B6B2646E28000D55E71 /* ListingsModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsModuleFactoryProtocol.swift; sourceTree = "<group>"; };
 		EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorFactory.swift; sourceTree = "<group>"; };
 		EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorDataSourceProtocol.swift; sourceTree = "<group>"; };
 		EBA27F552639027D0063C89E /* ListingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractor.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				EBA27FB826390C640063C89E /* ListingsModuleFactory.swift */,
+				EB431B6B2646E28000D55E71 /* ListingsModuleFactoryProtocol.swift */,
 			);
 			path = ModuleFactory;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				EBA27FDB263A52100063C89E /* ListingDetailsModuleFactory.swift */,
+				EB431B692646E1E600D55E71 /* ListingDetailsModuleFactoryProtocol.swift */,
 			);
 			path = ModuleFactory;
 			sourceTree = "<group>";
@@ -633,7 +639,7 @@
 			path = TraitCollection;
 			sourceTree = "<group>";
 		};
-		EBA280452643F4950063C89E /* TestDoubles */ = {
+		EBA280452643F4950063C89E /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
 				EBA2806126443A750063C89E /* Entities */,
@@ -641,7 +647,7 @@
 				EBA280462643F5440063C89E /* Listings */,
 				EBA280482643F5630063C89E /* Repositories */,
 			);
-			path = TestDoubles;
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		EBA280462643F5440063C89E /* Listings */ = {
@@ -675,7 +681,7 @@
 		EBA2805E2644363B0063C89E /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				EBA280452643F4950063C89E /* TestDoubles */,
+				EBA280452643F4950063C89E /* Mocks */,
 				EBA2805F2644364C0063C89E /* XCTestCase+Expectation.swift */,
 			);
 			path = Common;
@@ -882,10 +888,12 @@
 				EBA2803F2642A9360063C89E /* AppWindow.swift in Sources */,
 				EBA27F582639027D0063C89E /* ListingsInteractorFactory.swift in Sources */,
 				EBA27F7A263906F80063C89E /* APIService.swift in Sources */,
+				EB431B6C2646E28000D55E71 /* ListingsModuleFactoryProtocol.swift in Sources */,
 				EBA27FA6263909DE0063C89E /* CurrentListingRepositoryProtocols.swift in Sources */,
 				EBA27FD3263A51EC0063C89E /* ListingCategory.swift in Sources */,
 				EBA27FC126390C640063C89E /* ListingsModuleFactory.swift in Sources */,
 				EBA27FE1263A52100063C89E /* ListingDetailsViewController.swift in Sources */,
+				EB431B6A2646E1E600D55E71 /* ListingDetailsModuleFactoryProtocol.swift in Sources */,
 				EBA27FE4263A52100063C89E /* ListingDetailsModuleFactory.swift in Sources */,
 				EBA27F7F2639071A0063C89E /* AppStringFormatter.swift in Sources */,
 				EBA27FE2263A52100063C89E /* ListingDetailsPresenterInput.swift in Sources */,

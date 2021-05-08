@@ -11,17 +11,17 @@ import Foundation
 final class ListingsInteractorFactory: ListingsInteractorFactoryProtocol {
   
   // MARK: - Properties
-
+  
   weak var output: ListingsInteractorOutput? {
     didSet {
       interactor?.output = output
     }
   }
-
+  
   private weak var interactor: ListingsInteractor?
-
+  
   // MARK: - ListingsInteractorInput
-
+  
   func makeResponse(
     with request: ListingsInteractorFactoryRequest
   ) -> ListingsInteractorFactoryResponse {
@@ -34,11 +34,11 @@ final class ListingsInteractorFactory: ListingsInteractorFactoryProtocol {
     )
     let interactor = ListingsInteractor(dependencies: dependencies)
     self.interactor = interactor
-
+    
     let response = ListingsInteractorFactoryResponseModel(
       interactor: interactor
     )
-
+    
     return response
   }
 }

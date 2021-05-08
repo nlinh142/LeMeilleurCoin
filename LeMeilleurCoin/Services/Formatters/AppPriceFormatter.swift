@@ -29,7 +29,7 @@ final class AppPriceFormatter {
   private lazy var formatter: NumberFormatter = .init()
   
   // MARK: - Init
-
+  
   init(locale: Locale = .current) {
     formatter.locale = locale
   }

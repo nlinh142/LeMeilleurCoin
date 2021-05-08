@@ -13,7 +13,7 @@ class ListingCategoryTests: XCTestCase {
   
   func test_givenNoId_whenInit_thenThrowsError() {
     // GIVEN
-    let dependencies = AppListingCategoryDependenciesMock(id: nil, name: "name")
+    let dependencies = AppListingCategoryTestDependencies(id: nil, name: "name")
     
     // WHEN-THEN
     XCTAssertThrowsError(try AppListingCategory(dependencies: dependencies))
@@ -21,7 +21,7 @@ class ListingCategoryTests: XCTestCase {
   
   func test_givenNoName_whenInit_thenThrowsError() {
     // GIVEN
-    let dependencies = AppListingCategoryDependenciesMock(id: 1, name: nil)
+    let dependencies = AppListingCategoryTestDependencies(id: 1, name: nil)
     
     // WHEN-THEN
     XCTAssertThrowsError(try AppListingCategory(dependencies: dependencies))
@@ -29,7 +29,7 @@ class ListingCategoryTests: XCTestCase {
   
   func test_givenEmptyName_whenInit_thenThrowsError() {
     // GIVEN
-    let dependencies = AppListingCategoryDependenciesMock(id: 1, name: "")
+    let dependencies = AppListingCategoryTestDependencies(id: 1, name: "")
     
     // WHEN-THEN
     XCTAssertThrowsError(try AppListingCategory(dependencies: dependencies))
@@ -37,7 +37,7 @@ class ListingCategoryTests: XCTestCase {
   
   func test_givenValidIdAndValidName_whenInit_thenAnInstanceIsCreated() {
     // GIVEN
-    let dependencies = AppListingCategoryDependenciesMock(id: 1, name: "name")
+    let dependencies = AppListingCategoryTestDependencies(id: 1, name: "name")
     
     // WHEN
     let item = try? AppListingCategory(dependencies: dependencies)
@@ -51,7 +51,7 @@ class ListingCategoryTests: XCTestCase {
 
 // MARK: - AppListingCategoryDependencies
 
-private struct AppListingCategoryDependenciesMock: AppListingCategoryDependencies {
+private struct AppListingCategoryTestDependencies: AppListingCategoryDependencies {
   let id: UInt8?
   let name: String?
 }

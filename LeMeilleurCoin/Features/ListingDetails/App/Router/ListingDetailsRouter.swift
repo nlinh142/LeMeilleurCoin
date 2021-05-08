@@ -9,9 +9,9 @@
 import UIKit
 
 final class ListingDetailsRouter {
-
+  
   // MARK: - Properties
-
+  
   weak var viewController: UIViewController?
 }
 

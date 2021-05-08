@@ -28,9 +28,9 @@ enum DateFormatterStyle {
 final class AppDateFormatter {
   
   // MARK: - Properties
-
+  
   private let dateFormatter: DateFormatter
-
+  
   // MARK: - Init
   
   required init(locale: Locale = .current, timeZone: TimeZone = .current) {
@@ -38,9 +38,9 @@ final class AppDateFormatter {
     dateFormatter.locale = locale
     dateFormatter.timeZone = timeZone
   }
-
+  
   // MARK: - Private
-
+  
   private func dateFormatterStyle(from style: DateFormatterStyle) -> DateFormatter.Style {
     switch style {
     case .none:
@@ -65,7 +65,7 @@ extension AppDateFormatter: DateFormatterProtocol {
     dateFormatter.timeStyle = dateFormatterStyle(from: style.timeStyle)
     return dateFormatter.string(from: date)
   }
-
+  
   func date(from string: String, with format: String) -> Date? {
     dateFormatter.dateFormat = format
     return dateFormatter.date(from: string)

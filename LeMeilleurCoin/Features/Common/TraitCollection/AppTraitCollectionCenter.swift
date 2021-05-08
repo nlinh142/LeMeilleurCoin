@@ -8,24 +8,24 @@
 import Foundation
 
 final class AppTraitCollectionCenter {
-
+  
   // MARK: - Properties
-
+  
   weak var output: AppTraitCollectionCenterOutput?
   weak var sizeClassOutput: AppTraitCollectionCenterSizeClassOutput?
   weak var horizontalSizeClassOutput: AppTraitCollectionCenterHorizontalSizeClassOutput?
   weak var verticalSizeClassOutput: AppTraitCollectionCenterVerticalSizeClassOutput?
-
+  
   private let wrapper: TraitCollectionWrapperInput
-
+  
   // MARK: - Lifecycle
-
+  
   init(wrapper: TraitCollectionWrapperInput) {
     self.wrapper = wrapper
   }
-
+  
   // MARK: - Private
-
+  
   private func convert(_ sizeClass: TraitCollectionWrapperInterfaceSizeClass) -> AppTraitCollectionCenterInterfaceSizeClass {
     switch sizeClass {
     case .compact:
@@ -36,12 +36,12 @@ final class AppTraitCollectionCenter {
       return .unspecified
     }
   }
-
+  
   private func notifyAllChanges() {
     notifySizeClassChanges()
     output?.traitCollectionDidChange()
   }
-
+  
   private func notifySizeClassChanges() {
     verticalSizeClassOutput?.traitCollectionVerticalSizeClassDidChange()
     horizontalSizeClassOutput?.traitCollectionHorizontalSizeClassDidChange()
@@ -78,10 +78,10 @@ extension AppTraitCollectionCenter: TraitCollectionWrapperOutput {
       notifyAllChanges()
       return
     }
-
+    
     let didHorizontalSizeClassChange = previous.horizontal != current.horizontal
     let didVerticalSizeClassChange = previous.vertical != current.vertical
-
+    
     switch (didHorizontalSizeClassChange, didVerticalSizeClassChange) {
     case (true, false):
       horizontalSizeClassOutput?.traitCollectionHorizontalSizeClassDidChange()
@@ -94,7 +94,7 @@ extension AppTraitCollectionCenter: TraitCollectionWrapperOutput {
     case (false, false):
       break
     }
-
+    
     output?.traitCollectionDidChange()
   }
 }

@@ -20,7 +20,7 @@ class ListingsInteractorTests: XCTestCase {
   private var categoryReferentialRepository: CategoryReferentialFetchingMock!
   private var currentListingRepository: CurrentListingSavingMock!
   private var router: ListingsRoutingMock!
-  private var dataSource: ListingsInteractorDataSourceMock!
+  private var dataSource: ListingsInteractorTestDataSource!
   
   private let timeout: TimeInterval = 1.25
   
@@ -32,8 +32,8 @@ class ListingsInteractorTests: XCTestCase {
     categoryReferentialRepository = CategoryReferentialFetchingMock()
     currentListingRepository = CurrentListingSavingMock()
     router = ListingsRoutingMock()
-    dataSource = ListingsInteractorDataSourceMock()
-    let dependencies = ListingsInteractorDependenciesMock(
+    dataSource = ListingsInteractorTestDataSource()
+    let dependencies = ListingsInteractorTestDependencies(
       listingsRepository: listingsRepository,
       categoryReferentialRepository: categoryReferentialRepository,
       currentListingRepository: currentListingRepository,
@@ -68,7 +68,7 @@ class ListingsInteractorTests: XCTestCase {
     }
     
     categoryReferentialRepository.fetchCompletion = { completion in
-      completion(.success([CategoryReferentialFetchingResponseMock.makeStub()]))
+      completion(.success([CategoryReferentialFetchingTestResponse.make()]))
     }
     
     // WHEN
@@ -97,7 +97,7 @@ class ListingsInteractorTests: XCTestCase {
     }
     
     categoryReferentialRepository.fetchCompletion = { completion in
-      completion(.success([CategoryReferentialFetchingResponseMock.makeStub()]))
+      completion(.success([CategoryReferentialFetchingTestResponse.make()]))
     }
     
     // WHEN
@@ -122,7 +122,7 @@ class ListingsInteractorTests: XCTestCase {
   func test_givenCategoriesFetchingNoDataError_whenRetrieveContent_thenNotifiesFetchingError() {
     // GIVEN
     listingsRepository.fetchCompletion = { completion in
-      completion(.success([ListingsFetchingResponseMock.makeStub()]))
+      completion(.success([ListingsFetchingTestResponse.make()]))
     }
     
     categoryReferentialRepository.fetchCompletion = { completion in
@@ -151,7 +151,7 @@ class ListingsInteractorTests: XCTestCase {
   func test_givenCategoriesFetchingUnknownError_whenRetrieveContent_thenNotifiesFetchingError() {
     // GIVEN
     listingsRepository.fetchCompletion = { completion in
-      completion(.success([ListingsFetchingResponseMock.makeStub()]))
+      completion(.success([ListingsFetchingTestResponse.make()]))
     }
     
     categoryReferentialRepository.fetchCompletion = { completion in
@@ -180,13 +180,13 @@ class ListingsInteractorTests: XCTestCase {
   func test_givenNoCategoriesHavingAllMandatoryInformation_whenRetrieveContent_thenNotifiesNoValidListings() {
     // GIVEN
     listingsRepository.fetchCompletion = { completion in
-      completion(.success([ListingsFetchingResponseMock.makeStub()]))
+      completion(.success([ListingsFetchingTestResponse.make()]))
     }
     
     categoryReferentialRepository.fetchCompletion = { completion in
       completion(.success([
-        CategoryReferentialFetchingResponseMock.makeStub(id: nil),
-        CategoryReferentialFetchingResponseMock.makeStub(name:nil)
+        CategoryReferentialFetchingTestResponse.make(id: nil),
+        CategoryReferentialFetchingTestResponse.make(name:nil)
       ]))
     }
     
@@ -213,16 +213,16 @@ class ListingsInteractorTests: XCTestCase {
     // GIVEN
     listingsRepository.fetchCompletion = { completion in
       completion(.success([
-        ListingsFetchingResponseMock.makeStub(id: nil),
-        ListingsFetchingResponseMock.makeStub(categoryId: nil),
-        ListingsFetchingResponseMock.makeStub(title: nil),
-        ListingsFetchingResponseMock.makeStub(price: nil),
-        ListingsFetchingResponseMock.makeStub(creationDate: nil)
+        ListingsFetchingTestResponse.make(id: nil),
+        ListingsFetchingTestResponse.make(categoryId: nil),
+        ListingsFetchingTestResponse.make(title: nil),
+        ListingsFetchingTestResponse.make(price: nil),
+        ListingsFetchingTestResponse.make(creationDate: nil)
       ]))
     }
     
     categoryReferentialRepository.fetchCompletion = { completion in
-      completion(.success([CategoryReferentialFetchingResponseMock.makeStub()]))
+      completion(.success([CategoryReferentialFetchingTestResponse.make()]))
     }
     
     // WHEN
@@ -248,16 +248,16 @@ class ListingsInteractorTests: XCTestCase {
     // GIVEN
     listingsRepository.fetchCompletion = { completion in
       completion(.success([
-        ListingsFetchingResponseMock.makeStub(categoryId: 100),
-        ListingsFetchingResponseMock.makeStub(categoryId: 101)
+        ListingsFetchingTestResponse.make(categoryId: 100),
+        ListingsFetchingTestResponse.make(categoryId: 101)
       ]))
     }
     
     categoryReferentialRepository.fetchCompletion = { completion in
       completion(.success([
-        CategoryReferentialFetchingResponseMock.makeStub(id: 1),
-        CategoryReferentialFetchingResponseMock.makeStub(id: 2),
-        CategoryReferentialFetchingResponseMock.makeStub(id: 3)
+        CategoryReferentialFetchingTestResponse.make(id: 1),
+        CategoryReferentialFetchingTestResponse.make(id: 2),
+        CategoryReferentialFetchingTestResponse.make(id: 3)
       ]))
     }
     
@@ -284,16 +284,16 @@ class ListingsInteractorTests: XCTestCase {
     // GIVEN
     listingsRepository.fetchCompletion = { completion in
       completion(.success([
-        ListingsFetchingResponseMock.makeStub(categoryId: 1),
-        ListingsFetchingResponseMock.makeStub(categoryId: 2)
+        ListingsFetchingTestResponse.make(categoryId: 1),
+        ListingsFetchingTestResponse.make(categoryId: 2)
       ]))
     }
     
     categoryReferentialRepository.fetchCompletion = { completion in
       completion(.success([
-        CategoryReferentialFetchingResponseMock.makeStub(id: 1),
-        CategoryReferentialFetchingResponseMock.makeStub(id: 2),
-        CategoryReferentialFetchingResponseMock.makeStub(id: 3)
+        CategoryReferentialFetchingTestResponse.make(id: 1),
+        CategoryReferentialFetchingTestResponse.make(id: 2),
+        CategoryReferentialFetchingTestResponse.make(id: 3)
       ]))
     }
     
@@ -339,7 +339,7 @@ class ListingsInteractorTests: XCTestCase {
   
   func test_givenValidListingsHaveBeenFetched_whenNumberOfItemsIsRequested_thenReturnsCorrectValue() {
     // GIVEN
-    dataSource.currentListings = makeListingsStubs(categoryIds: [1, 2])
+    dataSource.currentListings = makeListings(categoryIds: [1, 2])
     
     // WHEN
     let count = sut.numberOfItems(for: 0)
@@ -358,7 +358,7 @@ class ListingsInteractorTests: XCTestCase {
   
   func test_givenValidListingsHaveBeenFetchedAndInvalidIndexes_whenAnItemIsRequested_thenReturnsNothing() {
     // GIVEN
-    dataSource.currentListings = makeListingsStubs(categoryIds: [1, 2, 2])
+    dataSource.currentListings = makeListings(categoryIds: [1, 2, 2])
     
     // WHEN
     let item = sut.item(at: 200, for: 0)
@@ -380,7 +380,7 @@ class ListingsInteractorTests: XCTestCase {
       ListingCategoryMock(id: 2, name: "Vehicles"),
     ]
     
-    dataSource.currentListings = makeListingsStubs(categoryIds: [1, 2, 2])
+    dataSource.currentListings = makeListings(categoryIds: [1, 2, 2])
     
     // WHEN
     let item = sut.item(at: 2, for: 0)
@@ -410,7 +410,7 @@ class ListingsInteractorTests: XCTestCase {
       ListingCategoryMock(id: 2, name: "Vehicles"),
     ]
     
-    dataSource.currentListings = makeListingsStubs(categoryIds: [1, 2, 2])
+    dataSource.currentListings = makeListings(categoryIds: [1, 2, 2])
     
     // WHEN
     sut.selectItem(at: 200, for: 0)
@@ -430,7 +430,7 @@ class ListingsInteractorTests: XCTestCase {
       ListingCategoryMock(id: 2, name: "Vehicles"),
     ]
     
-    dataSource.currentListings = makeListingsStubs(categoryIds: [1, 2, 2])
+    dataSource.currentListings = makeListings(categoryIds: [1, 2, 2])
     
     // WHEN
     sut.selectItem(at: 1, for: 0)
@@ -495,8 +495,8 @@ class ListingsInteractorTests: XCTestCase {
       ListingCategoryMock(id: 2, name: "Vehicles"),
     ]
     
-    dataSource.listings = makeListingsStubs(categoryIds: [1, 2, 2])
-    dataSource.currentListings = makeListingsStubs(categoryIds: [1])
+    dataSource.listings = makeListings(categoryIds: [1, 2, 2])
+    dataSource.currentListings = makeListings(categoryIds: [1])
     dataSource.selectedCategoryIndex = 1
     
     // WHEN
@@ -505,7 +505,7 @@ class ListingsInteractorTests: XCTestCase {
     // THEN
     expectation(timeout: timeout) {
       self.output.updateListingsCallsCount == 1
-      && self.output.updateListingsCalledOnly
+        && self.output.updateListingsCalledOnly
         && self.output.updateListingsListOfArguments.count == 1
         && self.output.updateListingsListOfArguments[0].categoryName == nil
         && self.output.updateListingsListOfArguments[0].count == 3
@@ -587,11 +587,11 @@ class ListingsInteractorTests: XCTestCase {
     dataSource.listingsGroups = [
       (
         ListingCategoryMock(id: 1, name: "Tech"),
-        makeListingsStubs(categoryIds: [1])
+        makeListings(categoryIds: [1])
       ),
       (
         ListingCategoryMock(id: 2, name: "Vehicles"),
-        makeListingsStubs(categoryIds: [2, 2])
+        makeListings(categoryIds: [2, 2])
       )
     ]
     
@@ -613,11 +613,11 @@ class ListingsInteractorTests: XCTestCase {
     dataSource.listingsGroups = [
       (
         ListingCategoryMock(id: 1, name: "Tech"),
-        makeListingsStubs(categoryIds: [1])
+        makeListings(categoryIds: [1])
       ),
       (
         ListingCategoryMock(id: 2, name: "Vehicles"),
-        makeListingsStubs(categoryIds: [2, 2])
+        makeListings(categoryIds: [2, 2])
       )
     ]
     
@@ -641,15 +641,15 @@ class ListingsInteractorTests: XCTestCase {
     dataSource.listingsGroups = [
       (
         ListingCategoryMock(id: 1, name: "Tech"),
-        makeListingsStubs(categoryIds: [1])
+        makeListings(categoryIds: [1])
       ),
       (
         ListingCategoryMock(id: 2, name: "Vehicles"),
-        makeListingsStubs(categoryIds: [2, 2])
+        makeListings(categoryIds: [2, 2])
       )
     ]
     
-    dataSource.currentListings = makeListingsStubs(categoryIds: [1])
+    dataSource.currentListings = makeListings(categoryIds: [1])
     dataSource.selectedCategoryIndex = 0
     
     // WHEN
@@ -668,15 +668,15 @@ class ListingsInteractorTests: XCTestCase {
     dataSource.listingsGroups = [
       (
         ListingCategoryMock(id: 1, name: "Tech"),
-        makeListingsStubs(categoryIds: [1])
+        makeListings(categoryIds: [1])
       ),
       (
         ListingCategoryMock(id: 2, name: "Vehicles"),
-        makeListingsStubs(categoryIds: [2, 2])
+        makeListings(categoryIds: [2, 2])
       )
     ]
     
-    dataSource.currentListings = makeListingsStubs(categoryIds: [1])
+    dataSource.currentListings = makeListings(categoryIds: [1])
     dataSource.selectedCategoryIndex = 0
     
     // WHEN
@@ -698,30 +698,30 @@ class ListingsInteractorTests: XCTestCase {
   
   // MARK: - Private
   
-  private func makeListingsStubs(categoryIds: [UInt8]) -> [ListingMock] {
-    var stubs: [ListingMock] = []
+  private func makeListings(categoryIds: [UInt8]) -> [ListingMock] {
+    var listings: [ListingMock] = []
     
-    if categoryIds.isEmpty { return stubs }
+    if categoryIds.isEmpty { return listings }
     
     for i in 0...categoryIds.count - 1 {
-      stubs.append(ListingMock(id: UInt(i),
-                               categoryId: categoryIds[i],
-                               title: "Title\(i)",
-                               description: "Description\(i)",
-                               price: Float(i) * 100 + 0.99,
-                               imageUrls: ListingImageUrlsMock(small: "small\(i)", thumb: "thumb\(i)"),
-                               creationDate: Date(timeIntervalSince1970: 123456789),
-                               isUrgent: categoryIds[i].isMultiple(of: 2),
-                               siret: "111 222 333"))
+      listings.append(ListingMock(id: UInt(i),
+                                  categoryId: categoryIds[i],
+                                  title: "Title\(i)",
+                                  description: "Description\(i)",
+                                  price: Float(i) * 100 + 0.99,
+                                  imageUrls: ListingImageUrlsMock(small: "small\(i)", thumb: "thumb\(i)"),
+                                  creationDate: Date(timeIntervalSince1970: 123456789),
+                                  isUrgent: categoryIds[i].isMultiple(of: 2),
+                                  siret: "111 222 333"))
     }
     
-    return stubs
+    return listings
   }
 }
 
 // MARK: - ListingsInteractorDependencies
 
-private struct ListingsInteractorDependenciesMock: ListingsInteractorDependencies {
+private struct ListingsInteractorTestDependencies: ListingsInteractorDependencies {
   let listingsRepository: ListingsFetching
   let categoryReferentialRepository: CategoryReferentialFetching
   let currentListingRepository: CurrentListingSaving
@@ -731,7 +731,7 @@ private struct ListingsInteractorDependenciesMock: ListingsInteractorDependencie
 
 // MARK: - ListingsInteractorDataSourceProtocol
 
-private class ListingsInteractorDataSourceMock: ListingsInteractorDataSourceProtocol {
+private class ListingsInteractorTestDataSource: ListingsInteractorDataSourceProtocol {
   var listings: [Listing] = []
   var categories: [ListingCategory] = []
   var listingsError: ListingsFetchingError?

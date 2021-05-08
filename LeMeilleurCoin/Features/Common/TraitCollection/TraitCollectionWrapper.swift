@@ -28,33 +28,33 @@ protocol TraitCollectionWrapperOutput: AnyObject {
 }
 
 final class TraitCollectionWrapper {
-
+  
   // MARK: - Properties
-
+  
   private lazy var notificationCenter = NotificationCenter.default
   weak var output: TraitCollectionWrapperOutput?
-
+  
   private var currentAppTraitCollection: UITraitCollection? {
     UIApplication.shared.windows.first { $0.isKeyWindow }?.traitCollection
   }
-
+  
   // MARK: - Lifecycle
-
+  
   init() {
     notificationCenter.addObserver(self,
                                    selector: #selector(windowTraitCollectionDidChange(notification:)),
                                    name: .windowTraitCollectionDidChange,
                                    object: nil)
   }
-
+  
   deinit {
     notificationCenter.removeObserver(self,
                                       name: .windowTraitCollectionDidChange,
                                       object: nil)
   }
-
+  
   // MARK: - Privates
-
+  
   private func convert(_ sizeClass: UIUserInterfaceSizeClass) -> TraitCollectionWrapperInterfaceSizeClass {
     switch sizeClass {
     case .compact:
@@ -67,30 +67,30 @@ final class TraitCollectionWrapper {
       return .unspecified
     }
   }
-
+  
   private func makePreviousWrapperItem(from trait: UITraitCollection?) -> TraitCollectionWrapperTraitItemProtocol? {
     guard let trait = trait else { return nil }
-
+    
     return makeWrapperItem(from: trait)
   }
-
+  
   private func makeWrapperItem(from trait: UITraitCollection) -> TraitCollectionWrapperTraitItemProtocol {
     let horizontalSizeClass = convert(trait.horizontalSizeClass)
     let verticalSizeClass = convert(trait.verticalSizeClass)
-
+    
     return TraitCollectionWrapperTraitItem(horizontal: horizontalSizeClass,
                                            vertical: verticalSizeClass)
   }
-
+  
   @objc
   private func windowTraitCollectionDidChange(notification: Notification) {
     guard let userInfo = notification.userInfo,
-      let currentTrait = userInfo[AppWindow.UserInfoKey.currentTraitCollection] as? UITraitCollection else { return }
-
+          let currentTrait = userInfo[AppWindow.UserInfoKey.currentTraitCollection] as? UITraitCollection else { return }
+    
     let previousTrait = userInfo[AppWindow.UserInfoKey.previousTraitCollection] as? UITraitCollection
     let previous = makePreviousWrapperItem(from: previousTrait)
     let current = makeWrapperItem(from: currentTrait)
-
+    
     output?.traitCollectionDidChange(from: previous, to: current)
   }
 }
@@ -102,7 +102,7 @@ extension TraitCollectionWrapper: TraitCollectionWrapperInput {
     guard let currentAppTraitCollection = currentAppTraitCollection else {
       return TraitCollectionWrapperTraitItem(horizontal: .unspecified, vertical: .unspecified)
     }
-
+    
     return makeWrapperItem(from: currentAppTraitCollection)
   }
 }

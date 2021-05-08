@@ -12,14 +12,10 @@ protocol ListingsViewDependencies {
   var presenter: ListingsPresenterInput! { get }
 }
 
-protocol ListingsViewLoadable: UIViewController {
-  func viewDidLoad()
-}
-
 class ListingsViewController: UIViewController, Loadable {
   
   // MARK: - Properties
-
+  
   var dependencies: ListingsViewDependencies!
   
   var viewsToHideDuringLoading: [UIView] {
@@ -39,7 +35,7 @@ class ListingsViewController: UIViewController, Loadable {
     setupUI()
     dependencies.presenter.viewDidLoad()
   }
-
+  
   // MARK: - Private
   
   private func setupUI() {
@@ -150,7 +146,7 @@ extension ListingsViewController: ListingsPresenterOutput {
       }
       actionSheetController.addAction(action)
     }
-
+    
     let cancelAction: UIAlertAction = .init(title: cancelTitle, style: .cancel, handler: nil)
     actionSheetController.addAction(cancelAction)
     

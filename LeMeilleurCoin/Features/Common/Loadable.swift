@@ -23,7 +23,7 @@ protocol ActivityIndicatorStylesProtocol {
 public protocol Loadable: AnyObject {
   var viewsToHideDuringLoading: [UIView] { get }
   var activityIndicator: UIActivityIndicatorView? { get set }
-
+  
   func startLoading()
   func startLoading(animated: Bool)
   func startLoading(animated: Bool,
@@ -33,17 +33,17 @@ public protocol Loadable: AnyObject {
 }
 
 public extension Loadable {
-
+  
   func startLoading() {
     startLoading(animated: true)
   }
-
+  
   func startLoading(animated: Bool) {
     startLoading(animated: animated,
                  activityIndicatorColor: .systemOrange,
                  activityIndicatorViewStyle: .whiteLarge)
   }
-
+  
   func stopLoading() {
     guard activityIndicator?.isAnimating == true else { return }
     activityIndicator?.stopAnimating()
@@ -55,7 +55,7 @@ public extension Loadable {
       viewToHideDuringLoading.layer.sublayers?.forEach { $0.isHidden = false }
     }
   }
-
+  
   private func startLoading(with dependencies: LoadableDependenciesProtocol) {
     activityIndicator?.superview?.removeFromSuperview()
     activityIndicator?.removeFromSuperview()
@@ -91,7 +91,7 @@ public extension Loadable {
 }
 
 public extension Loadable where Self: UIViewController {
-
+  
   func startLoading(animated: Bool,
                     activityIndicatorColor: UIColor,
                     activityIndicatorViewStyle: UIActivityIndicatorView.Style) {
@@ -100,13 +100,13 @@ public extension Loadable where Self: UIViewController {
     let loadableDependencies = LoadableDependencies(view: view,
                                                     animated: animated,
                                                     activityIndicatorStyles: activityIndicatorStyle)
-
+    
     startLoading(with: loadableDependencies)
   }
 }
 
 public extension Loadable where Self: UIView {
-
+  
   func startLoading(animated: Bool,
                     activityIndicatorColor: UIColor,
                     activityIndicatorViewStyle: UIActivityIndicatorView.Style) {
@@ -115,7 +115,7 @@ public extension Loadable where Self: UIView {
     let loadableDependencies = LoadableDependencies(view: self,
                                                     animated: animated,
                                                     activityIndicatorStyles: activityIndicatorStyle)
-
+    
     startLoading(with: loadableDependencies)
   }
 }

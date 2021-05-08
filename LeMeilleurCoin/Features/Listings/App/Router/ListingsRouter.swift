@@ -13,9 +13,9 @@ protocol ListingsRouterDependencies {
 }
 
 final class ListingsRouter {
-
+  
   // MARK: - Properties
-
+  
   weak var viewController: UIViewController?
   
   private let listingDetailsModuleFactory: ListingDetailsModuleFactoryProtocol

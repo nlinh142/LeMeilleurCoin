@@ -66,9 +66,9 @@ final class ListingsPresenter {
     
     static let pageTitleFormatWithCount: String = "%@ (%d)"
   }
-
+  
   // MARK: - Properties
-
+  
   weak var output: ListingsPresenterOutput?
   private let interactor: ListingsInteractorInput
   private let stringFormatter: StringFormatterProtocol
@@ -77,9 +77,9 @@ final class ListingsPresenter {
   private let localizator: ListingsLocalizable
   private let assetsProvider: ListingsAssetsProviderProtocol
   private let traitCollectionCenterHorizontalSizeClass: AppTraitCollectionCenterHorizontalSizeClassGettable
-
+  
   // MARK: - Lifecycle
-
+  
   init(dependencies: ListingsPresenterDependencies) {
     interactor = dependencies.interactor
     stringFormatter = dependencies.stringFormatter
@@ -213,7 +213,7 @@ extension ListingsPresenter: ListingsPresenterInput {
     formattedFilterTitle(with: interactor.filterName(at: index),
                          count: interactor.numberOfListings(filteredByCategoryAt: index))
   }
-
+  
   func didSelectFilter(at index: Int) {
     interactor.filter(byCategoryAt: index)
   }
@@ -231,15 +231,15 @@ extension ListingsPresenter: ListingsInteractorOutput {
     output?.set(filtersButtonTitle: localizator.filtersButtonTitle)
     output?.set(resetButtonTitle: localizator.resetButtonTitle)
   }
-
+  
   func notifyLoading() {
     output?.showLoading()
   }
-
+  
   func notifyEndLoading() {
     output?.hideLoading()
   }
-
+  
   func notifyFetchingError() {
     let alertItem = AlertItem(title: localizator.fetchingErrorTitle,
                               message: localizator.fetchingErrorMessage,

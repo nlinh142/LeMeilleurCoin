@@ -18,7 +18,7 @@ protocol ListingDetailsPresenterDependencies {
 }
 
 final class ListingDetailsPresenter {
-
+  
   // MARK: - Enum
   
   private enum Constants {
@@ -65,9 +65,9 @@ final class ListingDetailsPresenter {
       static let textAlignment: NSTextAlignment = .natural
     }
   }
-
+  
   // MARK: - Properties
-
+  
   weak var output: ListingDetailsPresenterOutput?
   private let interactor: ListingDetailsInteractorInput
   private let stringFormatter: StringFormatterProtocol
@@ -75,9 +75,9 @@ final class ListingDetailsPresenter {
   private let priceFormatter: PriceFormatterProtocol
   private let localizator: ListingDetailsLocalizable
   private let assetsProvider: ListingDetailsAssetsProviderProtocol
-
+  
   // MARK: - Lifecycle
-
+  
   init(dependencies: ListingDetailsPresenterDependencies) {
     interactor = dependencies.interactor
     stringFormatter = dependencies.stringFormatter
@@ -167,22 +167,22 @@ extension ListingDetailsPresenter: ListingDetailsPresenterInput {
 
 extension ListingDetailsPresenter: ListingDetailsInteractorOutput {
   func setDefaultValues() {}
-
+  
   func notifyLoading() {
     output?.showLoading()
   }
-
+  
   func notifyEndLoading() {
     output?.hideLoading()
   }
-
+  
   func notifyNoDataError() {
     let alertItem = AlertItem(title: localizator.fetchingErrorTitle,
                               message: localizator.fetchingErrorMessage,
                               confirmationButtonTitle: localizator.fetchingErrorConfirmationButtonTitle)
     output?.display(alert: alertItem)
   }
-
+  
   func notify(categories: [ListingDetailsCategory]) {
     var viewCategories: [ListingDetailsViewCategory] = []
     
