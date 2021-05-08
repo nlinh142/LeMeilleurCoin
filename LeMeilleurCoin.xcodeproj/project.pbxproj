@@ -21,8 +21,6 @@
 		EBA27F81263907230063C89E /* AppPriceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F80263907230063C89E /* AppPriceFormatter.swift */; };
 		EBA27F89263908420063C89E /* CategoryReferentialRepositoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F88263908420063C89E /* CategoryReferentialRepositoryProtocols.swift */; };
 		EBA27F8B263908610063C89E /* CategoryReferentialRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F8A263908610063C89E /* CategoryReferentialRepository.swift */; };
-		EBA27F8D263908760063C89E /* CurrentCategoryFilterRepositoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F8C263908760063C89E /* CurrentCategoryFilterRepositoryProtocols.swift */; };
-		EBA27F8F2639089D0063C89E /* CurrentCategoryFilterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F8E2639089D0063C89E /* CurrentCategoryFilterRepository.swift */; };
 		EBA27F91263908B20063C89E /* ListingsRepositoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F90263908B20063C89E /* ListingsRepositoryProtocols.swift */; };
 		EBA27F93263908BB0063C89E /* ListingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F92263908BB0063C89E /* ListingsRepository.swift */; };
 		EBA27FA6263909DE0063C89E /* CurrentListingRepositoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27FA5263909DE0063C89E /* CurrentListingRepositoryProtocols.swift */; };
@@ -82,7 +80,6 @@
 		EBA280552643F8F40063C89E /* ListingsInteractorOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA280542643F8F40063C89E /* ListingsInteractorOutputMock.swift */; };
 		EBA280592643F91B0063C89E /* ListingsRoutingMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA280582643F91B0063C89E /* ListingsRoutingMock.swift */; };
 		EBA2805B2643F9F80063C89E /* CategoryReferentialRepositoryMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2805A2643F9F80063C89E /* CategoryReferentialRepositoryMocks.swift */; };
-		EBA2805D2643FA7A0063C89E /* CurrentCategoryFilterRepositoryMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2805C2643FA7A0063C89E /* CurrentCategoryFilterRepositoryMocks.swift */; };
 		EBA280602644364E0063C89E /* XCTestCase+Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2805F2644364C0063C89E /* XCTestCase+Expectation.swift */; };
 		EBA2806326443A8A0063C89E /* ListingCategoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2806226443A8A0063C89E /* ListingCategoryMock.swift */; };
 		EBA2806526443A920063C89E /* ListingMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2806426443A920063C89E /* ListingMock.swift */; };
@@ -117,8 +114,6 @@
 		EBA27F80263907230063C89E /* AppPriceFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPriceFormatter.swift; sourceTree = "<group>"; };
 		EBA27F88263908420063C89E /* CategoryReferentialRepositoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReferentialRepositoryProtocols.swift; sourceTree = "<group>"; };
 		EBA27F8A263908610063C89E /* CategoryReferentialRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReferentialRepository.swift; sourceTree = "<group>"; };
-		EBA27F8C263908760063C89E /* CurrentCategoryFilterRepositoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCategoryFilterRepositoryProtocols.swift; sourceTree = "<group>"; };
-		EBA27F8E2639089D0063C89E /* CurrentCategoryFilterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCategoryFilterRepository.swift; sourceTree = "<group>"; };
 		EBA27F90263908B20063C89E /* ListingsRepositoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsRepositoryProtocols.swift; sourceTree = "<group>"; };
 		EBA27F92263908BB0063C89E /* ListingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsRepository.swift; sourceTree = "<group>"; };
 		EBA27FA5263909DE0063C89E /* CurrentListingRepositoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListingRepositoryProtocols.swift; sourceTree = "<group>"; };
@@ -178,7 +173,6 @@
 		EBA280542643F8F40063C89E /* ListingsInteractorOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorOutputMock.swift; sourceTree = "<group>"; };
 		EBA280582643F91B0063C89E /* ListingsRoutingMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsRoutingMock.swift; sourceTree = "<group>"; };
 		EBA2805A2643F9F80063C89E /* CategoryReferentialRepositoryMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReferentialRepositoryMocks.swift; sourceTree = "<group>"; };
-		EBA2805C2643FA7A0063C89E /* CurrentCategoryFilterRepositoryMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCategoryFilterRepositoryMocks.swift; sourceTree = "<group>"; };
 		EBA2805F2644364C0063C89E /* XCTestCase+Expectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Expectation.swift"; sourceTree = "<group>"; };
 		EBA2806226443A8A0063C89E /* ListingCategoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingCategoryMock.swift; sourceTree = "<group>"; };
 		EBA2806426443A920063C89E /* ListingMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingMock.swift; sourceTree = "<group>"; };
@@ -270,7 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				EBA27F822639077F0063C89E /* CategoryReferential */,
-				EBA27F84263907990063C89E /* CurrentCategoryFilter */,
 				EBA27FA3263909B90063C89E /* CurrentListing */,
 				EBA27F832639078A0063C89E /* Listings */,
 			);
@@ -360,15 +353,6 @@
 				EBA27F90263908B20063C89E /* ListingsRepositoryProtocols.swift */,
 			);
 			path = Listings;
-			sourceTree = "<group>";
-		};
-		EBA27F84263907990063C89E /* CurrentCategoryFilter */ = {
-			isa = PBXGroup;
-			children = (
-				EBA27F8E2639089D0063C89E /* CurrentCategoryFilterRepository.swift */,
-				EBA27F8C263908760063C89E /* CurrentCategoryFilterRepositoryProtocols.swift */,
-			);
-			path = CurrentCategoryFilter;
 			sourceTree = "<group>";
 		};
 		EBA27F85263907B60063C89E /* Formatters */ = {
@@ -610,7 +594,6 @@
 			isa = PBXGroup;
 			children = (
 				EBA2805A2643F9F80063C89E /* CategoryReferentialRepositoryMocks.swift */,
-				EBA2805C2643FA7A0063C89E /* CurrentCategoryFilterRepositoryMocks.swift */,
 				EBA280492643F5760063C89E /* CurrentListingRepositoryMocks.swift */,
 				EBA2804B2643F5830063C89E /* ListingsRepositoryMocks.swift */,
 			);
@@ -803,13 +786,11 @@
 				EBA27F592639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift in Sources */,
 				EBA27FDF263A52100063C89E /* ListingDetailsPresenter.swift in Sources */,
 				EBA28024263BC9170063C89E /* AsyncImageView.swift in Sources */,
-				EBA27F8F2639089D0063C89E /* CurrentCategoryFilterRepository.swift in Sources */,
 				EBA27FBC26390C640063C89E /* ListingsPresenter.swift in Sources */,
 				EBA27FC026390C640063C89E /* ListingsPresenterOutput.swift in Sources */,
 				EBA27FC826394A550063C89E /* ListingsRouterAdapter.swift in Sources */,
 				EBA27FBB26390C640063C89E /* ListingsLocalizable.swift in Sources */,
 				EBA27FCF26394BC20063C89E /* UrgentIndicatorLabel.swift in Sources */,
-				EBA27F8D263908760063C89E /* CurrentCategoryFilterRepositoryProtocols.swift in Sources */,
 				EBA27FE0263A52100063C89E /* ListingDetailsRouter.swift in Sources */,
 				EBA27FA8263909E50063C89E /* CurrentListingRepository.swift in Sources */,
 				EBA27FD1263A51C90063C89E /* Listing.swift in Sources */,
@@ -852,7 +833,6 @@
 				EBA280592643F91B0063C89E /* ListingsRoutingMock.swift in Sources */,
 				EBA280342640575E0063C89E /* AppStringFormatterTests.swift in Sources */,
 				EBA28032264057500063C89E /* AppPriceFormatterTests.swift in Sources */,
-				EBA2805D2643FA7A0063C89E /* CurrentCategoryFilterRepositoryMocks.swift in Sources */,
 				EBA27FF2263A52E50063C89E /* ListingDetailsInteractorTests.swift in Sources */,
 				EBA280602644364E0063C89E /* XCTestCase+Expectation.swift in Sources */,
 				EBA2805B2643F9F80063C89E /* CategoryReferentialRepositoryMocks.swift in Sources */,

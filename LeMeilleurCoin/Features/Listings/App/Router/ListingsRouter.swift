@@ -32,6 +32,8 @@ final class ListingsRouter {
 extension ListingsRouter: ListingsRouterProtocol {
   func routeToListingDetails() {
     let listingDetailsViewController = listingDetailsModuleFactory.makeViewController()
-    viewController?.navigationController?.pushViewController(listingDetailsViewController, animated: true)
+    let navigationController = UINavigationController(rootViewController: listingDetailsViewController)
+    navigationController.configure()
+    viewController?.present(navigationController, animated: true)
   }
 }
