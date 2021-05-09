@@ -10,6 +10,15 @@
 		EB431B5F2645308C00D55E71 /* UINavigationController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B5E2645308C00D55E71 /* UINavigationController+Configuration.swift */; };
 		EB431B6A2646E1E600D55E71 /* ListingDetailsModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B692646E1E600D55E71 /* ListingDetailsModuleFactoryProtocol.swift */; };
 		EB431B6C2646E28000D55E71 /* ListingsModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B6B2646E28000D55E71 /* ListingsModuleFactoryProtocol.swift */; };
+		EB431B6F2647971000D55E71 /* DateFormatterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B6E2647971000D55E71 /* DateFormatterMock.swift */; };
+		EB431B712647971A00D55E71 /* PriceFormatterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B702647971A00D55E71 /* PriceFormatterMock.swift */; };
+		EB431B732647972300D55E71 /* StringFormatterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B722647972300D55E71 /* StringFormatterMock.swift */; };
+		EB431B7526479ABD00D55E71 /* ListingsInteractorInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B7426479ABD00D55E71 /* ListingsInteractorInputMock.swift */; };
+		EB431B772647BC3E00D55E71 /* ListingsLocalizableStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B762647BC3E00D55E71 /* ListingsLocalizableStub.swift */; };
+		EB431B792647BC9100D55E71 /* ListingsAssetsProviderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B782647BC9100D55E71 /* ListingsAssetsProviderStub.swift */; };
+		EB431B7C2647BD1800D55E71 /* ListingsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B7B2647BD1800D55E71 /* ListingsPresenterTests.swift */; };
+		EB431B7F2647BE1200D55E71 /* AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B7E2647BE1200D55E71 /* AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift */; };
+		EB431B812647BE9B00D55E71 /* ListingsPresenterOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B802647BE9B00D55E71 /* ListingsPresenterOutputMock.swift */; };
 		EBA27F582639027D0063C89E /* ListingsInteractorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */; };
 		EBA27F592639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */; };
 		EBA27F5A2639027D0063C89E /* ListingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F552639027D0063C89E /* ListingsInteractor.swift */; };
@@ -105,6 +114,15 @@
 		EB431B5E2645308C00D55E71 /* UINavigationController+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Configuration.swift"; sourceTree = "<group>"; };
 		EB431B692646E1E600D55E71 /* ListingDetailsModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsModuleFactoryProtocol.swift; sourceTree = "<group>"; };
 		EB431B6B2646E28000D55E71 /* ListingsModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		EB431B6E2647971000D55E71 /* DateFormatterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterMock.swift; sourceTree = "<group>"; };
+		EB431B702647971A00D55E71 /* PriceFormatterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFormatterMock.swift; sourceTree = "<group>"; };
+		EB431B722647972300D55E71 /* StringFormatterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormatterMock.swift; sourceTree = "<group>"; };
+		EB431B7426479ABD00D55E71 /* ListingsInteractorInputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorInputMock.swift; sourceTree = "<group>"; };
+		EB431B762647BC3E00D55E71 /* ListingsLocalizableStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsLocalizableStub.swift; sourceTree = "<group>"; };
+		EB431B782647BC9100D55E71 /* ListingsAssetsProviderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsAssetsProviderStub.swift; sourceTree = "<group>"; };
+		EB431B7B2647BD1800D55E71 /* ListingsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsPresenterTests.swift; sourceTree = "<group>"; };
+		EB431B7E2647BE1200D55E71 /* AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift; sourceTree = "<group>"; };
+		EB431B802647BE9B00D55E71 /* ListingsPresenterOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsPresenterOutputMock.swift; sourceTree = "<group>"; };
 		EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorFactory.swift; sourceTree = "<group>"; };
 		EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorDataSourceProtocol.swift; sourceTree = "<group>"; };
 		EBA27F552639027D0063C89E /* ListingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractor.swift; sourceTree = "<group>"; };
@@ -287,6 +305,32 @@
 				EB431B692646E1E600D55E71 /* ListingDetailsModuleFactoryProtocol.swift */,
 			);
 			path = ModuleFactory;
+			sourceTree = "<group>";
+		};
+		EB431B6D264796F400D55E71 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EB431B6E2647971000D55E71 /* DateFormatterMock.swift */,
+				EB431B702647971A00D55E71 /* PriceFormatterMock.swift */,
+				EB431B722647972300D55E71 /* StringFormatterMock.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EB431B7A2647BD0600D55E71 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EB431B7B2647BD1800D55E71 /* ListingsPresenterTests.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EB431B7D2647BE0500D55E71 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EB431B7E2647BE1200D55E71 /* AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		EBA27F4F263902270063C89E /* Listings */ = {
@@ -472,6 +516,7 @@
 		EBA27F97263909260063C89E /* Listings */ = {
 			isa = PBXGroup;
 			children = (
+				EB431B7A2647BD0600D55E71 /* App */,
 				EBA27F9E263909680063C89E /* BL */,
 			);
 			path = Listings;
@@ -642,10 +687,12 @@
 		EBA280452643F4950063C89E /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				EB431B7D2647BE0500D55E71 /* Common */,
 				EBA2806126443A750063C89E /* Entities */,
 				EBA280472643F54C0063C89E /* ListingDetails */,
 				EBA280462643F5440063C89E /* Listings */,
 				EBA280482643F5630063C89E /* Repositories */,
+				EB431B6D264796F400D55E71 /* Services */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -653,7 +700,11 @@
 		EBA280462643F5440063C89E /* Listings */ = {
 			isa = PBXGroup;
 			children = (
+				EB431B782647BC9100D55E71 /* ListingsAssetsProviderStub.swift */,
+				EB431B7426479ABD00D55E71 /* ListingsInteractorInputMock.swift */,
 				EBA280542643F8F40063C89E /* ListingsInteractorOutputMock.swift */,
+				EB431B762647BC3E00D55E71 /* ListingsLocalizableStub.swift */,
+				EB431B802647BE9B00D55E71 /* ListingsPresenterOutputMock.swift */,
 				EBA280582643F91B0063C89E /* ListingsRoutingMock.swift */,
 			);
 			path = Listings;
@@ -909,22 +960,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBA28030264057440063C89E /* AppDateFormatterTests.swift in Sources */,
+				EB431B7526479ABD00D55E71 /* ListingsInteractorInputMock.swift in Sources */,
 				EBA2804C2643F5830063C89E /* ListingsRepositoryMocks.swift in Sources */,
+				EB431B6F2647971000D55E71 /* DateFormatterMock.swift in Sources */,
 				EBA280592643F91B0063C89E /* ListingsRoutingMock.swift in Sources */,
 				EBA280342640575E0063C89E /* AppStringFormatterTests.swift in Sources */,
 				EBA28032264057500063C89E /* AppPriceFormatterTests.swift in Sources */,
 				EBA27FF2263A52E50063C89E /* ListingDetailsInteractorTests.swift in Sources */,
 				EBA280602644364E0063C89E /* XCTestCase+Expectation.swift in Sources */,
+				EB431B7C2647BD1800D55E71 /* ListingsPresenterTests.swift in Sources */,
 				EBA2805B2643F9F80063C89E /* CategoryReferentialRepositoryMocks.swift in Sources */,
 				EBA27FF3263A52E50063C89E /* ListingDetailsInteractorFactoryTests.swift in Sources */,
+				EB431B792647BC9100D55E71 /* ListingsAssetsProviderStub.swift in Sources */,
 				EBA28021263A54B30063C89E /* ListingsInteractorFactoryTests.swift in Sources */,
 				EBA28020263A54B30063C89E /* ListingsInteractorTests.swift in Sources */,
 				EBA2806526443A920063C89E /* ListingMock.swift in Sources */,
 				EBA280552643F8F40063C89E /* ListingsInteractorOutputMock.swift in Sources */,
+				EB431B712647971A00D55E71 /* PriceFormatterMock.swift in Sources */,
+				EB431B7F2647BE1200D55E71 /* AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift in Sources */,
 				EBA2804E2643F6C10063C89E /* ListingDetailsInteractorOutputMock.swift in Sources */,
+				EB431B812647BE9B00D55E71 /* ListingsPresenterOutputMock.swift in Sources */,
 				EBA2804A2643F5760063C89E /* CurrentListingRepositoryMocks.swift in Sources */,
 				EBA27FFB263A53960063C89E /* ListingTests.swift in Sources */,
 				EBA2806326443A8A0063C89E /* ListingCategoryMock.swift in Sources */,
+				EB431B732647972300D55E71 /* StringFormatterMock.swift in Sources */,
+				EB431B772647BC3E00D55E71 /* ListingsLocalizableStub.swift in Sources */,
 				EBA27FFD263A53A00063C89E /* ListingCategoryTests.swift in Sources */,
 				EBA280502643F7EF0063C89E /* ListingDetailsRoutingMock.swift in Sources */,
 			);
