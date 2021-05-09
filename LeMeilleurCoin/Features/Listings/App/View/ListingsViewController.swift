@@ -132,7 +132,6 @@ extension ListingsViewController: ListingsPresenterOutput {
     let itemSize = CGSize(width: itemWidth, height: 140)
     layout.itemSize = itemSize
     
-    collectionView.setNeedsLayout()
     layout.invalidateLayout()
   }
   
