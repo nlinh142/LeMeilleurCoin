@@ -17,15 +17,13 @@ class AppDateFormatterTests: XCTestCase {
   
   // MARK: - Setup
   
-  override func setUp() {
-    super.setUp()
+  override func setUpWithError() throws {
     sut = AppDateFormatter(locale: .init(identifier: "en_US"),
                            timeZone: .init(identifier: "GMT")!)
   }
   
-  override func tearDown() {
+  override func tearDownWithError() throws {
     sut = nil
-    super.tearDown()
   }
   
   // MARK: - Tests

@@ -24,6 +24,10 @@
 		EB431B882647E6DB00D55E71 /* ListingDetailsLocalizableStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B872647E6DB00D55E71 /* ListingDetailsLocalizableStub.swift */; };
 		EB431B8A2647E7A900D55E71 /* ListingDetailsInteractorInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B892647E7A900D55E71 /* ListingDetailsInteractorInputMock.swift */; };
 		EB431B8C2647E86500D55E71 /* ListingDetailsPresenterOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B8B2647E86500D55E71 /* ListingDetailsPresenterOutputMock.swift */; };
+		EB431B8E2648160100D55E71 /* ListingDetailsModuleFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B8D2648160100D55E71 /* ListingDetailsModuleFactoryTests.swift */; };
+		EB431B9026481BDB00D55E71 /* ListingDetailsInteractorFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B8F26481BDB00D55E71 /* ListingDetailsInteractorFactoryMock.swift */; };
+		EB431B9226481DC600D55E71 /* ListingsInteractorFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B9126481DC600D55E71 /* ListingsInteractorFactoryMock.swift */; };
+		EB431B9426481E7500D55E71 /* ListingsModuleFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B9326481E7500D55E71 /* ListingsModuleFactoryTests.swift */; };
 		EBA27F582639027D0063C89E /* ListingsInteractorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */; };
 		EBA27F592639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */; };
 		EBA27F5A2639027D0063C89E /* ListingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F552639027D0063C89E /* ListingsInteractor.swift */; };
@@ -133,6 +137,10 @@
 		EB431B872647E6DB00D55E71 /* ListingDetailsLocalizableStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsLocalizableStub.swift; sourceTree = "<group>"; };
 		EB431B892647E7A900D55E71 /* ListingDetailsInteractorInputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsInteractorInputMock.swift; sourceTree = "<group>"; };
 		EB431B8B2647E86500D55E71 /* ListingDetailsPresenterOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsPresenterOutputMock.swift; sourceTree = "<group>"; };
+		EB431B8D2648160100D55E71 /* ListingDetailsModuleFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsModuleFactoryTests.swift; sourceTree = "<group>"; };
+		EB431B8F26481BDB00D55E71 /* ListingDetailsInteractorFactoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsInteractorFactoryMock.swift; sourceTree = "<group>"; };
+		EB431B9126481DC600D55E71 /* ListingsInteractorFactoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorFactoryMock.swift; sourceTree = "<group>"; };
+		EB431B9326481E7500D55E71 /* ListingsModuleFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsModuleFactoryTests.swift; sourceTree = "<group>"; };
 		EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorFactory.swift; sourceTree = "<group>"; };
 		EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorDataSourceProtocol.swift; sourceTree = "<group>"; };
 		EBA27F552639027D0063C89E /* ListingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractor.swift; sourceTree = "<group>"; };
@@ -330,6 +338,7 @@
 		EB431B7A2647BD0600D55E71 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				EB431B9326481E7500D55E71 /* ListingsModuleFactoryTests.swift */,
 				EB431B7B2647BD1800D55E71 /* ListingsPresenterTests.swift */,
 			);
 			path = App;
@@ -346,6 +355,7 @@
 		EB431B822647E5A900D55E71 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				EB431B8D2648160100D55E71 /* ListingDetailsModuleFactoryTests.swift */,
 				EB431B832647E5B700D55E71 /* ListingDetailsPresenterTests.swift */,
 			);
 			path = App;
@@ -720,6 +730,7 @@
 			isa = PBXGroup;
 			children = (
 				EB431B782647BC9100D55E71 /* ListingsAssetsProviderStub.swift */,
+				EB431B9126481DC600D55E71 /* ListingsInteractorFactoryMock.swift */,
 				EB431B7426479ABD00D55E71 /* ListingsInteractorInputMock.swift */,
 				EBA280542643F8F40063C89E /* ListingsInteractorOutputMock.swift */,
 				EB431B762647BC3E00D55E71 /* ListingsLocalizableStub.swift */,
@@ -733,6 +744,7 @@
 			isa = PBXGroup;
 			children = (
 				EB431B852647E6B500D55E71 /* ListingDetailsAssetsProviderStub.swift */,
+				EB431B8F26481BDB00D55E71 /* ListingDetailsInteractorFactoryMock.swift */,
 				EB431B892647E7A900D55E71 /* ListingDetailsInteractorInputMock.swift */,
 				EBA2804D2643F6C10063C89E /* ListingDetailsInteractorOutputMock.swift */,
 				EB431B872647E6DB00D55E71 /* ListingDetailsLocalizableStub.swift */,
@@ -993,11 +1005,14 @@
 				EBA27FF2263A52E50063C89E /* ListingDetailsInteractorTests.swift in Sources */,
 				EBA280602644364E0063C89E /* XCTestCase+Expectation.swift in Sources */,
 				EB431B7C2647BD1800D55E71 /* ListingsPresenterTests.swift in Sources */,
+				EB431B9426481E7500D55E71 /* ListingsModuleFactoryTests.swift in Sources */,
 				EBA2805B2643F9F80063C89E /* CategoryReferentialRepositoryMocks.swift in Sources */,
 				EB431B882647E6DB00D55E71 /* ListingDetailsLocalizableStub.swift in Sources */,
 				EBA27FF3263A52E50063C89E /* ListingDetailsInteractorFactoryTests.swift in Sources */,
+				EB431B9026481BDB00D55E71 /* ListingDetailsInteractorFactoryMock.swift in Sources */,
 				EB431B8C2647E86500D55E71 /* ListingDetailsPresenterOutputMock.swift in Sources */,
 				EB431B792647BC9100D55E71 /* ListingsAssetsProviderStub.swift in Sources */,
+				EB431B8E2648160100D55E71 /* ListingDetailsModuleFactoryTests.swift in Sources */,
 				EBA28021263A54B30063C89E /* ListingsInteractorFactoryTests.swift in Sources */,
 				EBA28020263A54B30063C89E /* ListingsInteractorTests.swift in Sources */,
 				EBA2806526443A920063C89E /* ListingMock.swift in Sources */,
@@ -1008,6 +1023,7 @@
 				EBA2804E2643F6C10063C89E /* ListingDetailsInteractorOutputMock.swift in Sources */,
 				EB431B8A2647E7A900D55E71 /* ListingDetailsInteractorInputMock.swift in Sources */,
 				EB431B812647BE9B00D55E71 /* ListingsPresenterOutputMock.swift in Sources */,
+				EB431B9226481DC600D55E71 /* ListingsInteractorFactoryMock.swift in Sources */,
 				EBA2804A2643F5760063C89E /* CurrentListingRepositoryMocks.swift in Sources */,
 				EBA27FFB263A53960063C89E /* ListingTests.swift in Sources */,
 				EBA2806326443A8A0063C89E /* ListingCategoryMock.swift in Sources */,

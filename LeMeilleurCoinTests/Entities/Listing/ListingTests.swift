@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 @testable import LeMeilleurCoin
 
 class ListingTests: XCTestCase {

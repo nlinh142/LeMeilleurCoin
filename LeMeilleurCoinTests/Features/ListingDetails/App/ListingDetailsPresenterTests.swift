@@ -5,7 +5,6 @@
 //  Created by Linh Nguyen on 09/05/2021.
 //
 
-import Foundation
 import XCTest
 
 @testable import LeMeilleurCoin

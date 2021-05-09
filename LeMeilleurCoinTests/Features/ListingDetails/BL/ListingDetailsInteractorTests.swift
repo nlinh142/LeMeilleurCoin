@@ -24,8 +24,7 @@ class ListingDetailsInteractorTests: XCTestCase {
   
   // MARK: - Setup
   
-  override func setUp() {
-    super.setUp()
+  override func setUpWithError() throws {
     currentListingFetchRepository = CurrentListingFetchingMock()
     currentListingClearRepository = CurrentListingClearingMock()
     router = ListingDetailsRoutingMock()
@@ -40,13 +39,12 @@ class ListingDetailsInteractorTests: XCTestCase {
     sut.output = output
   }
   
-  override func tearDown() {
+  override func tearDownWithError() throws {
     sut = nil
     output = nil
     currentListingFetchRepository = nil
     currentListingClearRepository = nil
     router = nil
-    super.tearDown()
   }
   
   // MARK: - Tests
