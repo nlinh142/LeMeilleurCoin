@@ -133,7 +133,7 @@ extension ListingsViewController: ListingsPresenterOutput {
     layout.itemSize = itemSize
     
     collectionView.setNeedsLayout()
-    collectionView.layoutIfNeeded()
+    layout.invalidateLayout()
   }
   
   func displayFilterSelector(title: String, cancelTitle: String) {

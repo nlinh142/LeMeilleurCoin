@@ -35,13 +35,16 @@ final class UrgentIndicatorLabel: PaddedLabel {
     
     let label = UrgentIndicatorLabel.makeUrgentLabel()
     label.translatesAutoresizingMaskIntoConstraints = false
+    
     containerView.addSubview(label)
+    
     NSLayoutConstraint.activate([
       label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 4.0),
       label.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 4.0)
     ])
+    
     label.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
-    containerView.setNeedsLayout()
+    
     containerView.layoutIfNeeded()
   }
   

@@ -193,19 +193,8 @@ class ListingDetailsPresenterTests: XCTestCase {
       .creationDate(Date(timeIntervalSince1970: 111222333444)),
       .description("description"),
       .id(1234),
-      .imageUrl("imageUrl"),
-      .siret("987 654 321")
-    ]
-    
-    let expectedViewCategories: [ListingDetailsViewCategory] = [
-      .title(NSAttributedString(string: "string")),
-      .categoryName(NSAttributedString(string: "string")),
-      .priceDescription(NSAttributedString(string: "string")),
-      .creationDateDescription(NSAttributedString(string: "string")),
-      .description(NSAttributedString(string: "string")),
-      .id(NSAttributedString(string: "string")),
-      .image(url: "imageUrl", placeholder: assetsProvider.listingPlaceholderImage),
-      .siret(NSAttributedString(string: "string"))
+      .siret("987 654 321"),
+      .imageUrl("imageUrl")
     ]
     
     // WHEN
@@ -215,7 +204,21 @@ class ListingDetailsPresenterTests: XCTestCase {
     XCTAssert(output.displayViewCategoriesCalledOnly)
     XCTAssertEqual(output.displayViewCategoriesCallsCount, 1)
     XCTAssertEqual(output.displayViewCategoriesListOfCategories.count, 1)
-    XCTAssertEqual(output.displayViewCategoriesListOfCategories[0], expectedViewCategories)
+    XCTAssertEqual(output.displayViewCategoriesListOfCategories[0].count, 8)
+    XCTAssertEqual(output.displayViewCategoriesListOfCategories[0][0], .title(NSAttributedString(string: "string")))
+    XCTAssertEqual(output.displayViewCategoriesListOfCategories[0][1], .categoryName(NSAttributedString(string: "string")))
+    XCTAssertEqual(output.displayViewCategoriesListOfCategories[0][2], .priceDescription(NSAttributedString(string: "string")))
+    XCTAssertEqual(output.displayViewCategoriesListOfCategories[0][3], .creationDateDescription(NSAttributedString(string: "string")))
+    XCTAssertEqual(output.displayViewCategoriesListOfCategories[0][4], .description(NSAttributedString(string: "string")))
+    XCTAssertEqual(output.displayViewCategoriesListOfCategories[0][5], .id(NSAttributedString(string: "string")))
+    XCTAssertEqual(output.displayViewCategoriesListOfCategories[0][6], .siret(NSAttributedString(string: "string")))
+    
+    if case let .image(url, placeholder) = output.displayViewCategoriesListOfCategories[0][7] {
+      XCTAssertEqual(url, "imageUrl")
+      XCTAssertEqual(placeholder?.pngData(), UIImage().pngData())
+    } else {
+      XCTFail()
+    }
     
     XCTAssert(interactor.noMethodsCalled)
     
