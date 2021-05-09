@@ -441,17 +441,17 @@ class ListingsInteractorTests: XCTestCase {
         && self.categoryReferentialRepository.fetchCallsCount == 0
         && self.output.noMethodsCalled
         && self.currentListingRepository.saveCallsCount == 1
-        && self.currentListingRepository.saveReceivedListOfRequests.count == 1
-        && self.currentListingRepository.saveReceivedListOfRequests[0].category.id == 2
-        && self.currentListingRepository.saveReceivedListOfRequests[0].category.name == "Vehicles"
-        && self.currentListingRepository.saveReceivedListOfRequests[0].creationDate == Date(timeIntervalSince1970: 123456789)
-        && self.currentListingRepository.saveReceivedListOfRequests[0].price == 100.99
-        && self.currentListingRepository.saveReceivedListOfRequests[0].imageUrls?.small == "small1"
-        && self.currentListingRepository.saveReceivedListOfRequests[0].imageUrls?.thumb == "thumb1"
-        && self.currentListingRepository.saveReceivedListOfRequests[0].isUrgent == true
-        && self.currentListingRepository.saveReceivedListOfRequests[0].title == "Title1"
-        && self.currentListingRepository.saveReceivedListOfRequests[0].description == "Description1"
-        && self.currentListingRepository.saveReceivedListOfRequests[0].siret == "111 222 333"
+        && self.currentListingRepository.saveListOfRequests.count == 1
+        && self.currentListingRepository.saveListOfRequests[0].category.id == 2
+        && self.currentListingRepository.saveListOfRequests[0].category.name == "Vehicles"
+        && self.currentListingRepository.saveListOfRequests[0].creationDate == Date(timeIntervalSince1970: 123456789)
+        && self.currentListingRepository.saveListOfRequests[0].price == 100.99
+        && self.currentListingRepository.saveListOfRequests[0].imageUrls?.small == "small1"
+        && self.currentListingRepository.saveListOfRequests[0].imageUrls?.thumb == "thumb1"
+        && self.currentListingRepository.saveListOfRequests[0].isUrgent == true
+        && self.currentListingRepository.saveListOfRequests[0].title == "Title1"
+        && self.currentListingRepository.saveListOfRequests[0].description == "Description1"
+        && self.currentListingRepository.saveListOfRequests[0].siret == "111 222 333"
         && self.router.routeToListingDetailsCallsCount == 1
     }
   }

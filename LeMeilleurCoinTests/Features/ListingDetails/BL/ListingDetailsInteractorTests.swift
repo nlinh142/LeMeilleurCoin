@@ -138,18 +138,19 @@ class ListingDetailsInteractorTests: XCTestCase {
         && self.output.notifyLoadingCallsCount == 1
         && self.output.notifyEndLoadingCallsCount == 1
         && self.output.notifyCategoriesCallsCount == 1
-        && self.output.notifyCategoriesReceivedListOfCategories.count == 1
-        && self.output.notifyCategoriesReceivedListOfCategories[0].count == 7
-        && self.output.notifyCategoriesReceivedListOfCategories[0][0] == .imageUrl("thumb")
-        && self.output.notifyCategoriesReceivedListOfCategories[0][1] == .title("Title")
-        && self.output.notifyCategoriesReceivedListOfCategories[0][2] == .categoryName("CategoryName")
-        && self.output.notifyCategoriesReceivedListOfCategories[0][3] == .price(129.99)
-        && self.output.notifyCategoriesReceivedListOfCategories[0][4] == .description("Description")
-        && self.output.notifyCategoriesReceivedListOfCategories[0][5] == .creationDate(Date(timeIntervalSince1970: 123456789))
-        && self.output.notifyCategoriesReceivedListOfCategories[0][6] == .siret("000 111 222")
+        && self.output.notifyCategoriesListOfCategories.count == 1
+        && self.output.notifyCategoriesListOfCategories[0].count == 8
+        && self.output.notifyCategoriesListOfCategories[0][0] == .imageUrl("thumb")
+        && self.output.notifyCategoriesListOfCategories[0][1] == .title("Title")
+        && self.output.notifyCategoriesListOfCategories[0][2] == .categoryName("CategoryName")
+        && self.output.notifyCategoriesListOfCategories[0][3] == .price(129.99)
+        && self.output.notifyCategoriesListOfCategories[0][4] == .description("Description")
+        && self.output.notifyCategoriesListOfCategories[0][5] == .creationDate(Date(timeIntervalSince1970: 123456789))
+        && self.output.notifyCategoriesListOfCategories[0][6] == .siret("000 111 222")
+        && self.output.notifyCategoriesListOfCategories[0][7] == .id(1234)
         && self.output.notifyIsUrgentCallsCount == 1
-        && self.output.notifyIsUrgentReceivedListOfIsUrgent.count == 1
-        && self.output.notifyIsUrgentReceivedListOfIsUrgent[0] == false
+        && self.output.notifyIsUrgentListOfIsUrgent.count == 1
+        && self.output.notifyIsUrgentListOfIsUrgent[0] == false
         && self.output.notifyNoDataErrorCallsCount == 0
         && self.currentListingClearRepository.clearCallsCount == 0
         && self.router.routeBackCallsCount == 0

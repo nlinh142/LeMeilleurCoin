@@ -11,37 +11,37 @@ import Foundation
 
 class ListingsInteractorOutputMock: ListingsInteractorOutput {
   
-  var setDefaultValuesCallsCount: Int = 0
+  private(set) var setDefaultValuesCallsCount: Int = 0
   
   func setDefaultValues() {
     setDefaultValuesCallsCount += 1
   }
   
-  var notifyLoadingCallsCount: Int = 0
+  private(set) var notifyLoadingCallsCount: Int = 0
   
   func notifyLoading() {
     notifyLoadingCallsCount += 1
   }
   
-  var notifyEndLoadingCallsCount: Int = 0
+  private(set) var notifyEndLoadingCallsCount: Int = 0
   
   func notifyEndLoading() {
     notifyEndLoadingCallsCount += 1
   }
   
-  var notifyFetchingErrorCallsCount: Int = 0
+  private(set) var notifyFetchingErrorCallsCount: Int = 0
   
   func notifyFetchingError() {
     notifyFetchingErrorCallsCount += 1
   }
   
-  var notifyNoValidListingsCallsCount: Int = 0
+  private(set) var notifyNoValidListingsCallsCount: Int = 0
   
   func notifyNoValidListings() {
     notifyNoValidListingsCallsCount += 1
   }
   
-  var updateListingsCallsCount: Int = 0
+  private(set) var updateListingsCallsCount: Int = 0
   var updateListingsListOfArguments: [(categoryName: String?, count: Int?)] = []
   
   func updateListings(categoryName: String?, count: Int?) {
@@ -49,7 +49,7 @@ class ListingsInteractorOutputMock: ListingsInteractorOutput {
     updateListingsListOfArguments.append((categoryName, count))
   }
   
-  var launchFilterSelectorCallsCount: Int = 0
+  private(set) var launchFilterSelectorCallsCount: Int = 0
   
   func launchFilterSelector() {
     launchFilterSelectorCallsCount += 1

@@ -12,7 +12,7 @@ import Foundation
 // MARK: - CurrentListingFetchingMock
 
 class CurrentListingFetchingMock: CurrentListingFetching {
-  var fetchCallsCount: Int = 0
+  private(set) var fetchCallsCount: Int = 0
   var fetchCompletion: ((@escaping (CurrentListingFetchingResponse?) -> Void) -> Void)?
   
   func fetch(completion: @escaping (CurrentListingFetchingResponse?) -> Void) {
@@ -24,19 +24,19 @@ class CurrentListingFetchingMock: CurrentListingFetching {
 // MARK: - CurrentListingSavingMock
 
 class CurrentListingSavingMock: CurrentListingSaving {
-  var saveCallsCount: Int = 0
-  var saveReceivedListOfRequests: [CurrentListingSavingRequest] = []
+  private(set) var saveCallsCount: Int = 0
+  private(set) var saveListOfRequests: [CurrentListingSavingRequest] = []
   
   func save(with request: CurrentListingSavingRequest) {
     saveCallsCount += 1
-    saveReceivedListOfRequests.append(request)
+    saveListOfRequests.append(request)
   }
 }
 
 // MARK: - CurrentListingClearingMock
 
 class CurrentListingClearingMock: CurrentListingClearing {
-  var clearCallsCount: Int = 0
+  private(set) var clearCallsCount: Int = 0
   
   func clear() {
     clearCallsCount += 1

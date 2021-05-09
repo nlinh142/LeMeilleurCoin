@@ -59,9 +59,14 @@ final class ListingDetailsPresenter {
     }
     
     enum Siret {
-      static let format: String = "SIRET: %@"
       static let font: UIFont = .italicSystemFont(ofSize: 13.0)
       static let textColor: UIColor = .black
+      static let textAlignment: NSTextAlignment = .natural
+    }
+    
+    enum Id {
+      static let font: UIFont = .italicSystemFont(ofSize: 13.0)
+      static let textColor: UIColor = .gray
       static let textAlignment: NSTextAlignment = .natural
     }
   }
@@ -140,10 +145,17 @@ final class ListingDetailsPresenter {
   }
   
   private func formattedSiretDescription(with siret: String) -> NSAttributedString {
-    stringFormatter.format(string: String(format: Constants.Siret.format, siret),
+    stringFormatter.format(string: String(format: localizator.siretDescriptionFormat, siret),
                            font: Constants.Siret.font,
                            textColor: Constants.Siret.textColor,
                            textAlignment: Constants.Siret.textAlignment)
+  }
+  
+  private func formattedIdDescription(with id: UInt) -> NSAttributedString {
+    stringFormatter.format(string: String(format: localizator.referenceIdDescriptionFormat, id),
+                           font: Constants.Id.font,
+                           textColor: Constants.Id.textColor,
+                           textAlignment: Constants.Id.textAlignment)
   }
 }
 
@@ -166,7 +178,9 @@ extension ListingDetailsPresenter: ListingDetailsPresenterInput {
 // MARK: - ListingDetailsInteractorOutput
 
 extension ListingDetailsPresenter: ListingDetailsInteractorOutput {
-  func setDefaultValues() {}
+  func setDefaultValues() {
+    output?.set(closeButtonTitle: localizator.closeButtonTitle)
+  }
   
   func notifyLoading() {
     output?.showLoading()
@@ -204,6 +218,8 @@ extension ListingDetailsPresenter: ListingDetailsInteractorOutput {
       case let .siret(siret):
         guard let siret = siret else { break }
         viewCategories.append(.siret(formattedSiretDescription(with: siret)))
+      case let .id(id):
+        viewCategories.append(.id(formattedIdDescription(with: id)))
       }
     }
     

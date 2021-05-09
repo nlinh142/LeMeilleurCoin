@@ -12,7 +12,7 @@ import Foundation
 // MARK: - ListingsFetchingMock
 
 class ListingsFetchingMock: ListingsFetching {
-  var fetchCallsCount: Int = 0
+  private(set) var fetchCallsCount: Int = 0
   var fetchCompletion: ((@escaping (Result<[ListingsFetchingResponse], ListingsFetchingError>) -> Void) -> Void)?
   
   func fetch(completion: @escaping (Result<[ListingsFetchingResponse], ListingsFetchingError>) -> Void) {

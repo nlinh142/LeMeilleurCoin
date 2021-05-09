@@ -20,6 +20,7 @@ class ListingDetailsViewController: UIViewController, Loadable {
   
   private lazy var scrollView: UIScrollView = .init()
   private lazy var stackView: UIStackView = .init()
+  private var closeButton: UIBarButtonItem!
   
   var activityIndicator: UIActivityIndicatorView?
   
@@ -46,7 +47,8 @@ class ListingDetailsViewController: UIViewController, Loadable {
   }
   
   private func setupCloseButton() {
-    let closeButton = UIBarButtonItem(barButtonSystemItem: .cancel,
+    closeButton = UIBarButtonItem(title: nil,
+                                      style: .plain,
                                       target: self,
                                       action: #selector(closeButtonDidTouchUpInside(_:)))
     navigationItem.leftBarButtonItem = closeButton
@@ -171,7 +173,8 @@ extension ListingDetailsViewController: ListingDetailsPresenterOutput {
            let .creationDateDescription(text),
            let .description(text),
            let .priceDescription(text),
-           let .siret(text):
+           let .siret(text),
+           let .id(text):
         addText(text)
       case let .image(url: imageUrl, placeholder: placeholderImage):
         addImage(with: imageUrl, placeholder: placeholderImage)
@@ -181,5 +184,9 @@ extension ListingDetailsViewController: ListingDetailsPresenterOutput {
   
   func displayUrgentIndicator() {
     UrgentIndicatorLabel.show(on: scrollView)
+  }
+  
+  func set(closeButtonTitle: String) {
+    closeButton.title = closeButtonTitle
   }
 }

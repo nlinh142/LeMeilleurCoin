@@ -11,44 +11,44 @@ import Foundation
 
 class ListingDetailsInteractorOutputMock: ListingDetailsInteractorOutput {
   
-  var setDefaultValuesCallsCount: Int = 0
+  private(set) var setDefaultValuesCallsCount: Int = 0
   
   func setDefaultValues() {
     setDefaultValuesCallsCount += 1
   }
   
-  var notifyLoadingCallsCount: Int = 0
+  private(set) var notifyLoadingCallsCount: Int = 0
   
   func notifyLoading() {
     notifyLoadingCallsCount += 1
   }
   
-  var notifyEndLoadingCallsCount: Int = 0
+  private(set) var notifyEndLoadingCallsCount: Int = 0
   
   func notifyEndLoading() {
     notifyEndLoadingCallsCount += 1
   }
   
-  var notifyNoDataErrorCallsCount: Int = 0
+  private(set) var notifyNoDataErrorCallsCount: Int = 0
   
   func notifyNoDataError() {
     notifyNoDataErrorCallsCount += 1
   }
   
-  var notifyCategoriesCallsCount: Int = 0
-  var notifyCategoriesReceivedListOfCategories: [[ListingDetailsCategory]] = []
+  private(set) var notifyCategoriesCallsCount: Int = 0
+  private(set) var notifyCategoriesListOfCategories: [[ListingDetailsCategory]] = []
   
   func notify(categories: [ListingDetailsCategory]) {
     notifyCategoriesCallsCount += 1
-    notifyCategoriesReceivedListOfCategories.append(categories)
+    notifyCategoriesListOfCategories.append(categories)
   }
   
-  var notifyIsUrgentCallsCount: Int = 0
-  var notifyIsUrgentReceivedListOfIsUrgent: [Bool] = []
+  private(set) var notifyIsUrgentCallsCount: Int = 0
+  private(set) var notifyIsUrgentListOfIsUrgent: [Bool] = []
   
   func notify(isUrgent: Bool) {
     notifyIsUrgentCallsCount += 1
-    notifyIsUrgentReceivedListOfIsUrgent.append(isUrgent)
+    notifyIsUrgentListOfIsUrgent.append(isUrgent)
   }
   
   var noMethodsCalled: Bool {

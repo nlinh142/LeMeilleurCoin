@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Foundation
 
 protocol ListingDetailsInteractorDependencies {
   var currentListingFetchRepository: CurrentListingFetching { get }
@@ -114,7 +113,8 @@ extension ListingDetailsInteractor: ListingDetailsInteractorInput {
           .price(listing.price),
           .description(listing.description),
           .creationDate(listing.creationDate),
-          .siret(listing.siret)
+          .siret(listing.siret),
+          .id(listing.id)
         ]
         
         self.notify(categories: categories)

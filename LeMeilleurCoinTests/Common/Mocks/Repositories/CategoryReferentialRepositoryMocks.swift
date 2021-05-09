@@ -12,7 +12,7 @@ import Foundation
 // MARK: - CategoryReferentialFetchingMock
 
 class CategoryReferentialFetchingMock: CategoryReferentialFetching {
-  var fetchCallsCount: Int = 0
+  private(set) var fetchCallsCount: Int = 0
   var fetchCompletion: ((@escaping (Result<[CategoryReferentialFetchingResponse], CategoryReferentialFetchingError>) -> Void) -> Void)?
   
   func fetch(completion: @escaping (Result<[CategoryReferentialFetchingResponse], CategoryReferentialFetchingError>) -> Void) {

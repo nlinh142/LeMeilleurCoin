@@ -95,16 +95,28 @@ private struct ListingDetailsPresenterDependenciesModel: ListingDetailsPresenter
 // MARK: - ListingDetailsLocalizable
 
 private struct ListingDetailsLocalizator: ListingDetailsLocalizable {
+  var referenceIdDescriptionFormat: String {
+    "N° de référence: %u"
+  }
+  
+  var siretDescriptionFormat: String {
+    "N° SIRET: %@"
+  }
+  
   var fetchingErrorTitle: String {
-    "Technical error"
+    "Erreur technique"
   }
   
   var fetchingErrorMessage: String {
-    "There is an error while retrieving listing details. Please try again later."
+    "Un problème est survenu lors de la récupération des détails de l'annonce. Merci de ressayer ultérieurement."
   }
   
   var fetchingErrorConfirmationButtonTitle: String {
     "OK"
+  }
+  
+  var closeButtonTitle: String {
+    "Fermer"
   }
 }
 

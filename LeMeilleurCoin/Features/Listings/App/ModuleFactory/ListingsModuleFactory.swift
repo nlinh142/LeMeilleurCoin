@@ -147,23 +147,23 @@ private struct ListingsPresenterDependenciesModel: ListingsPresenterDependencies
 
 private struct ListingsLocalizator: ListingsLocalizable {
   var title: String {
-    "All"
+    "Toutes"
   }
   
   var filtersButtonTitle: String {
-    "Filters"
+    "Filtres"
   }
   
   var resetButtonTitle: String {
-    "Reset"
+    "Réinitialiser"
   }
   
   var fetchingErrorTitle: String {
-    "Technical issue"
+    "Erreur technique"
   }
   
   var fetchingErrorMessage: String {
-    "There is an error while retrieving listings. Please try again later."
+    "Un problème est survenu lors de la récupération des annonces. Merci de ressayer ultérieurement."
   }
   
   var fetchingErrorConfirmationButtonTitle: String {
@@ -171,11 +171,11 @@ private struct ListingsLocalizator: ListingsLocalizable {
   }
   
   var noValidListingsTitle: String {
-    "No data"
+    "Pas de données"
   }
   
   var noValidListingsMessage: String {
-    "No valid listings have been retrieved. Please try again later."
+    "Aucune annonce valide a été récupérée. Merci de ressayer ultérieurement."
   }
   
   var noValidListingsConfirmationButtonTitle: String {
@@ -183,11 +183,11 @@ private struct ListingsLocalizator: ListingsLocalizable {
   }
   
   var filterSelectorTitle: String {
-    "View all listings of a category"
+    "Afficher toutes les annonces d'une catégorie"
   }
   
   var filterSelectorCancelTitle: String {
-    "Cancel"
+    "Annuler"
   }
 }
 

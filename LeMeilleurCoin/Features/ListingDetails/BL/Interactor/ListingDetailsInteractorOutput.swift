@@ -16,6 +16,7 @@ enum ListingDetailsCategory: Equatable {
   case description(String?)
   case creationDate(Date)
   case siret(String?)
+  case id(UInt)
 }
 
 protocol ListingDetailsInteractorOutput: AnyObject {

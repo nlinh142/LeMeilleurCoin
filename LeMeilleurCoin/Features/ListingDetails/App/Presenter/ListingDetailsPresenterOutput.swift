@@ -16,11 +16,13 @@ enum ListingDetailsViewCategory {
   case description(NSAttributedString)
   case creationDateDescription(NSAttributedString)
   case siret(NSAttributedString)
+  case id(NSAttributedString)
 }
 
 protocol ListingDetailsPresenterOutput: AnyObject {
   func showLoading()
   func hideLoading()
+  func set(closeButtonTitle: String)
   func display(alert: AlertItemProtocol)
   func display(viewCategories: [ListingDetailsViewCategory])
   func displayUrgentIndicator()

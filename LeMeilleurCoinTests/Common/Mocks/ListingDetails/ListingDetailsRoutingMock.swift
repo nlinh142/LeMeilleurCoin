@@ -11,7 +11,7 @@ import Foundation
 
 class ListingDetailsRoutingMock: ListingDetailsRouting {
   
-  var routeBackCallsCount: Int = 0
+  private(set) var routeBackCallsCount: Int = 0
   
   func routeBack() {
     routeBackCallsCount += 1
