@@ -19,6 +19,11 @@
 		EB431B7C2647BD1800D55E71 /* ListingsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B7B2647BD1800D55E71 /* ListingsPresenterTests.swift */; };
 		EB431B7F2647BE1200D55E71 /* AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B7E2647BE1200D55E71 /* AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift */; };
 		EB431B812647BE9B00D55E71 /* ListingsPresenterOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B802647BE9B00D55E71 /* ListingsPresenterOutputMock.swift */; };
+		EB431B842647E5B700D55E71 /* ListingDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B832647E5B700D55E71 /* ListingDetailsPresenterTests.swift */; };
+		EB431B862647E6B500D55E71 /* ListingDetailsAssetsProviderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B852647E6B500D55E71 /* ListingDetailsAssetsProviderStub.swift */; };
+		EB431B882647E6DB00D55E71 /* ListingDetailsLocalizableStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B872647E6DB00D55E71 /* ListingDetailsLocalizableStub.swift */; };
+		EB431B8A2647E7A900D55E71 /* ListingDetailsInteractorInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B892647E7A900D55E71 /* ListingDetailsInteractorInputMock.swift */; };
+		EB431B8C2647E86500D55E71 /* ListingDetailsPresenterOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB431B8B2647E86500D55E71 /* ListingDetailsPresenterOutputMock.swift */; };
 		EBA27F582639027D0063C89E /* ListingsInteractorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */; };
 		EBA27F592639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */; };
 		EBA27F5A2639027D0063C89E /* ListingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F552639027D0063C89E /* ListingsInteractor.swift */; };
@@ -123,6 +128,11 @@
 		EB431B7B2647BD1800D55E71 /* ListingsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsPresenterTests.swift; sourceTree = "<group>"; };
 		EB431B7E2647BE1200D55E71 /* AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift; sourceTree = "<group>"; };
 		EB431B802647BE9B00D55E71 /* ListingsPresenterOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsPresenterOutputMock.swift; sourceTree = "<group>"; };
+		EB431B832647E5B700D55E71 /* ListingDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsPresenterTests.swift; sourceTree = "<group>"; };
+		EB431B852647E6B500D55E71 /* ListingDetailsAssetsProviderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsAssetsProviderStub.swift; sourceTree = "<group>"; };
+		EB431B872647E6DB00D55E71 /* ListingDetailsLocalizableStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsLocalizableStub.swift; sourceTree = "<group>"; };
+		EB431B892647E7A900D55E71 /* ListingDetailsInteractorInputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsInteractorInputMock.swift; sourceTree = "<group>"; };
+		EB431B8B2647E86500D55E71 /* ListingDetailsPresenterOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailsPresenterOutputMock.swift; sourceTree = "<group>"; };
 		EBA27F532639027D0063C89E /* ListingsInteractorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorFactory.swift; sourceTree = "<group>"; };
 		EBA27F542639027D0063C89E /* ListingsInteractorDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractorDataSourceProtocol.swift; sourceTree = "<group>"; };
 		EBA27F552639027D0063C89E /* ListingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsInteractor.swift; sourceTree = "<group>"; };
@@ -333,6 +343,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		EB431B822647E5A900D55E71 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EB431B832647E5B700D55E71 /* ListingDetailsPresenterTests.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		EBA27F4F263902270063C89E /* Listings */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +543,7 @@
 		EBA27F98263909300063C89E /* ListingDetails */ = {
 			isa = PBXGroup;
 			children = (
+				EB431B822647E5A900D55E71 /* App */,
 				EBA27F9C2639095E0063C89E /* BL */,
 			);
 			path = ListingDetails;
@@ -713,7 +732,11 @@
 		EBA280472643F54C0063C89E /* ListingDetails */ = {
 			isa = PBXGroup;
 			children = (
+				EB431B852647E6B500D55E71 /* ListingDetailsAssetsProviderStub.swift */,
+				EB431B892647E7A900D55E71 /* ListingDetailsInteractorInputMock.swift */,
 				EBA2804D2643F6C10063C89E /* ListingDetailsInteractorOutputMock.swift */,
+				EB431B872647E6DB00D55E71 /* ListingDetailsLocalizableStub.swift */,
+				EB431B8B2647E86500D55E71 /* ListingDetailsPresenterOutputMock.swift */,
 				EBA2804F2643F7EF0063C89E /* ListingDetailsRoutingMock.swift */,
 			);
 			path = ListingDetails;
@@ -962,6 +985,7 @@
 				EBA28030264057440063C89E /* AppDateFormatterTests.swift in Sources */,
 				EB431B7526479ABD00D55E71 /* ListingsInteractorInputMock.swift in Sources */,
 				EBA2804C2643F5830063C89E /* ListingsRepositoryMocks.swift in Sources */,
+				EB431B862647E6B500D55E71 /* ListingDetailsAssetsProviderStub.swift in Sources */,
 				EB431B6F2647971000D55E71 /* DateFormatterMock.swift in Sources */,
 				EBA280592643F91B0063C89E /* ListingsRoutingMock.swift in Sources */,
 				EBA280342640575E0063C89E /* AppStringFormatterTests.swift in Sources */,
@@ -970,15 +994,19 @@
 				EBA280602644364E0063C89E /* XCTestCase+Expectation.swift in Sources */,
 				EB431B7C2647BD1800D55E71 /* ListingsPresenterTests.swift in Sources */,
 				EBA2805B2643F9F80063C89E /* CategoryReferentialRepositoryMocks.swift in Sources */,
+				EB431B882647E6DB00D55E71 /* ListingDetailsLocalizableStub.swift in Sources */,
 				EBA27FF3263A52E50063C89E /* ListingDetailsInteractorFactoryTests.swift in Sources */,
+				EB431B8C2647E86500D55E71 /* ListingDetailsPresenterOutputMock.swift in Sources */,
 				EB431B792647BC9100D55E71 /* ListingsAssetsProviderStub.swift in Sources */,
 				EBA28021263A54B30063C89E /* ListingsInteractorFactoryTests.swift in Sources */,
 				EBA28020263A54B30063C89E /* ListingsInteractorTests.swift in Sources */,
 				EBA2806526443A920063C89E /* ListingMock.swift in Sources */,
 				EBA280552643F8F40063C89E /* ListingsInteractorOutputMock.swift in Sources */,
 				EB431B712647971A00D55E71 /* PriceFormatterMock.swift in Sources */,
+				EB431B842647E5B700D55E71 /* ListingDetailsPresenterTests.swift in Sources */,
 				EB431B7F2647BE1200D55E71 /* AppTraitCollectionCenterHorizontalSizeClassGettableMock.swift in Sources */,
 				EBA2804E2643F6C10063C89E /* ListingDetailsInteractorOutputMock.swift in Sources */,
+				EB431B8A2647E7A900D55E71 /* ListingDetailsInteractorInputMock.swift in Sources */,
 				EB431B812647BE9B00D55E71 /* ListingsPresenterOutputMock.swift in Sources */,
 				EBA2804A2643F5760063C89E /* CurrentListingRepositoryMocks.swift in Sources */,
 				EBA27FFB263A53960063C89E /* ListingTests.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum ListingDetailsViewCategory {
+enum ListingDetailsViewCategory: Equatable {
   case image(url: String?, placeholder: UIImage?)
   case title(NSAttributedString)
   case categoryName(NSAttributedString)
