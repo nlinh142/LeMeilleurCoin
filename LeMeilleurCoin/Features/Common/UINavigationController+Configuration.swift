@@ -14,6 +14,10 @@ extension UINavigationController {
     navigationBar.prefersLargeTitles = prefersLargeTitles
     navigationBar.tintColor = tintColor
     
+    let textAttributes: [NSAttributedString.Key: Any] = [.foregroundColor:  UIColor.black]
+    navigationBar.titleTextAttributes = textAttributes
+    navigationBar.largeTitleTextAttributes = textAttributes
+    
     if isTransparent {
       navigationBar.setBackgroundImage(UIImage(), for: .default)
       navigationBar.shadowImage = UIImage()
